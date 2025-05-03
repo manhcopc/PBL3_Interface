@@ -1,0 +1,17 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <_PostProcessingItem Include="PBL3_Interface.app/Contents/MacOS/PBL3_Interface">
+      <IsAppExtension>false</IsAppExtension>
+      <BCSymbolMapName>PBL3_Interface.bcsymbolmap</BCSymbolMapName>
+      <NoDSymUtil>true</NoDSymUtil>
+      <dSYMSourcePathExists>false</dSYMSourcePathExists>
+      <NoSymbolStrip>true</NoSymbolStrip>
+      <dSYMInfoPlistRelativePath>PBL3_Interface.app.dSYM\Contents\Info.plist</dSYMInfoPlistRelativePath>
+      <SymbolFile>/Users/copc/Library/CloudStorage/OneDrive-TheUniversityofTechnology/Apps/PBL3_Interface/obj/Debug/net9.0-maccatalyst/maccatalyst-arm64/mtouch-symbols.list</SymbolFile>
+      <DSymName>PBL3_Interface.app.dSYM</DSymName>
+      <SourceProjectPath>/Users/copc/Library/CloudStorage/OneDrive-TheUniversityofTechnology/Apps/PBL3_Interface</SourceProjectPath>
+      <IsXPCService></IsXPCService>
+    </_PostProcessingItem>
+  </ItemGroup>
+</Project>

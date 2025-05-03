@@ -1,0 +1,1 @@
+-v --force --timestamp=none --sign - --entitlements /Users/copc/Library/CloudStorage/OneDrive-TheUniversityofTechnology/Apps/PBL3_Interface/obj/Debug/net9.0-maccatalyst/maccatalyst-arm64/Entitlements.xcent /Users/copc/Library/CloudStorage/OneDrive-TheUniversityofTechnology/Apps/PBL3_Interface/bin/Debug/net9.0-maccatalyst/maccatalyst-arm64/PBL3_Interface.app

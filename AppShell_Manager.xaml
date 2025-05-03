@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<Shell
+    x:Class="PBL3_Interface.AppShell_Manager"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:local="clr-namespace:PBL3_Interface"
+    xmlns:pages="clr-namespace:PBL3_Interface.Pages"
+    Title="PBL3_Interface"
+    Shell.FlyoutBehavior="Disabled"
+    Shell.NavBarIsVisible="False">
+    <ShellContent
+        Title="Home"
+        ContentTemplate="{DataTemplate local:MainPage}"
+        FlyoutItemIsVisible="False"
+        Route="MainPage" />
+
+    <ShellContent
+        Title="Product"
+        ContentTemplate="{DataTemplate pages:ProductPage}"
+        FlyoutItemIsVisible="False"
+        Route="ProductPage" />
+
+    <ShellContent
+        Title="Staff"
+        ContentTemplate="{DataTemplate pages:StaffPage}"
+        FlyoutItemIsVisible="False"
+        Route="StaffPage" />
+
+    <ShellContent
+        Title="Shift"
+        ContentTemplate="{DataTemplate pages:ShiftPage}"
+        FlyoutItemIsVisible="False"
+        Route="ShiftPage" />
+
+    <ShellContent
+        Title="Promotion"
+        ContentTemplate="{DataTemplate pages:PromotionPage}"
+        FlyoutItemIsVisible="False"
+        Route="PromotionPage" />
+
+    <ShellContent
+        Title="Order"
+        ContentTemplate="{DataTemplate pages:OrderPage}"
+        FlyoutItemIsVisible="False"
+        Route="OrderPage" />
+
+    <ShellContent
+        Title="Revenue"
+        ContentTemplate="{DataTemplate pages:RevenuePage}"
+        FlyoutItemIsVisible="False"
+        Route="RevenuePage" />
+</Shell>
+<!-- <?xml version="1.0" encoding="UTF-8" ?>
+<Shell
+    x:Class="PBL3_Interface.AppShell_Manager"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:local="clr-namespace:PBL3_Interface"
+    xmlns:pages="clr-namespace:PBL3_Interface.Pages"
+    Title="PBL3_Interface">
+
+    <ShellContent
+        Title="Home"
+        ContentTemplate="{DataTemplate local:MainPage}"
+        Route="MainPage" />
+
+    <ShellContent
+        Title="Product"
+        ContentTemplate="{DataTemplate pages:ProductPage}"
+        Route="ProductPage" />
+
+    <ShellContent
+        Title="Staff"
+        ContentTemplate="{DataTemplate pages:StaffPage}"
+        Route="StaffPage" />
+
+    <ShellContent
+        Title="Shift"
+        ContentTemplate="{DataTemplate pages:ShiftPage}"
+        Route="ShiftPage" />
+
+    <ShellContent
+        Title="Promotion"
+        ContentTemplate="{DataTemplate pages:PromotionPage}"
+        Route="PromotionPage" />
+
+    <ShellContent
+        Title="Order"
+        ContentTemplate="{DataTemplate pages:OrderPage}"
+        Route="OrderPage" />
+
+    <ShellContent
+        Title="Revenue"
+        ContentTemplate="{DataTemplate pages:RevenuePage}"
+        Route="RevenuePage" />
+
+</Shell>-->
