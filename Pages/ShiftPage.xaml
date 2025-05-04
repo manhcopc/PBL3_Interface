@@ -9,9 +9,9 @@
   <Grid Margin="100,0,100,100" RowDefinitions="auto,*">
     <Label
       Grid.Row="0"
-      Margin="0,50,0,50"
+      Margin="0,30,0,20"
       FontAttributes="Bold"
-      FontSize="40"
+      FontSize="30"
       HorizontalOptions="Center"
       Text="QUẢN LÝ CA LÀM VIỆC"
       TextColor="Black"

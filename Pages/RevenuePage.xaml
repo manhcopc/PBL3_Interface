@@ -2,5 +2,212 @@
   x:Class="PBL3_Interface.Pages.RevenuePage"
   xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
   xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+  xmlns:converters="clr-namespace:PBL3_Interface.Converters"
   BackgroundColor="#F7EFE9"
-  ControlTemplate="{StaticResource SharedManagerPageTemplate}" />
+  ControlTemplate="{StaticResource SharedManagerPageTemplate}">
+  <Grid RowDefinitions="Auto,*">
+    <Label
+      Grid.Row="0"
+      Margin="0,30,0,20"
+      FontAttributes="Bold"
+      FontSize="30"
+      Text="Thống kê doanh thu"
+      TextColor="Black" />
+    <Frame
+      Grid.Row="1"
+      Margin="50,0,50,10"
+      BackgroundColor="Transparent">
+      <Grid BackgroundColor="Transparent" RowDefinitions="Auto, Auto, *">
+        <!--  Header: Bộ lọc thời gian  -->
+        <Frame
+          Margin="0,0,0,20"
+          Padding="15"
+          BackgroundColor="#4A90E2"
+          CornerRadius="10"
+          HasShadow="True">
+          <Grid ColumnDefinitions="*, Auto, Auto">
+            <Picker
+              Title="Chọn khoảng thời gian"
+              Margin="5,0"
+              BackgroundColor="White"
+              HorizontalOptions="FillAndExpand"
+              SelectedItem="{Binding SelectedTimeRange, Mode=TwoWay}">
+              <Picker.Items>
+                <x:String>Ngày</x:String>
+                <x:String>Tuần</x:String>
+                <x:String>Tháng</x:String>
+                <x:String>Năm</x:String>
+              </Picker.Items>
+            </Picker>
+            <DatePicker
+              Margin="10,0,0,0"
+              BackgroundColor="White"
+              Date="{Binding SelectedDate, Mode=TwoWay}"
+              Format="d"
+              HorizontalOptions="FillAndExpand"
+              IsVisible="{Binding IsDateVisible}" />
+            <Button
+              Margin="10,0,0,0"
+              Padding="10,5"
+              BackgroundColor="White"
+              Command="{Binding FilterCommand}"
+              CommandParameter="{Binding SelectedDate}"
+              CornerRadius="5"
+              Text="Lọc"
+              TextColor="#4A90E2" />
+          </Grid>
+        </Frame>
+
+        <!--  Tab Selection  -->
+        <HorizontalStackLayout
+          Grid.Row="1"
+          Margin="0,0,0,10"
+          Spacing="10">
+          <Button
+            Padding="15,5"
+            BackgroundColor="{Binding IsTotalRevenueSelected, Converter={StaticResource BoolToColorConverter}, ConverterParameter='Active'}"
+            Command="{Binding SelectTabCommand}"
+            CommandParameter="TotalRevenue"
+            Text="Tổng doanh thu"
+            TextColor="White" />
+          <Button
+            Padding="15,5"
+            BackgroundColor="{Binding IsHourlyRevenueSelected, Converter={StaticResource BoolToColorConverter}, ConverterParameter='Active'}"
+            Command="{Binding SelectTabCommand}"
+            CommandParameter="HourlyRevenue"
+            Text="Theo khung giờ"
+            TextColor="White" />
+          <Button
+            Padding="15,5"
+            BackgroundColor="{Binding IsProductRevenueSelected, Converter={StaticResource BoolToColorConverter}, ConverterParameter='Active'}"
+            Command="{Binding SelectTabCommand}"
+            CommandParameter="ProductRevenue"
+            Text="Theo sản phẩm"
+            TextColor="White" />
+          <Button
+            Padding="15,5"
+            BackgroundColor="{Binding IsEmployeeRevenueSelected, Converter={StaticResource BoolToColorConverter}, ConverterParameter='Active'}"
+            Command="{Binding SelectTabCommand}"
+            CommandParameter="EmployeeRevenue"
+            Text="Theo nhân viên"
+            TextColor="White" />
+          <Button
+            Padding="15,5"
+            BackgroundColor="{Binding IsCancellationRateSelected, Converter={StaticResource BoolToColorConverter}, ConverterParameter='Active'}"
+            Command="{Binding SelectTabCommand}"
+            CommandParameter="CancellationRate"
+            Text="Tỉ lệ hủy/đổi"
+            TextColor="White" />
+          <Button
+            Padding="15,5"
+            BackgroundColor="{Binding IsDiscountSelected, Converter={StaticResource BoolToColorConverter}, ConverterParameter='Active'}"
+            Command="{Binding SelectTabCommand}"
+            CommandParameter="Discount"
+            Text="Chiết khấu"
+            TextColor="White" />
+          <Button
+            Padding="15,5"
+            BackgroundColor="{Binding IsProfitMarginSelected, Converter={StaticResource BoolToColorConverter}, ConverterParameter='Active'}"
+            Command="{Binding SelectTabCommand}"
+            CommandParameter="ProfitMargin"
+            Text="Tỷ suất lợi nhuận"
+            TextColor="White" />
+        </HorizontalStackLayout>
+
+        <!--  Content: Dữ liệu thống kê  -->
+        <ScrollView Grid.Row="2">
+          <VerticalStackLayout Spacing="15">
+            <Label
+              FontAttributes="Bold"
+              FontSize="18"
+              IsVisible="{Binding IsTotalRevenueSelected}"
+              Text="{Binding TotalRevenueText}"
+              TextColor="#333333" />
+            <Label
+              FontAttributes="Bold"
+              FontSize="18"
+              IsVisible="{Binding IsHourlyRevenueSelected}"
+              Text="{Binding HourlyRevenueText}"
+              TextColor="#333333" />
+            <CollectionView
+              EmptyView="Không có dữ liệu sản phẩm"
+              IsVisible="{Binding IsProductRevenueSelected}"
+              ItemsSource="{Binding ProductRevenueList}">
+              <CollectionView.ItemTemplate>
+                <DataTemplate>
+                  <Frame
+                    Margin="0,0,0,5"
+                    Padding="10"
+                    BackgroundColor="#E6F3FA"
+                    CornerRadius="5">
+                    <Grid ColumnDefinitions="*, *, *">
+                      <Label
+                        Grid.Column="0"
+                        Text="{Binding ProductName}"
+                        TextColor="#333333" />
+                      <Label
+                        Grid.Column="1"
+                        Text="{Binding Revenue, StringFormat='Doanh thu: {0:N0} VNĐ'}"
+                        TextColor="#333333" />
+                      <Label
+                        Grid.Column="2"
+                        Text="{Binding Profit, StringFormat='Lợi nhuận: {0:N0} VNĐ'}"
+                        TextColor="#333333" />
+                    </Grid>
+                  </Frame>
+                </DataTemplate>
+              </CollectionView.ItemTemplate>
+            </CollectionView>
+            <CollectionView
+              EmptyView="Không có dữ liệu nhân viên"
+              IsVisible="{Binding IsEmployeeRevenueSelected}"
+              ItemsSource="{Binding EmployeeRevenueList}">
+              <CollectionView.ItemTemplate>
+                <DataTemplate>
+                  <Frame
+                    Margin="0,0,0,5"
+                    Padding="10"
+                    BackgroundColor="#E6F3FA"
+                    CornerRadius="5">
+                    <Grid ColumnDefinitions="*, *, *">
+                      <Label
+                        Grid.Column="0"
+                        Text="{Binding EmployeeName}"
+                        TextColor="#333333" />
+                      <Label
+                        Grid.Column="1"
+                        Text="{Binding OrdersCount, StringFormat='Số đơn: {0}'}"
+                        TextColor="#333333" />
+                      <Label
+                        Grid.Column="2"
+                        Text="{Binding AverageOrderValue, StringFormat='Giá trị tb: {0:N0} VNĐ'}"
+                        TextColor="#333333" />
+                    </Grid>
+                  </Frame>
+                </DataTemplate>
+              </CollectionView.ItemTemplate>
+            </CollectionView>
+            <Label
+              FontAttributes="Bold"
+              FontSize="18"
+              IsVisible="{Binding IsCancellationRateSelected}"
+              Text="{Binding CancellationRateText}"
+              TextColor="#333333" />
+            <Label
+              FontAttributes="Bold"
+              FontSize="18"
+              IsVisible="{Binding IsDiscountSelected}"
+              Text="{Binding DiscountText}"
+              TextColor="#333333" />
+            <Label
+              FontAttributes="Bold"
+              FontSize="18"
+              IsVisible="{Binding IsProfitMarginSelected}"
+              Text="{Binding ProfitMarginText}"
+              TextColor="#333333" />
+          </VerticalStackLayout>
+        </ScrollView>
+      </Grid>
+    </Frame>
+  </Grid>
+</ContentPage>

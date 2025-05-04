@@ -6,287 +6,299 @@
   xmlns:local="clr-namespace:PBL3_Interface.Pages;assembly=PBL3_Interface"
   BackgroundColor="#F7EFE9"
   ControlTemplate="{StaticResource SharedManagerPageTemplate}">
-  <Grid Padding="20" ColumnDefinitions="Auto,*,Auto">
-    <!--  Phần 1: Thêm ưu đãi  -->
-    <Frame
-      Grid.Column="0"
-      Margin="0,0,0,20"
-      Padding="15"
-      BackgroundColor="#DDA0DD"
-      BorderColor="#CCCCCC"
-      CornerRadius="10">
-      <VerticalStackLayout Spacing="10">
-        <Label
-          FontAttributes="Bold"
-          FontSize="24"
-          HorizontalOptions="Center"
-          Text="THÊM ƯU ĐÃI"
-          TextColor="Black" />
-        <Entry
-          Margin="0,5"
-          BackgroundColor="White"
-          Placeholder="Mã ưu đãi"
-          Text="{Binding NewPromotionCode}" />
-        <Entry
-          Margin="0,5"
-          BackgroundColor="White"
-          Placeholder="Tên ưu đãi"
-          Text="{Binding NewPromotionName}" />
-        <Entry
-          Margin="0,5"
-          BackgroundColor="White"
-          Placeholder="Mô tả"
-          Text="{Binding NewPromotionDescription}" />
-        <Entry
-          Margin="0,5"
-          BackgroundColor="White"
-          Keyboard="Numeric"
-          Placeholder="Giá trị"
-          Text="{Binding NewPromotionValue}" />
-        <Button
-          Padding="10"
-          BackgroundColor="#FFFF99"
-          Command="{Binding AddPromotionCommand}"
-          CornerRadius="5"
-          FontSize="16"
-          HorizontalOptions="Center"
-          Text="Thêm"
-          TextColor="Black" />
-      </VerticalStackLayout>
-    </Frame>
-
-    <!--  Phần 2: Danh sách ưu đãi  -->
-    <ScrollView Grid.Column="1" Margin="0,0,0,20">
-      <Grid ColumnDefinitions="*,*,*">
-        <!--  Đã kết thúc  -->
-        <VerticalStackLayout Grid.Column="0">
+  <Grid RowDefinitions="Auto, *">
+    <!--  Tiêu đề  -->
+    <Label
+      Grid.Row="0"
+      Margin="0,30,0,20"
+      FontAttributes="Bold"
+      FontSize="30"
+      HorizontalOptions="Center"
+      Text="QUẢN LÝ ƯU ĐÃI"
+      TextColor="Black"
+      VerticalOptions="End" />
+    <Grid Padding="20" ColumnDefinitions="Auto,*,Auto">
+      <!--  Phần 1: Thêm ưu đãi  -->
+      <Frame
+        Grid.Column="0"
+        Margin="0,0,0,20"
+        Padding="15"
+        BackgroundColor="#DDA0DD"
+        BorderColor="#CCCCCC"
+        CornerRadius="10">
+        <VerticalStackLayout Spacing="10">
           <Label
-            Margin="0,0,0,10"
             FontAttributes="Bold"
-            FontSize="20"
-            Text="Đã kết thúc"
+            FontSize="24"
+            HorizontalOptions="Center"
+            Text="THÊM ƯU ĐÃI"
             TextColor="Black" />
-          <CollectionView
-            ItemsSource="{Binding CompletedPromotions}"
-            SelectionChangedCommand="{Binding PromotionSelectedCommand}"
-            SelectionMode="Single">
-            <CollectionView.ItemTemplate>
-              <DataTemplate>
-                <Frame
-                  Margin="0,0,0,5"
-                  Padding="10"
-                  BackgroundColor="#F8E0E0"
-                  CornerRadius="5">
-                  <Grid ColumnDefinitions="2*, *, Auto" ColumnSpacing="10">
-                    <Label
-                      Grid.Column="0"
-                      FontSize="16"
-                      Text="{Binding Name}"
-                      TextColor="Black"
-                      VerticalOptions="Center" />
-                    <Label
-                      Grid.Column="1"
-                      FontSize="16"
-                      Text="{Binding Value}"
-                      TextColor="Black"
-                      VerticalOptions="Center" />
-                    <Label
-                      Grid.Column="2"
-                      FontSize="14"
-                      Text="{Binding DateRange}"
-                      TextColor="Gray"
-                      VerticalOptions="Center" />
-                  </Grid>
-                </Frame>
-              </DataTemplate>
-            </CollectionView.ItemTemplate>
-          </CollectionView>
-        </VerticalStackLayout>
-
-        <!--  Đang diễn ra  -->
-        <VerticalStackLayout Grid.Column="1">
-          <Label
-            Margin="0,0,0,10"
-            FontAttributes="Bold"
-            FontSize="20"
-            Text="Đang diễn ra"
+          <Entry
+            Margin="0,5"
+            BackgroundColor="White"
+            Placeholder="Mã ưu đãi"
+            Text="{Binding NewPromotionCode}" />
+          <Entry
+            Margin="0,5"
+            BackgroundColor="White"
+            Placeholder="Tên ưu đãi"
+            Text="{Binding NewPromotionName}" />
+          <Entry
+            Margin="0,5"
+            BackgroundColor="White"
+            Placeholder="Mô tả"
+            Text="{Binding NewPromotionDescription}" />
+          <Entry
+            Margin="0,5"
+            BackgroundColor="White"
+            Keyboard="Numeric"
+            Placeholder="Giá trị"
+            Text="{Binding NewPromotionValue}" />
+          <Button
+            Padding="10"
+            BackgroundColor="#FFFF99"
+            Command="{Binding AddPromotionCommand}"
+            CornerRadius="5"
+            FontSize="16"
+            HorizontalOptions="Center"
+            Text="Thêm"
             TextColor="Black" />
-          <CollectionView
-            ItemsSource="{Binding OngoingPromotions}"
-            SelectionChangedCommand="{Binding PromotionSelectedCommand}"
-            SelectionMode="Single">
-            <CollectionView.ItemTemplate>
-              <DataTemplate>
-                <Frame
-                  Margin="0,0,0,5"
-                  Padding="10"
-                  BackgroundColor="#E6E6FA"
-                  CornerRadius="5">
-                  <Grid ColumnDefinitions="2*, *, Auto" ColumnSpacing="10">
-                    <Label
-                      Grid.Column="0"
-                      FontSize="16"
-                      Text="{Binding Name}"
-                      TextColor="Black"
-                      VerticalOptions="Center" />
-                    <Label
-                      Grid.Column="1"
-                      FontSize="16"
-                      Text="{Binding Value}"
-                      TextColor="Black"
-                      VerticalOptions="Center" />
-                    <Label
-                      Grid.Column="2"
-                      FontSize="14"
-                      Text="{Binding DateRange}"
-                      TextColor="Gray"
-                      VerticalOptions="Center" />
-                  </Grid>
-                </Frame>
-              </DataTemplate>
-            </CollectionView.ItemTemplate>
-          </CollectionView>
         </VerticalStackLayout>
+      </Frame>
 
-        <!--  Sắp tới  -->
-        <VerticalStackLayout Grid.Column="2">
-          <Label
-            Margin="0,0,0,10"
-            FontAttributes="Bold"
-            FontSize="20"
-            Text="Sắp tới"
-            TextColor="Black" />
-          <CollectionView
-            ItemsSource="{Binding UpcomingPromotions}"
-            SelectionChangedCommand="{Binding PromotionSelectedCommand}"
-            SelectionMode="Single">
-            <CollectionView.ItemTemplate>
-              <DataTemplate>
-                <Frame
-                  Margin="0,0,0,5"
-                  Padding="10"
-                  BackgroundColor="#D3D3D3"
-                  CornerRadius="5">
-                  <Grid ColumnDefinitions="2*, *, Auto" ColumnSpacing="10">
-                    <Label
-                      Grid.Column="0"
-                      FontSize="16"
-                      Text="{Binding Name}"
-                      TextColor="Black"
-                      VerticalOptions="Center" />
-                    <Label
-                      Grid.Column="1"
-                      FontSize="16"
-                      Text="{Binding Value}"
-                      TextColor="Black"
-                      VerticalOptions="Center" />
-                    <Label
-                      Grid.Column="2"
-                      FontSize="14"
-                      Text="{Binding DateRange}"
-                      TextColor="Gray"
-                      VerticalOptions="Center" />
-                  </Grid>
-                </Frame>
-              </DataTemplate>
-            </CollectionView.ItemTemplate>
-          </CollectionView>
-        </VerticalStackLayout>
-      </Grid>
-    </ScrollView>
-
-    <!--  Phần 3: Chi tiết ưu đãi (cho phép chỉnh sửa)  -->
-    <Frame
-      Grid.Column="2"
-      Padding="15"
-      BackgroundColor="#DDA0DD"
-      BorderColor="#CCCCCC"
-      CornerRadius="10"
-      IsVisible="{Binding IsDetailVisible}">
-      <VerticalStackLayout Spacing="10">
-        <Label
-          FontAttributes="Bold"
-          FontSize="24"
-          HorizontalOptions="Center"
-          Text="THÔNG TIN CHI TIẾT ƯU ĐÃI"
-          TextColor="Black" />
-        <Label
-          FontAttributes="Bold"
-          FontSize="16"
-          Text="Mã ưu đãi"
-          TextColor="Black" />
-        <Entry
-          BackgroundColor="White"
-          HorizontalOptions="Fill"
-          Text="{Binding SelectedPromotionCode, Mode=TwoWay}" />
-        <Label
-          FontAttributes="Bold"
-          FontSize="16"
-          Text="Tên ưu đãi"
-          TextColor="Black" />
-        <Entry
-          BackgroundColor="White"
-          HorizontalOptions="Fill"
-          Text="{Binding SelectedPromotionName, Mode=TwoWay}" />
-        <Label
-          FontAttributes="Bold"
-          FontSize="16"
-          Text="Mô tả"
-          TextColor="Black" />
-        <Entry
-          BackgroundColor="White"
-          HorizontalOptions="Fill"
-          Text="{Binding SelectedPromotionDescription, Mode=TwoWay}" />
-        <Label
-          FontAttributes="Bold"
-          FontSize="16"
-          Text="Giá trị"
-          TextColor="Black" />
-        <Entry
-          BackgroundColor="White"
-          HorizontalOptions="Fill"
-          Keyboard="Numeric"
-          Text="{Binding SelectedPromotionValue, Mode=TwoWay}" />
-        <Frame
-          Margin="0,10,0,0"
-          Padding="10"
-          BackgroundColor="#E6E6FA"
-          CornerRadius="5">
-          <VerticalStackLayout>
+      <!--  Phần 2: Danh sách ưu đãi  -->
+      <ScrollView Grid.Column="1" Margin="0,0,0,20">
+        <Grid ColumnDefinitions="*,*,*">
+          <!--  Đã kết thúc  -->
+          <VerticalStackLayout Grid.Column="0">
             <Label
+              Margin="0,0,0,10"
               FontAttributes="Bold"
-              FontSize="16"
-              Text="Mức ngày giải phóng"
+              FontSize="20"
+              Text="Đã kết thúc"
               TextColor="Black" />
-            <Label
-              FontSize="14"
-              Text="{Binding SelectedReleaseValue, StringFormat='Giá {0}VNĐ'}"
-              TextColor="Black" />
-            <Label
-              FontSize="14"
-              Text="{Binding SelectedReleaseDate}"
-              TextColor="Black" />
+            <CollectionView
+              ItemsSource="{Binding CompletedPromotions}"
+              SelectionChangedCommand="{Binding PromotionSelectedCommand}"
+              SelectionMode="Single">
+              <CollectionView.ItemTemplate>
+                <DataTemplate>
+                  <Frame
+                    Margin="0,0,0,5"
+                    Padding="10"
+                    BackgroundColor="#F8E0E0"
+                    CornerRadius="5">
+                    <Grid ColumnDefinitions="2*, *, Auto" ColumnSpacing="10">
+                      <Label
+                        Grid.Column="0"
+                        FontSize="16"
+                        Text="{Binding Name}"
+                        TextColor="Black"
+                        VerticalOptions="Center" />
+                      <Label
+                        Grid.Column="1"
+                        FontSize="16"
+                        Text="{Binding Value}"
+                        TextColor="Black"
+                        VerticalOptions="Center" />
+                      <Label
+                        Grid.Column="2"
+                        FontSize="14"
+                        Text="{Binding DateRange}"
+                        TextColor="Gray"
+                        VerticalOptions="Center" />
+                    </Grid>
+                  </Frame>
+                </DataTemplate>
+              </CollectionView.ItemTemplate>
+            </CollectionView>
           </VerticalStackLayout>
-        </Frame>
-        <HorizontalStackLayout HorizontalOptions="Center" Spacing="10">
-          <Button
-            Padding="10,5"
-            BackgroundColor="#D3D3D3"
-            Command="{Binding SavePromotionCommand}"
-            CornerRadius="5"
-            FontSize="16"
-            Text="Lưu"
+
+          <!--  Đang diễn ra  -->
+          <VerticalStackLayout Grid.Column="1">
+            <Label
+              Margin="0,0,0,10"
+              FontAttributes="Bold"
+              FontSize="20"
+              Text="Đang diễn ra"
+              TextColor="Black" />
+            <CollectionView
+              ItemsSource="{Binding OngoingPromotions}"
+              SelectionChangedCommand="{Binding PromotionSelectedCommand}"
+              SelectionMode="Single">
+              <CollectionView.ItemTemplate>
+                <DataTemplate>
+                  <Frame
+                    Margin="0,0,0,5"
+                    Padding="10"
+                    BackgroundColor="#E6E6FA"
+                    CornerRadius="5">
+                    <Grid ColumnDefinitions="2*, *, Auto" ColumnSpacing="10">
+                      <Label
+                        Grid.Column="0"
+                        FontSize="16"
+                        Text="{Binding Name}"
+                        TextColor="Black"
+                        VerticalOptions="Center" />
+                      <Label
+                        Grid.Column="1"
+                        FontSize="16"
+                        Text="{Binding Value}"
+                        TextColor="Black"
+                        VerticalOptions="Center" />
+                      <Label
+                        Grid.Column="2"
+                        FontSize="14"
+                        Text="{Binding DateRange}"
+                        TextColor="Gray"
+                        VerticalOptions="Center" />
+                    </Grid>
+                  </Frame>
+                </DataTemplate>
+              </CollectionView.ItemTemplate>
+            </CollectionView>
+          </VerticalStackLayout>
+
+          <!--  Sắp tới  -->
+          <VerticalStackLayout Grid.Column="2">
+            <Label
+              Margin="0,0,0,10"
+              FontAttributes="Bold"
+              FontSize="20"
+              Text="Sắp tới"
+              TextColor="Black" />
+            <CollectionView
+              ItemsSource="{Binding UpcomingPromotions}"
+              SelectionChangedCommand="{Binding PromotionSelectedCommand}"
+              SelectionMode="Single">
+              <CollectionView.ItemTemplate>
+                <DataTemplate>
+                  <Frame
+                    Margin="0,0,0,5"
+                    Padding="10"
+                    BackgroundColor="#D3D3D3"
+                    CornerRadius="5">
+                    <Grid ColumnDefinitions="2*, *, Auto" ColumnSpacing="10">
+                      <Label
+                        Grid.Column="0"
+                        FontSize="16"
+                        Text="{Binding Name}"
+                        TextColor="Black"
+                        VerticalOptions="Center" />
+                      <Label
+                        Grid.Column="1"
+                        FontSize="16"
+                        Text="{Binding Value}"
+                        TextColor="Black"
+                        VerticalOptions="Center" />
+                      <Label
+                        Grid.Column="2"
+                        FontSize="14"
+                        Text="{Binding DateRange}"
+                        TextColor="Gray"
+                        VerticalOptions="Center" />
+                    </Grid>
+                  </Frame>
+                </DataTemplate>
+              </CollectionView.ItemTemplate>
+            </CollectionView>
+          </VerticalStackLayout>
+        </Grid>
+      </ScrollView>
+
+      <!--  Phần 3: Chi tiết ưu đãi (cho phép chỉnh sửa)  -->
+      <Frame
+        Grid.Column="2"
+        Padding="15"
+        BackgroundColor="#DDA0DD"
+        BorderColor="#CCCCCC"
+        CornerRadius="10"
+        IsVisible="{Binding IsDetailVisible}">
+        <VerticalStackLayout Spacing="10">
+          <Label
+            FontAttributes="Bold"
+            FontSize="24"
+            HorizontalOptions="Center"
+            Text="THÔNG TIN CHI TIẾT ƯU ĐÃI"
             TextColor="Black" />
-          <Button
-            Padding="10,5"
-            BackgroundColor="#FF6347"
-            Command="{Binding DeletePromotionCommand}"
-            CornerRadius="5"
+          <Label
+            FontAttributes="Bold"
             FontSize="16"
-            Text="Xóa"
-            TextColor="White" />
-        </HorizontalStackLayout>
-      </VerticalStackLayout>
-    </Frame>
+            Text="Mã ưu đãi"
+            TextColor="Black" />
+          <Entry
+            BackgroundColor="White"
+            HorizontalOptions="Fill"
+            Text="{Binding SelectedPromotionCode, Mode=TwoWay}" />
+          <Label
+            FontAttributes="Bold"
+            FontSize="16"
+            Text="Tên ưu đãi"
+            TextColor="Black" />
+          <Entry
+            BackgroundColor="White"
+            HorizontalOptions="Fill"
+            Text="{Binding SelectedPromotionName, Mode=TwoWay}" />
+          <Label
+            FontAttributes="Bold"
+            FontSize="16"
+            Text="Mô tả"
+            TextColor="Black" />
+          <Entry
+            BackgroundColor="White"
+            HorizontalOptions="Fill"
+            Text="{Binding SelectedPromotionDescription, Mode=TwoWay}" />
+          <Label
+            FontAttributes="Bold"
+            FontSize="16"
+            Text="Giá trị"
+            TextColor="Black" />
+          <Entry
+            BackgroundColor="White"
+            HorizontalOptions="Fill"
+            Keyboard="Numeric"
+            Text="{Binding SelectedPromotionValue, Mode=TwoWay}" />
+          <Frame
+            Margin="0,10,0,0"
+            Padding="10"
+            BackgroundColor="#E6E6FA"
+            CornerRadius="5">
+            <VerticalStackLayout>
+              <Label
+                FontAttributes="Bold"
+                FontSize="16"
+                Text="Mức ngày giải phóng"
+                TextColor="Black" />
+              <Label
+                FontSize="14"
+                Text="{Binding SelectedReleaseValue, StringFormat='Giá {0}VNĐ'}"
+                TextColor="Black" />
+              <Label
+                FontSize="14"
+                Text="{Binding SelectedReleaseDate}"
+                TextColor="Black" />
+            </VerticalStackLayout>
+          </Frame>
+          <HorizontalStackLayout HorizontalOptions="Center" Spacing="10">
+            <Button
+              Padding="10,5"
+              BackgroundColor="#D3D3D3"
+              Command="{Binding SavePromotionCommand}"
+              CornerRadius="5"
+              FontSize="16"
+              Text="Lưu"
+              TextColor="Black" />
+            <Button
+              Padding="10,5"
+              BackgroundColor="#FF6347"
+              Command="{Binding DeletePromotionCommand}"
+              CornerRadius="5"
+              FontSize="16"
+              Text="Xóa"
+              TextColor="White" />
+          </HorizontalStackLayout>
+        </VerticalStackLayout>
+      </Frame>
+    </Grid>
   </Grid>
 </ContentPage>

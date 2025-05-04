@@ -6,12 +6,13 @@
   BackgroundColor="#FCEEEE"
   ControlTemplate="{StaticResource SharedManagerPageTemplate}">
 
-  <VerticalStackLayout Spacing="10">
+  <Grid RowDefinitions="Auto, *">
     <!--  Tiêu đề  -->
     <Label
-      Margin="0,50,0,50"
+      Grid.Row="0"
+      Margin="0,30,0,20"
       FontAttributes="Bold"
-      FontSize="40"
+      FontSize="30"
       HorizontalOptions="Center"
       Text="QUẢN LÝ SẢN PHẨM"
       TextColor="Black"
@@ -19,7 +20,8 @@
 
     <!--  Grid chính  -->
     <Frame
-      Margin="100,0,100,0"
+      Grid.Row="1"
+      Margin="100,0,100,10"
       Padding="0"
       BackgroundColor="Transparent"
       CornerRadius="20"
@@ -275,6 +277,6 @@
         </ScrollView>
       </Grid>
     </Frame>
-  </VerticalStackLayout>
+  </Grid>
 
 </ContentPage>

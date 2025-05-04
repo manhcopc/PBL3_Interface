@@ -3,4 +3,335 @@
   xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
   xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
   BackgroundColor="#F7EFE9"
-  ControlTemplate="{StaticResource SharedManagerPageTemplate}" />
+  ControlTemplate="{StaticResource SharedManagerPageTemplate}">
+  <Grid BackgroundColor="Transparent" RowDefinitions="Auto,*">
+    <Label
+      Grid.Row="0"
+      Margin="0,30,0,20"
+      FontAttributes="Bold"
+      FontSize="30"
+      HorizontalOptions="Center"
+      Text="Thống kê Order"
+      TextColor="Black" />
+    <Frame
+      Grid.Row="1"
+      Margin="100,0,100,10"
+      Padding="10"
+      BackgroundColor="Transparent"
+      BorderColor="Black">
+
+      <Grid RowDefinitions="Auto, *">
+        <!--  Header: Bộ lọc ngày  -->
+        <Frame
+          Padding="15"
+          BackgroundColor="#4A90E2"
+          CornerRadius="10"
+          HasShadow="True">
+          <Grid ColumnDefinitions="*, Auto">
+            <Label
+              Margin="5,0"
+              BackgroundColor="Transparent"
+              FontAttributes="Bold"
+              FontSize="30"
+              HorizontalOptions="Center"
+              Text="20/02/2025"
+              TextColor="Black" />
+            <Button
+              Margin="10,0,0,0"
+              Padding="10,5"
+              BackgroundColor="Transparent"
+              CornerRadius="5"
+              FontSize="20"
+              HorizontalOptions="End"
+              Text="Lọc"
+              TextColor="Black" />
+          </Grid>
+        </Frame>
+
+        <!--  Main Content: Ca làm và Chi tiết  -->
+        <Grid
+          Grid.Row="1"
+          Margin="0,10,0,0"
+          ColumnDefinitions="2*, 3*"
+          RowSpacing="10">
+
+          <!--  Phần ca làm  -->
+          <ScrollView Grid.Column="0">
+            <VerticalStackLayout Spacing="10" VerticalOptions="Center">
+              <Frame
+                Margin="0,0,0,10"
+                Padding="10"
+                BackgroundColor="#E6F3FA"
+                CornerRadius="8"
+                HasShadow="True">
+                <Grid ColumnDefinitions="*, *" RowDefinitions="Auto, Auto">
+                  <Label
+                    Grid.Row="0"
+                    Grid.Column="0"
+                    FontSize="16"
+                    Text="Ca 1: 6h30 - 12h"
+                    TextColor="#333333"
+                    VerticalOptions="Center" />
+                  <Label
+                    Grid.Row="1"
+                    Grid.Column="0"
+                    FontSize="16"
+                    Text="Đã đóng"
+                    TextColor="Red"
+                    VerticalOptions="Center" />
+                  <Label
+                    Grid.Row="0"
+                    Grid.Column="1"
+                    FontSize="16"
+                    HorizontalOptions="End"
+                    Text="10.000.000 VNĐ"
+                    TextColor="#333333"
+                    VerticalOptions="Center" />
+                  <Label
+                    Grid.Row="1"
+                    Grid.Column="1"
+                    FontSize="16"
+                    HorizontalOptions="End"
+                    Text="Số đơn: 20"
+                    TextColor="#333333"
+                    VerticalOptions="Center" />
+                </Grid>
+              </Frame>
+              <!--  ca 2  -->
+              <Frame
+                Margin="0,0,0,10"
+                Padding="10"
+                BackgroundColor="#E6F3FA"
+                CornerRadius="8"
+                HasShadow="True">
+                <Grid ColumnDefinitions="*, *" RowDefinitions="Auto, Auto">
+                  <Label
+                    Grid.Row="0"
+                    Grid.Column="0"
+                    FontSize="16"
+                    Text="Ca 2: 12h - 17h30"
+                    TextColor="#333333"
+                    VerticalOptions="Center" />
+                  <Label
+                    Grid.Row="1"
+                    Grid.Column="0"
+                    FontSize="16"
+                    Text="Đã đóng"
+                    TextColor="Red"
+                    VerticalOptions="Center" />
+                  <Label
+                    Grid.Row="0"
+                    Grid.Column="1"
+                    FontSize="16"
+                    HorizontalOptions="End"
+                    Text="10.000.000 VNĐ"
+                    TextColor="#333333"
+                    VerticalOptions="Center" />
+                  <Label
+                    Grid.Row="1"
+                    Grid.Column="1"
+                    FontSize="16"
+                    HorizontalOptions="End"
+                    Text="Số đơn: 20"
+                    TextColor="#333333"
+                    VerticalOptions="Center" />
+                </Grid>
+              </Frame>
+              <!--  ca 3  -->
+              <Frame
+                Margin="0,0,0,10"
+                Padding="10"
+                BackgroundColor="#E6F3FA"
+                CornerRadius="8"
+                HasShadow="True">
+                <Grid ColumnDefinitions="*, *" RowDefinitions="Auto, Auto">
+                  <Label
+                    Grid.Row="0"
+                    Grid.Column="0"
+                    FontSize="16"
+                    Text="Ca 3: 17h30 - 23h"
+                    TextColor="#333333"
+                    VerticalOptions="Center" />
+                  <Label
+                    Grid.Row="1"
+                    Grid.Column="0"
+                    FontSize="16"
+                    Text="Đã đóng"
+                    TextColor="Red"
+                    VerticalOptions="Center" />
+                  <Label
+                    Grid.Row="0"
+                    Grid.Column="1"
+                    FontSize="16"
+                    HorizontalOptions="End"
+                    Text="10.000.000 VNĐ"
+                    TextColor="#333333"
+                    VerticalOptions="Center" />
+                  <Label
+                    Grid.Row="1"
+                    Grid.Column="1"
+                    FontSize="16"
+                    HorizontalOptions="End"
+                    Text="Số đơn: 20"
+                    TextColor="#333333"
+                    VerticalOptions="Center" />
+                </Grid>
+              </Frame>
+            </VerticalStackLayout>
+          </ScrollView>
+
+          <!--  Phần chi tiết ca làm  -->
+          <Frame
+            Grid.Column="1"
+            BackgroundColor="#FFFFFF"
+            CornerRadius="10"
+            HasShadow="True">
+            <ScrollView>
+              <VerticalStackLayout Spacing="10">
+                <Label
+                  FontAttributes="Bold"
+                  FontSize="20"
+                  Text="Chi tiết ca làm"
+                  TextColor="#333333" />
+
+
+                <Frame
+                  Margin="0,0,0,5"
+                  Padding="10"
+                  BackgroundColor="#F5F5F5"
+                  CornerRadius="5">
+                  <Grid ColumnDefinitions="Auto, *,*" RowDefinitions="Auto, Auto">
+                    <Label
+                      Grid.Row="0"
+                      Grid.Column="0"
+                      FontSize="16"
+                      Text="Mã đơn: 123456"
+                      TextColor="#333333" />
+                    <Label
+                      Grid.Row="1"
+                      Grid.Column="0"
+                      FontSize="16"
+                      Text="Số tiền: 50.000 VNĐ"
+                      TextColor="#333333" />
+                    <Label
+                      Grid.Row="0"
+                      Grid.Column="1"
+                      FontSize="14"
+                      HorizontalOptions="Center"
+                      Text="Thời gian: 10:00"
+                      TextColor="#666666" />
+                    <Label
+                      Grid.Row="1"
+                      Grid.Column="1"
+                      FontSize="14"
+                      HorizontalOptions="Center"
+                      Text="Trạng thái: Đã thanh toán"
+                      TextColor="#666666" />
+                    <Button
+                      Grid.RowSpan="2"
+                      Grid.Column="2"
+                      BackgroundColor="Transparent"
+                      HorizontalOptions="End"
+                      Text="Xem chi tiết&gt;&gt;"
+                      TextColor="Black" />
+                  </Grid>
+                </Frame>
+                <Frame
+                  Margin="0,0,0,5"
+                  Padding="10"
+                  BackgroundColor="#F5F5F5"
+                  CornerRadius="5">
+                  <Grid ColumnDefinitions="Auto, *,*" RowDefinitions="Auto, Auto">
+                    <Label
+                      Grid.Row="0"
+                      Grid.Column="0"
+                      FontSize="16"
+                      Text="Mã đơn: 123456"
+                      TextColor="#333333" />
+                    <Label
+                      Grid.Row="1"
+                      Grid.Column="0"
+                      FontSize="16"
+                      Text="Số tiền: 50.000 VNĐ"
+                      TextColor="#333333" />
+                    <Label
+                      Grid.Row="0"
+                      Grid.Column="1"
+                      FontSize="14"
+                      HorizontalOptions="Center"
+                      Text="Thời gian: 10:00"
+                      TextColor="#666666" />
+                    <Label
+                      Grid.Row="1"
+                      Grid.Column="1"
+                      FontSize="14"
+                      HorizontalOptions="Center"
+                      Text="Trạng thái: Đã thanh toán"
+                      TextColor="#666666" />
+                    <Button
+                      Grid.RowSpan="2"
+                      Grid.Column="2"
+                      BackgroundColor="Transparent"
+                      HorizontalOptions="End"
+                      Text="Xem chi tiết&gt;&gt;"
+                      TextColor="Black" />
+                  </Grid>
+                </Frame>
+                <Frame
+                  Margin="0,0,0,5"
+                  Padding="10"
+                  BackgroundColor="#F5F5F5"
+                  CornerRadius="5">
+                  <Grid ColumnDefinitions="Auto, *,*" RowDefinitions="Auto, Auto">
+                    <Label
+                      Grid.Row="0"
+                      Grid.Column="0"
+                      FontSize="16"
+                      Text="Mã đơn: 123456"
+                      TextColor="#333333" />
+                    <Label
+                      Grid.Row="1"
+                      Grid.Column="0"
+                      FontSize="16"
+                      Text="Số tiền: 50.000 VNĐ"
+                      TextColor="#333333" />
+                    <Label
+                      Grid.Row="0"
+                      Grid.Column="1"
+                      FontSize="14"
+                      HorizontalOptions="Center"
+                      Text="Thời gian: 10:00"
+                      TextColor="#666666" />
+                    <Label
+                      Grid.Row="1"
+                      Grid.Column="1"
+                      FontSize="14"
+                      HorizontalOptions="Center"
+                      Text="Trạng thái: Đã thanh toán"
+                      TextColor="#666666" />
+                    <Button
+                      Grid.RowSpan="2"
+                      Grid.Column="2"
+                      BackgroundColor="Transparent"
+                      HorizontalOptions="End"
+                      Text="Xem chi tiết&gt;&gt;"
+                      TextColor="Black" />
+                  </Grid>
+                </Frame>
+
+
+
+                <Label
+                  FontAttributes="Bold"
+                  FontSize="16"
+                  HorizontalOptions="End"
+                  Text="{Binding TotalShiftRevenue, StringFormat='Tổng doanh thu ca: {0} VNĐ'}"
+                  TextColor="#4A90E2" />
+              </VerticalStackLayout>
+            </ScrollView>
+          </Frame>
+        </Grid>
+      </Grid>
+    </Frame>
+  </Grid>
+</ContentPage>

@@ -297,3 +297,4 @@
 /Users/copc/Library/CloudStorage/OneDrive-TheUniversityofTechnology/Apps/PBL3_Interface/obj/Debug/net9.0-maccatalyst/maccatalyst-arm64/PBL3_Interface.pdb
 /Users/copc/Library/CloudStorage/OneDrive-TheUniversityofTechnology/Apps/PBL3_Interface/obj/Debug/net9.0-maccatalyst/maccatalyst-arm64/PBL3_Interface.genruntimeconfig.cache
 /Users/copc/Library/CloudStorage/OneDrive-TheUniversityofTechnology/Apps/PBL3_Interface/obj/Debug/net9.0-maccatalyst/maccatalyst-arm64/ref/PBL3_Interface.dll
+/Users/copc/Library/CloudStorage/OneDrive-TheUniversityofTechnology/Apps/PBL3_Interface/obj/Debug/net9.0-maccatalyst/maccatalyst-arm64/PBL3_Interface.sourcelink.json
