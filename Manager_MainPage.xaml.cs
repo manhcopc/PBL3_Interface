@@ -1,8 +1,8 @@
 ﻿namespace PBL3_Interface;
 
-public partial class MainPage : ContentPage
+public partial class Manager_MainPage : ContentPage
 {
-	public MainPage()
+	public Manager_MainPage()
 	{
 		try
 		{

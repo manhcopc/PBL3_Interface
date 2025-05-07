@@ -8,7 +8,7 @@ public partial class AppShell_Manager : Shell
 		InitializeComponent();
 		System.Diagnostics.Debug.WriteLine("AppShell_Manager initialized successfully");
 
-		Routing.RegisterRoute(nameof(MainPage), typeof(MainPage));
+		Routing.RegisterRoute(nameof(Manager_MainPage), typeof(Manager_MainPage));
 		Routing.RegisterRoute(nameof(ProductPage), typeof(Pages.ProductPage));
 		Routing.RegisterRoute(nameof(StaffPage), typeof(Pages.StaffPage));
 		Routing.RegisterRoute(nameof(ShiftPage), typeof(Pages.ShiftPage));

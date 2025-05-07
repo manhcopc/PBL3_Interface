@@ -10,7 +10,7 @@
     Shell.NavBarIsVisible="False">
     <ShellContent
         Title="Home"
-        ContentTemplate="{DataTemplate local:MainPage}"
+        ContentTemplate="{DataTemplate local:Manager_MainPage}"
         FlyoutItemIsVisible="False"
         Route="MainPage" />
 
