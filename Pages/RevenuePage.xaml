@@ -6,13 +6,19 @@
   BackgroundColor="#F7EFE9"
   ControlTemplate="{StaticResource SharedManagerPageTemplate}">
   <Grid RowDefinitions="Auto,*">
-    <Label
-      Grid.Row="0"
-      Margin="0,30,0,20"
-      FontAttributes="Bold"
-      FontSize="30"
-      Text="Thống kê doanh thu"
-      TextColor="Black" />
+    <VerticalStackLayout Grid.Row="0">
+      <Label
+        FontSize="30"
+        HorizontalOptions="Center"
+        Text="📈" />
+      <Label
+        FontAttributes="Bold"
+        FontSize="28"
+        HorizontalOptions="Center"
+        Text="Thống kê doanh thu"
+        TextColor="Black"
+        TextTransform="Uppercase" />
+    </VerticalStackLayout>
     <Frame
       Grid.Row="1"
       Margin="50,0,50,10"
