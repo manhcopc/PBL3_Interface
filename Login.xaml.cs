@@ -18,25 +18,30 @@ public partial class Login : ContentPage
     {
         base.OnSizeAllocated(width, height);
 
-        double baseWidth = 400;
-        double scale = Math.Max(0.5, Math.Min(width, height) / baseWidth);
 
-        // Update dynamic resources
-        Resources["DynamicFontSizeTitle"] = 15 * scale;
-        Resources["DynamicFontSizeLarge"] = 12 * scale;
-        Resources["DynamicFontSizeMedium"] = 10 * scale;
-        Resources["DynamicFontSizeSmall"] = 8 * scale;
-        Resources["DynamicPadding"] = 4 * scale;
-        Resources["DynamicMargin_Main"] = 5 * scale;
-        Resources["DynamicMargin"] = 2.5 * scale;
-        Resources["DynamicMarginPopup"] = 50 * scale;
-        Resources["DynamicCornerRadius"] = 5 * scale;
-        Resources["DynamicCornerRadius_Inside"] = 10 * scale;
-        Resources["DynamicCornerRadius_Outside"] = 20 * scale;
-        Resources["DynamicSpacing"] = 5 * scale;
-        Resources["DynamicButtonHeight"] = 20 * scale;
-        Resources["DynamicButtonWidth"] = 50 * scale;
-        Resources["DynamicLoginWidth"] = 150 * scale;
-        Resources["DynamicLoginHeight"] = 200 * scale;
+        base.OnSizeAllocated(width, height);
+
+        double baseWidth = 400; // Chiều rộng cơ bản
+        double baseHeight = 800; // Chiều cao cơ bản
+        double scale = Math.Max(0.5, Math.Min(width / baseWidth, height / baseHeight)); // Tỷ lệ tổng quát
+
+        Resources["DynamicFontSizeTitle"] = 30 * scale;
+        Resources["DynamicFontSizeLarge"] = 20 * scale;
+        Resources["DynamicFontSizeMedium"] = 16 * scale;
+        Resources["DynamicFontSizeSmall"] = 12 * scale;
+        Resources["DynamicPadding"] = 8 * scale;
+        Resources["DynamicMargin_Main"] = 10 * scale;
+        Resources["DynamicMargin"] = 5 * scale;
+        Resources["DynamicMarginPopup"] = 200 * scale;
+        Resources["DynamicSpacing"] = 10 * scale;
+        Resources["DynamicButtonHeight"] = 40 * scale;
+        Resources["DynamicButtonWidth"] = 100 * scale;
+        Resources["DynamicLoginWidth"] = 500 * scale;
+        Resources["DynamicLoginHeight"] = 600 * scale;
+        Resources["DynamicBorderThickness"] = 1 * scale; // Điều chỉnh độ dày viền
+        Resources["DynamicBorderCornerRadius"] = 10 * scale; // Điều chỉnh bán kính góc
+
+        double cornerRadius = 10 * scale;
+        Resources["DynamicCornerRadius"] = new CornerRadius(cornerRadius, cornerRadius, cornerRadius, cornerRadius);
     }
 }

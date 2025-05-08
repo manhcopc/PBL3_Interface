@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("PBL3_Interface")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0+ac4ddd7ebbfc2b6a199fb17e8f73f9eab0a4493c")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0+3b64a6298f54276f1ab5295cd9c5f59ea9f2e480")]
 [assembly: System.Reflection.AssemblyProductAttribute("PBL3_Interface")]
 [assembly: System.Reflection.AssemblyTitleAttribute("PBL3_Interface")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

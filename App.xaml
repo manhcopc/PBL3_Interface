@@ -13,9 +13,9 @@
             <x:Double x:Key="TabMenuWidthRequest">30</x:Double>
             <x:Double x:Key="NaviTextFontSize">15</x:Double>
             <x:Double x:Key="NaviItemSpacing">10</x:Double>
-            <x:Double x:Key="NaviMargin">5</x:Double> 
+            <x:Double x:Key="NaviMargin">5</x:Double>
             <!--  Khoảng cách ngoài cho menu item  -->
-            <x:Double x:Key="NaviPadding">5</x:Double> 
+            <x:Double x:Key="NaviPadding">5</x:Double>
             <!--  Khoảng cách trong cho menu item  -->
 
 
@@ -41,6 +41,10 @@
             <x:Double x:Key="DynamicLoginWidth">100</x:Double>
             <x:Double x:Key="DynamicLoginHeight">100</x:Double>
 
+            <!--  border  -->
+            <x:Double x:Key="DynamicBorderThickness">1</x:Double> 
+            <!--  Độ dày viền cho Border  -->
+            <x:Double x:Key="DynamicBorderCornerRadius">10</x:Double>
 
             <!--  Style cho Login  -->
             <Style x:Key="DynamicFrameLogin" TargetType="Frame">
