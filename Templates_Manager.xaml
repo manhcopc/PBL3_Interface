@@ -31,6 +31,7 @@
                 <!--  Icon tab menu  -->
                 <ImageButton
                     Grid.Column="0"
+                    Aspect="AspectFit"
                     HeightRequest="{DynamicResource TabMenuHeightRequest}"
                     Source="tabmenu.png"
                     VerticalOptions="Center"

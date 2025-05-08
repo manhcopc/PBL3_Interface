@@ -8,43 +8,20 @@
     <Application.Resources>
         <ResourceDictionary>
             <!--  ManagerNavigationBar  -->
-            <x:Double x:Key="NaviHeightRequest">35</x:Double>
-            <x:Double x:Key="TabMenuHeightRequest">15</x:Double>
-            <x:Double x:Key="TabMenuWidthRequest">30</x:Double>
-            <x:Double x:Key="NaviTextFontSize">15</x:Double>
-            <x:Double x:Key="NaviItemSpacing">10</x:Double>
-            <x:Double x:Key="NaviMargin">5</x:Double>
-            <!--  Khoảng cách ngoài cho menu item  -->
-            <x:Double x:Key="NaviPadding">5</x:Double>
-            <!--  Khoảng cách trong cho menu item  -->
-
-
-
-            <!--  fontsize  -->
             <x:Double x:Key="DynamicFontSizeTitle">30</x:Double>
             <x:Double x:Key="DynamicFontSizeLarge">20</x:Double>
             <x:Double x:Key="DynamicFontSizeMedium">16</x:Double>
-            <x:Double x:Key="DynamicFontSizeSmall">12</x:Double>
-            <!--  padding  -->
+            <!--  Padding/Margin  -->
             <x:Double x:Key="DynamicPadding">8</x:Double>
-            <!--  margin  -->
-            <x:Double x:Key="DynamicMargin_Main">10</x:Double>
             <x:Double x:Key="DynamicMargin">5</x:Double>
-            <x:Double x:Key="DynamicMarginPopup">200</x:Double>
-            <!--  CornerRadius  -->
-            <CornerRadius x:Key="DynamicCornerRadius">10</CornerRadius>
-            <CornerRadius x:Key="DynamicCornerRadius_Inside">10</CornerRadius>
-            <CornerRadius x:Key="DynamicCornerRadius_Outside">20</CornerRadius>
             <x:Double x:Key="DynamicSpacing">10</x:Double>
-            <x:Double x:Key="DynamicButtonHeight">40</x:Double>
-            <x:Double x:Key="DynamicButtonWidth">100</x:Double>
-            <x:Double x:Key="DynamicLoginWidth">100</x:Double>
-            <x:Double x:Key="DynamicLoginHeight">100</x:Double>
-
-            <!--  border  -->
-            <x:Double x:Key="DynamicBorderThickness">1</x:Double> 
-            <!--  Độ dày viền cho Border  -->
-            <x:Double x:Key="DynamicBorderCornerRadius">10</x:Double>
+            <!--  Kích thước  -->
+            <x:Double x:Key="DynamicButtonSize">40</x:Double>
+            <x:Double x:Key="DynamicLoginWidth">500</x:Double>
+            <x:Double x:Key="DynamicLoginHeight">600</x:Double>
+            <!--  Viền và góc  -->
+            <CornerRadius x:Key="DynamicCornerRadius">10</CornerRadius>
+            <x:Double x:Key="DynamicBorderThickness">1</x:Double>
 
             <!--  Style cho Login  -->
             <Style x:Key="DynamicFrameLogin" TargetType="Frame">
@@ -65,53 +42,37 @@
                 <Setter Property="FontSize" Value="{DynamicResource DynamicFontSizeMedium}" />
                 <Setter Property="Margin" Value="{DynamicResource DynamicMargin}" />
             </Style>
-            <Style x:Key="DynamicLabelSmallStyle" TargetType="Label">
-                <Setter Property="FontSize" Value="{DynamicResource DynamicFontSizeSmall}" />
-                <Setter Property="Margin" Value="{DynamicResource DynamicMargin}" />
-            </Style>
             <!--  Style cho Button  -->
             <Style x:Key="DynamicButtonInsideStyle" TargetType="Button">
                 <Setter Property="FontSize" Value="{DynamicResource DynamicFontSizeMedium}" />
                 <Setter Property="Margin" Value="{DynamicResource DynamicMargin}" />
-                <Setter Property="CornerRadius" Value="{DynamicResource DynamicCornerRadius_Inside}" />
-                <Setter Property="HeightRequest" Value="{DynamicResource DynamicButtonHeight}" />
+                <Setter Property="CornerRadius" Value="{DynamicResource DynamicCornerRadius}" />
             </Style>
             <Style x:Key="DynamicButtonOutsideStyle" TargetType="Button">
                 <Setter Property="FontSize" Value="{DynamicResource DynamicFontSizeLarge}" />
                 <Setter Property="Margin" Value="{DynamicResource DynamicMargin}" />
-                <Setter Property="CornerRadius" Value="{DynamicResource DynamicCornerRadius_Outside}" />
-                <Setter Property="HeightRequest" Value="{DynamicResource DynamicButtonHeight}" />
+                <Setter Property="CornerRadius" Value="{DynamicResource DynamicCornerRadius}" />
             </Style>
-
             <!--  Style cho Frame  -->
             <Style x:Key="DynamicFrameStyle" TargetType="Frame">
                 <Setter Property="Padding" Value="{DynamicResource DynamicPadding}" />
                 <Setter Property="CornerRadius" Value="{DynamicResource DynamicCornerRadius}" />
             </Style>
-            <Style x:Key="DynamicFramePopupStyle" TargetType="Frame">
-                <Setter Property="Margin" Value="{DynamicResource DynamicMarginPopup}" />
-                <Setter Property="Padding" Value="{DynamicResource DynamicPadding}" />
-                <Setter Property="CornerRadius" Value="{DynamicResource DynamicCornerRadius}" />
-            </Style>
-
             <!--  Style cho Grid  -->
             <Style x:Key="DynamicGridStyle" TargetType="Grid">
                 <Setter Property="Padding" Value="{DynamicResource DynamicPadding}" />
                 <Setter Property="Margin" Value="{DynamicResource DynamicMargin}" />
+                <Setter Property="RowSpacing" Value="{DynamicResource DynamicSpacing}" />
             </Style>
-            <Style x:Key="DynamicGridMainStyle" TargetType="Grid">
-                <Setter Property="Padding" Value="{DynamicResource DynamicPadding}" />
-                <Setter Property="Margin" Value="{DynamicResource DynamicMargin_Main}" />
-            </Style>
-
             <!--  Style cho Entry  -->
             <Style x:Key="DynamicEntryStyle" TargetType="Entry">
                 <Setter Property="FontSize" Value="{DynamicResource DynamicFontSizeMedium}" />
+                <Setter Property="Margin" Value="{DynamicResource DynamicMargin}" />
             </Style>
-
             <!--  Style cho Border  -->
             <Style x:Key="DynamicBorderStyle" TargetType="Border">
                 <Setter Property="Padding" Value="{DynamicResource DynamicPadding}" />
+                <Setter Property="StrokeThickness" Value="{DynamicResource DynamicBorderThickness}" />
             </Style>
 
 

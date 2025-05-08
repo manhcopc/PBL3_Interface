@@ -5,12 +5,15 @@
   xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
   BackgroundColor="#F7EFE9"
   ControlTemplate="{StaticResource SharedManagerPageTemplate}">
-  <AbsoluteLayout>
-    <Grid
-      AbsoluteLayout.LayoutBounds="0,0,1,1"
-      AbsoluteLayout.LayoutFlags="All"
-      BackgroundColor="Transparent"
-      RowDefinitions="Auto,*">
+  <Grid RowDefinitions="*,Auto">
+    <Grid Grid.Row="0">
+      <Grid.RowDefinitions>
+        <RowDefinition Height="Auto" />
+        <!--  Tiêu đề  -->
+        <RowDefinition Height="*" />
+        <!--  Nội dung chính  -->
+      </Grid.RowDefinitions>
+
       <!--  Tiêu đề  -->
       <Label
         Grid.Row="0"
@@ -64,10 +67,21 @@
             RowSpacing="{DynamicResource DynamicSpacing}">
             <!--  Phần ca làm  -->
             <ScrollView Grid.Column="0">
-              <VerticalStackLayout Spacing="{DynamicResource DynamicSpacing}" VerticalOptions="Center">
+              <Grid RowSpacing="{DynamicResource DynamicSpacing}">
+                <Grid.RowDefinitions>
+                  <RowDefinition Height="Auto" />
+                  <!--  Ca 1  -->
+                  <RowDefinition Height="Auto" />
+                  <!--  Ca 2  -->
+                  <RowDefinition Height="Auto" />
+                  <!--  Ca 3  -->
+                  <RowDefinition Height="*" />
+                  <!--  Khoảng trống  -->
+                </Grid.RowDefinitions>
                 <!--  Ca 1  -->
                 <Frame
                   x:Name="FirstShift"
+                  Grid.Row="0"
                   Padding="{DynamicResource DynamicPadding}"
                   BackgroundColor="#FFEFD5"
                   CornerRadius="{DynamicResource DynamicCornerRadius}"
@@ -111,6 +125,7 @@
                 <!--  Ca 2  -->
                 <Frame
                   x:Name="SecondShift"
+                  Grid.Row="1"
                   Padding="{DynamicResource DynamicPadding}"
                   BackgroundColor="#FFEFD5"
                   CornerRadius="{DynamicResource DynamicCornerRadius}"
@@ -154,6 +169,7 @@
                 <!--  Ca 3  -->
                 <Frame
                   x:Name="ThirdShift"
+                  Grid.Row="2"
                   Padding="{DynamicResource DynamicPadding}"
                   BackgroundColor="#FFEFD5"
                   CornerRadius="{DynamicResource DynamicCornerRadius}"
@@ -194,7 +210,7 @@
                       VerticalOptions="Center" />
                   </Grid>
                 </Frame>
-              </VerticalStackLayout>
+              </Grid>
             </ScrollView>
 
             <!--  Phần chi tiết ca làm  -->
@@ -204,14 +220,30 @@
               CornerRadius="{DynamicResource DynamicCornerRadius}"
               HasShadow="True">
               <ScrollView>
-                <VerticalStackLayout Spacing="{DynamicResource DynamicSpacing}">
+                <Grid RowSpacing="{DynamicResource DynamicSpacing}">
+                  <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <!--  Tiêu đề  -->
+                    <RowDefinition Height="Auto" />
+                    <!--  Đơn hàng 1  -->
+                    <RowDefinition Height="Auto" />
+                    <!--  Đơn hàng 2  -->
+                    <RowDefinition Height="Auto" />
+                    <!--  Đơn hàng 3  -->
+                    <RowDefinition Height="Auto" />
+                    <!--  Tổng doanh thu  -->
+                    <RowDefinition Height="*" />
+                    <!--  Khoảng trống  -->
+                  </Grid.RowDefinitions>
                   <Label
+                    Grid.Row="0"
                     FontAttributes="Bold"
                     FontSize="{DynamicResource DynamicFontSizeLarge}"
                     Text="Chi tiết ca làm"
                     TextColor="#333333" />
                   <!--  Đơn hàng 1  -->
                   <Frame
+                    Grid.Row="1"
                     Padding="{DynamicResource DynamicPadding}"
                     BackgroundColor="#F5F5F5"
                     CornerRadius="{DynamicResource DynamicCornerRadius}">
@@ -255,6 +287,7 @@
                   </Frame>
                   <!--  Đơn hàng 2  -->
                   <Frame
+                    Grid.Row="2"
                     Padding="{DynamicResource DynamicPadding}"
                     BackgroundColor="#F5F5F5"
                     CornerRadius="{DynamicResource DynamicCornerRadius}">
@@ -298,6 +331,7 @@
                   </Frame>
                   <!--  Đơn hàng 3  -->
                   <Frame
+                    Grid.Row="3"
                     Padding="{DynamicResource DynamicPadding}"
                     BackgroundColor="#F5F5F5"
                     CornerRadius="{DynamicResource DynamicCornerRadius}">
@@ -341,12 +375,13 @@
                   </Frame>
                   <!--  Tổng doanh thu ca  -->
                   <Label
+                    Grid.Row="4"
                     FontAttributes="Bold"
                     FontSize="{DynamicResource DynamicFontSizeMedium}"
                     HorizontalOptions="End"
                     Text="Tổng doanh thu ca: 180.000 VNĐ"
                     TextColor="#4A90E2" />
-                </VerticalStackLayout>
+                </Grid>
               </ScrollView>
             </Frame>
           </Grid>
@@ -357,25 +392,34 @@
     <!--  Popup lọc  -->
     <Grid
       x:Name="FilterPopupOverlay"
-      AbsoluteLayout.LayoutBounds="0, 0, 1, 1"
-      AbsoluteLayout.LayoutFlags="All"
+      Grid.RowSpan="2"
       BackgroundColor="#80000000"
       IsVisible="False">
       <ContentView
         x:Name="FilterPopup"
         Padding="{DynamicResource DynamicPadding}"
-        AbsoluteLayout.LayoutBounds="0.5, 0.5,  0.95,1"
-        AbsoluteLayout.LayoutFlags="PositionProportional"
-        BackgroundColor="#F7EFE9">
+        BackgroundColor="#F7EFE9"
+        HorizontalOptions="Center"
+        VerticalOptions="Center">
         <Frame Margin="{DynamicResource DynamicMarginPopup}" BackgroundColor="White">
-          <VerticalStackLayout Spacing="{DynamicResource DynamicSpacing}">
+          <Grid RowSpacing="{DynamicResource DynamicSpacing}">
+            <Grid.RowDefinitions>
+              <RowDefinition Height="Auto" />
+              <!--  Tiêu đề  -->
+              <RowDefinition Height="Auto" />
+              <!--  DatePicker  -->
+              <RowDefinition Height="Auto" />
+              <!--  Nút  -->
+            </Grid.RowDefinitions>
             <Label
+              Grid.Row="0"
               FontAttributes="Bold"
               FontSize="{DynamicResource DynamicFontSizeTitle}"
               HorizontalOptions="Center"
               Text="LỌC THEO NGÀY"
               TextColor="Black" />
             <Border
+              Grid.Row="1"
               Padding="{DynamicResource DynamicPadding}"
               BackgroundColor="Transparent"
               Stroke="#F2E2D6"
@@ -388,7 +432,7 @@
                 MinimumDate="01/01/2020"
                 VerticalOptions="Fill" />
             </Border>
-            <Grid ColumnDefinitions="*,*">
+            <Grid Grid.Row="2" ColumnDefinitions="*,*">
               <Button
                 Grid.Column="0"
                 Clicked="OnApplyFilterClicked"
@@ -406,7 +450,7 @@
                 Text="Hủy"
                 TextColor="White" />
             </Grid>
-          </VerticalStackLayout>
+          </Grid>
         </Frame>
       </ContentView>
     </Grid>
@@ -414,26 +458,45 @@
     <!--  Popup xem chi tiết  -->
     <Grid
       x:Name="DetailPopupOverlay"
-      AbsoluteLayout.LayoutBounds="0, 0, 1, 1"
-      AbsoluteLayout.LayoutFlags="All"
+      Grid.RowSpan="2"
       BackgroundColor="#80000000"
       IsVisible="False">
       <ContentView
         x:Name="DetailPopup"
         Padding="{DynamicResource DynamicPadding}"
-        AbsoluteLayout.LayoutBounds="0.5, 0.5, 0.95,1"
-        AbsoluteLayout.LayoutFlags="PositionProportional"
-        BackgroundColor="#F7EFE9">
+        BackgroundColor="#F7EFE9"
+        HorizontalOptions="Center"
+        VerticalOptions="Center">
         <Frame Margin="{DynamicResource DynamicMarginPopup}" BackgroundColor="White">
           <ScrollView>
-            <VerticalStackLayout Spacing="{DynamicResource DynamicSpacing}">
+            <Grid RowSpacing="{DynamicResource DynamicSpacing}">
+              <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <!--  Tiêu đề  -->
+                <RowDefinition Height="Auto" />
+                <!--  Mã đơn  -->
+                <RowDefinition Height="Auto" />
+                <!--  Số tiền  -->
+                <RowDefinition Height="Auto" />
+                <!--  Thời gian  -->
+                <RowDefinition Height="Auto" />
+                <!--  Trạng thái  -->
+                <RowDefinition Height="Auto" />
+                <!--  Sản phẩm  -->
+                <RowDefinition Height="Auto" />
+                <!--  Nút  -->
+                <RowDefinition Height="*" />
+                <!--  Khoảng trống  -->
+              </Grid.RowDefinitions>
               <Label
+                Grid.Row="0"
                 FontAttributes="Bold"
                 FontSize="{DynamicResource DynamicFontSizeTitle}"
                 HorizontalOptions="Center"
                 Text="CHI TIẾT ĐƠN HÀNG"
                 TextColor="Black" />
               <Border
+                Grid.Row="1"
                 Padding="{DynamicResource DynamicPadding}"
                 BackgroundColor="Transparent"
                 Stroke="#F2E2D6"
@@ -444,6 +507,7 @@
                   Text="Mã đơn: 123456" />
               </Border>
               <Border
+                Grid.Row="2"
                 Padding="{DynamicResource DynamicPadding}"
                 BackgroundColor="Transparent"
                 Stroke="#F2E2D6"
@@ -454,6 +518,7 @@
                   Text="Số tiền: 50.000 VNĐ" />
               </Border>
               <Border
+                Grid.Row="3"
                 Padding="{DynamicResource DynamicPadding}"
                 BackgroundColor="Transparent"
                 Stroke="#F2E2D6"
@@ -464,6 +529,7 @@
                   Text="Thời gian: 10:00" />
               </Border>
               <Border
+                Grid.Row="4"
                 Padding="{DynamicResource DynamicPadding}"
                 BackgroundColor="Transparent"
                 Stroke="#F2E2D6"
@@ -474,6 +540,7 @@
                   Text="Trạng thái: Đã thanh toán" />
               </Border>
               <Border
+                Grid.Row="5"
                 Padding="{DynamicResource DynamicPadding}"
                 BackgroundColor="Transparent"
                 Stroke="#F2E2D6"
@@ -484,15 +551,16 @@
                   Text="Sản phẩm: Cà phê đen, Trà sữa" />
               </Border>
               <Button
+                Grid.Row="6"
                 Clicked="OnCloseDetailClicked"
                 CornerRadius="{DynamicResource DynamicCornerRadius}"
                 FontSize="{DynamicResource DynamicFontSizeMedium}"
                 HorizontalOptions="Center"
                 Text="Đóng" />
-            </VerticalStackLayout>
+            </Grid>
           </ScrollView>
         </Frame>
       </ContentView>
     </Grid>
-  </AbsoluteLayout>
+  </Grid>
 </ContentPage>

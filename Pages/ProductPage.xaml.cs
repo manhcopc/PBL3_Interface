@@ -4,56 +4,43 @@ namespace PBL3_Interface.Pages;
 
 public partial class ProductPage : ContentPage
 {
+    private double _lastScale = -1;
+    private string _selectedProductName = string.Empty;
+
     public ProductPage()
     {
         InitializeComponent();
-        // Hiển thị sản phẩm mặc định khi trang được tải (Cà phê)
-        // ShowProducts("Cà phê");
     }
 
-    // Sự kiện khi người dùng chọn một danh mục
     private void OnCategoryTapped(object sender, EventArgs e)
     {
-        // Lấy danh mục được chọn
-        var label = sender as Label;
-        if (label == null) return;
+        if (sender is not Label label) return;
 
-        // Đổi màu nền để đánh dấu danh mục được chọn
-        CategoryCoffee.BackgroundColor = label.Text == "Cà phê" ? Colors.White : Colors.Transparent;
-        CategoryMilkTea.BackgroundColor = label.Text == "Trà sữa" ? Colors.White : Colors.Transparent;
+        CategoryCoffee.BackgroundColor = label.Text == "☕ CÀ PHÊ" ? Colors.White : Colors.Transparent;
+        CategoryMilkTea.BackgroundColor = label.Text == "🍵 TRÀ" ? Colors.White : Colors.Transparent;
 
-        // Hiển thị sản phẩm tương ứng
-        // ShowProducts(label.Text);
+        DisplayAlert("Thông báo", $"Bạn đã chọn danh mục: {label.Text}", "OK");
     }
 
-
-    // Sự kiện khi nhấn nút "Tìm"
     private void OnSearchClicked(object sender, EventArgs e)
     {
         DisplayAlert("Thông báo", "Bạn đã nhấn nút Tìm!", "OK");
     }
 
-    // Sự kiện khi nhấn nút "Thêm sản phẩm"
     private void OnAddProductClicked(object sender, EventArgs e)
     {
-        // Hiển thị popup cùng với lớp nền mờ
         PopupOverlay.IsVisible = true;
     }
 
-    // Sự kiện khi nhấn nút "Lưu" trong popup
     private void OnSaveProductClicked(object sender, EventArgs e)
     {
         if (!string.IsNullOrWhiteSpace(ProductNameEntry.Text) && !string.IsNullOrWhiteSpace(ProductPriceEntry.Text))
         {
-            var newProduct = new Label
-            {
-                Text = $"{ProductNameEntry.Text} - {ProductPriceEntry.Text} VNĐ",
-                FontSize = 16,
-                TextColor = Colors.Black
-            };
-            // ProductList.Children.Add(newProduct);
+            DisplayAlert("Thông báo", $"Sản phẩm '{ProductNameEntry.Text}' đã được thêm với giá {ProductPriceEntry.Text} VNĐ!", "OK");
+
             PopupOverlay.IsVisible = false;
             ProductNameEntry.Text = string.Empty;
+            ProductDescriptionEntry.Text = string.Empty;
             ProductPriceEntry.Text = string.Empty;
         }
         else
@@ -62,45 +49,102 @@ public partial class ProductPage : ContentPage
         }
     }
 
-    // Sự kiện khi nhấn nút "Hủy" trong popup
     private void OnCancelProductClicked(object sender, EventArgs e)
     {
-        // Ẩn popup và lớp nền mờ
         PopupOverlay.IsVisible = false;
         ProductNameEntry.Text = string.Empty;
+        ProductDescriptionEntry.Text = string.Empty;
         ProductPriceEntry.Text = string.Empty;
     }
-    private void OnEditProductClicked(object sender, EventArgs e) { }
+
+    private void OnEditProductClicked(object sender, EventArgs e)
+    {
+        if (sender is Button button)
+        {
+            _selectedProductName = button.BindingContext as string ?? string.Empty;
+            EditProductNameEntry.Text = _selectedProductName;
+            EditProductDescriptionEntry.Text = "Thông tin mô tả mẫu";
+            EditProductPriceEntry.Text = "100000";
+
+            EditProductPopup.IsVisible = true;
+        }
+    }
+
+    private void OnSaveEditProductClicked(object sender, EventArgs e)
+    {
+        if (!string.IsNullOrWhiteSpace(EditProductNameEntry.Text) && !string.IsNullOrWhiteSpace(EditProductPriceEntry.Text))
+        {
+            DisplayAlert("Thông báo", $"Sản phẩm '{_selectedProductName}' đã được cập nhật thành '{EditProductNameEntry.Text}' với giá {EditProductPriceEntry.Text} VNĐ!", "OK");
+
+            EditProductPopup.IsVisible = false;
+            EditProductNameEntry.Text = string.Empty;
+            EditProductDescriptionEntry.Text = string.Empty;
+            EditProductPriceEntry.Text = string.Empty;
+
+            _selectedProductName = string.Empty; // Reset sản phẩm đang được chỉnh sửa
+        }
+        else
+        {
+            DisplayAlert("Lỗi", "Vui lòng nhập đầy đủ thông tin!", "OK");
+        }
+    }
+
+    // Hủy chỉnh sửa sản phẩm
+    private void OnCancelEditProductClicked(object sender, EventArgs e)
+    {
+        EditProductPopup.IsVisible = false;
+        EditProductNameEntry.Text = string.Empty;
+        EditProductDescriptionEntry.Text = string.Empty;
+        EditProductPriceEntry.Text = string.Empty;
+
+        _selectedProductName = string.Empty; // Reset sản phẩm đang được chỉnh sửa
+    }
+
     protected override void OnSizeAllocated(double width, double height)
     {
         base.OnSizeAllocated(width, height);
 
-        // Đảm bảo scale không quá nhỏ hoặc âm
-        double baseWidth = 400; // Giá trị chuẩn
-        double scale = Math.Max(0.5, Math.Min(width, height) / baseWidth); // Giới hạn scale từ 0.5
+        double baseWidth = 400;
+        double baseHeight = 800;
 
-        Resources["DynamicFontSizeTitle"] = 15 * scale;
-        Resources["DynamicFontSizeLarge"] = 12 * scale;
-        Resources["DynamicFontSizeMedium"] = 10 * scale;
-        Resources["DynamicFontSizeSmall"] = 8 * scale;
-        Resources["DynamicPadding"] = 4 * scale;
-        Resources["DynamicMargin_Main"] = 5 * scale;
-        Resources["DynamicMargin"] = 2.5 * scale;
-        Resources["DynamicMarginPopup"] = 50 * scale;
-        Resources["DynamicCornerRadius"] = 5 * scale;
-        Resources["DynamicCornerRadius_Inside"] = 10 * scale;
-        Resources["DynamicCornerRadius_Outside"] = 20 * scale;
-        Resources["DynamicSpacing"] = 5 * scale;
-        Resources["DynamicButtonHeight"] = 20 * scale;
-        Resources["DynamicButtonWidth"] = 50 * scale;
+        double widthScale = width / baseWidth;
+        double heightScale = height / baseHeight;
+        double scale = widthScale < heightScale ? widthScale : heightScale;
 
-        double horizontalScale = Math.Max(0.5, width / baseWidth); // Tỷ lệ dựa trên chiều ngang
-        Resources["NaviHeightRequest"] = 35 * scale;
-        Resources["TabMenuHeightRequest"] = 15 * scale;
-        Resources["TabMenuWidthRequest"] = 15 * scale;
-        Resources["NaviTextFontSize"] = 10 * scale;
-        Resources["NaviItemSpacing"] = 2 * horizontalScale;
-        Resources["NaviMargin"] = 2 * horizontalScale; // Điều chỉnh Margin theo chiều ngang
-        Resources["NaviPadding"] = 5 * horizontalScale;
+        scale = scale > 0.5 ? scale : 0.5;
+        double horizontalScale = (width / baseWidth) > 0.5 ? (width / baseWidth) : 0.5;
+
+
+        if (_lastScale < 0 || (scale > _lastScale + 0.01 || scale < _lastScale - 0.01))
+        {
+            Resources["DynamicFontSizeTitle"] = 30 * scale;
+            Resources["DynamicFontSizeLarge"] = 20 * scale;
+            Resources["DynamicFontSizeMedium"] = 16 * scale;
+            Resources["DynamicFontSizeSmall"] = 12 * scale;
+            Resources["DynamicPadding"] = 8 * scale;
+            Resources["DynamicMargin"] = 5 * scale;
+            Resources["DynamicSpacing"] = 10 * scale;
+            Resources["DynamicButtonSize"] = 40 * scale;
+            Resources["DynamicBorderThickness"] = 1 * scale;
+
+            double cornerRadius = 10 * scale;
+            Resources["DynamicCornerRadius"] = new CornerRadius(cornerRadius);
+
+            AddProductPopup.WidthRequest = scale * 500; // Chiều rộng linh hoạt
+            AddProductPopup.HeightRequest = scale * 600; // Chiều cao linh hoạt
+
+            EditProductPopupFrame.WidthRequest = scale * 500;
+            EditProductPopupFrame.HeightRequest = scale * 600;
+
+            Resources["NaviHeightRequest"] = 60 * scale;
+            Resources["TabMenuHeightRequest"] = 25 * scale;
+            Resources["TabMenuWidthRequest"] = 25 * scale;
+            Resources["NaviTextFontSize"] = 25 * scale;
+            Resources["NaviItemSpacing"] = 2 * horizontalScale;
+            Resources["NaviMargin"] = 2 * horizontalScale; // Điều chỉnh Margin theo chiều ngang
+            Resources["NaviPadding"] = 5 * horizontalScale;
+
+            _lastScale = scale;
+        }
     }
 }

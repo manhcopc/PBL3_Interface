@@ -3,47 +3,73 @@
   x:Class="PBL3_Interface.Login"
   xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
   xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml">
-  <AbsoluteLayout>
-    <!--  Background Image  -->
-    <Image
-      AbsoluteLayout.LayoutBounds="0, 0, 1, 1"
-      AbsoluteLayout.LayoutFlags="All"
-      Aspect="AspectFill"
-      Opacity="1"
-      Source="login.jpg" />
+  <Grid>
+    <!--  RowDefinition cho Grid chính: Hình ảnh nền chiếm toàn bộ (*), khối login ở giữa  -->
+    <Grid.RowDefinitions>
+      <RowDefinition Height="*" />
+      <RowDefinition Height="Auto" />
+      <RowDefinition Height="*" />
+    </Grid.RowDefinitions>
+    <Grid.ColumnDefinitions>
+      <ColumnDefinition Width="*" />
+      <ColumnDefinition Width="Auto" />
+      <ColumnDefinition Width="*" />
+    </Grid.ColumnDefinitions>
 
-    <!--  Login Form  -->
+    <!--  Hình ảnh nền  -->
+    <Image
+      Grid.Row="0"
+      Grid.RowSpan="3"
+      Grid.Column="0"
+      Grid.ColumnSpan="3"
+      Aspect="AspectFill"
+      HorizontalOptions="Fill"
+      Opacity="1"
+      Source="login.jpg"
+      VerticalOptions="Fill" />
+
+    <!--  Khối login  -->
     <Frame
-      AbsoluteLayout.LayoutBounds="0.67, 0.5, 0.5,0.6"
-      AbsoluteLayout.LayoutFlags="PositionProportional"
+      Grid.Row="1"
+      Grid.Column="1"
       BackgroundColor="#80FFFFFF"
       BorderColor="LightGray"
       CornerRadius="{DynamicResource DynamicCornerRadius}"
-      HasShadow="True"
-      Style="{DynamicResource DynamicFrameLogin}">
-      <Grid Padding="{DynamicResource DynamicPadding}" RowSpacing="{DynamicResource DynamicSpacing}">
+      HasShadow="False"
+      HorizontalOptions="Center"
+      Style="{DynamicResource DynamicFrameLogin}"
+      VerticalOptions="Center">
+      <Grid Style="{DynamicResource DynamicGridStyle}">
         <Grid.RowDefinitions>
           <RowDefinition Height="Auto" />
+          <!--  Tiêu đề LOGIN  -->
           <RowDefinition Height="Auto" />
+          <!--  Label Account  -->
           <RowDefinition Height="Auto" />
+          <!--  Entry Account  -->
           <RowDefinition Height="Auto" />
+          <!--  Label Password  -->
           <RowDefinition Height="Auto" />
+          <!--  Entry Password  -->
           <RowDefinition Height="Auto" />
+          <!--  Button Login  -->
+          <RowDefinition Height="*" />
+          <!--  Khoảng trống linh hoạt  -->
         </Grid.RowDefinitions>
 
         <!--  Title LOGIN  -->
         <Label
           Grid.Row="0"
           FontAttributes="Bold"
-          FontSize="{DynamicResource DynamicFontSizeTitle}"
           HorizontalOptions="Center"
+          Style="{DynamicResource DynamicLabelTitleStyle}"
           Text="LOGIN"
           TextColor="#000000" />
 
         <!--  Label Account  -->
         <Label
           Grid.Row="1"
-          FontSize="{DynamicResource DynamicFontSizeLarge}"
+          Style="{DynamicResource DynamicLabelLargeStyle}"
           Text="Account"
           TextColor="#000000" />
 
@@ -54,17 +80,16 @@
           Stroke="Gray"
           Style="{DynamicResource DynamicBorderStyle}">
           <Entry
-            Margin="{DynamicResource DynamicMargin}"
             BackgroundColor="Transparent"
-            FontSize="{DynamicResource DynamicFontSizeMedium}"
             Placeholder="Enter username..."
+            Style="{DynamicResource DynamicEntryStyle}"
             TextColor="Black" />
         </Border>
 
         <!--  Label Password  -->
         <Label
           Grid.Row="3"
-          FontSize="{DynamicResource DynamicFontSizeLarge}"
+          Style="{DynamicResource DynamicLabelLargeStyle}"
           Text="Password"
           TextColor="#000000" />
 
@@ -75,11 +100,10 @@
           Stroke="Gray"
           Style="{DynamicResource DynamicBorderStyle}">
           <Entry
-            Margin="{DynamicResource DynamicMargin}"
             BackgroundColor="Transparent"
-            FontSize="{DynamicResource DynamicFontSizeMedium}"
             IsPassword="True"
             Placeholder="Enter password..."
+            Style="{DynamicResource DynamicEntryStyle}"
             TextColor="Black" />
         </Border>
 
@@ -87,13 +111,11 @@
         <Button
           Grid.Row="5"
           BackgroundColor="#8EB8BB"
-          CornerRadius="{DynamicResource DynamicCornerRadius}"
-          FontSize="{DynamicResource DynamicFontSizeMedium}"
-          HeightRequest="{DynamicResource DynamicButtonHeight}"
           HorizontalOptions="Center"
+          Style="{DynamicResource DynamicButtonInsideStyle}"
           Text="Đăng nhập"
           TextColor="Black" />
       </Grid>
     </Frame>
-  </AbsoluteLayout>
+  </Grid>
 </ContentPage>

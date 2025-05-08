@@ -4,6 +4,7 @@ namespace PBL3_Interface.Pages;
 
 public partial class ShiftPage : ContentPage
 {
+    private double _lastScale = -1;
     public ShiftPage()
     {
         InitializeComponent();
@@ -101,32 +102,49 @@ public partial class ShiftPage : ContentPage
     {
         base.OnSizeAllocated(width, height);
 
-        // Đảm bảo scale không quá nhỏ hoặc âm
-        double baseWidth = 400; // Giá trị chuẩn
-        double scale = Math.Max(0.5, Math.Min(width, height) / baseWidth); // Giới hạn scale từ 0.5
+        double baseWidth = 400;
+        double baseHeight = 800;
 
-        Resources["DynamicFontSizeTitle"] = 15 * scale;
-        Resources["DynamicFontSizeLarge"] = 12 * scale;
-        Resources["DynamicFontSizeMedium"] = 10 * scale;
-        Resources["DynamicFontSizeSmall"] = 8 * scale;
-        Resources["DynamicPadding"] = 4 * scale;
-        Resources["DynamicMargin_Main"] = 5 * scale;
-        Resources["DynamicMargin"] = 2.5 * scale;
-        Resources["DynamicMarginPopup"] = 50 * scale;
-        Resources["DynamicCornerRadius"] = 5 * scale;
-        Resources["DynamicCornerRadius_Inside"] = 10 * scale;
-        Resources["DynamicCornerRadius_Outside"] = 20 * scale;
-        Resources["DynamicSpacing"] = 5 * scale;
-        Resources["DynamicButtonHeight"] = 20 * scale;
-        Resources["DynamicButtonWidth"] = 50 * scale;
+        // Tính scale mà không dùng Math.Min hoặc Math.Max
+        double widthScale = width / baseWidth;
+        double heightScale = height / baseHeight;
+        double minScale = widthScale < heightScale ? widthScale : heightScale;
+        double scale = minScale > 0.5 ? minScale : 0.5;
 
-        double horizontalScale = Math.Max(0.5, width / baseWidth); // Tỷ lệ dựa trên chiều ngang
-        Resources["NaviHeightRequest"] = 35 * scale;
-        Resources["TabMenuHeightRequest"] = 15 * scale;
-        Resources["TabMenuWidthRequest"] = 15 * scale;
-        Resources["NaviTextFontSize"] = 10 * scale;
-        Resources["NaviItemSpacing"] = 2 * horizontalScale;
-        Resources["NaviMargin"] = 2 * horizontalScale; // Điều chỉnh Margin theo chiều ngang
-        Resources["NaviPadding"] = 5 * horizontalScale;
+        // Kiểm tra sự thay đổi scale mà không dùng Math.Abs
+        double scaleDiff = scale - _lastScale;
+        double absScaleDiff = scaleDiff < 0 ? -scaleDiff : scaleDiff;
+        double horizontalScale = (width / baseWidth) > 0.5 ? (width / baseWidth) : 0.5;
+
+        if (absScaleDiff > 0.01)
+        {
+            Resources["DynamicFontSizeTitle"] = 30 * scale;
+            Resources["DynamicFontSizeLarge"] = 20 * scale;
+            Resources["DynamicFontSizeMedium"] = 16 * scale;
+            Resources["DynamicFontSizeSmall"] = 12 * scale;
+            Resources["DynamicPadding"] = 8 * scale;
+            Resources["DynamicMargin"] = 5 * scale;
+            Resources["DynamicSpacing"] = 10 * scale;
+            Resources["DynamicButtonSize"] = 40 * scale;
+            Resources["DynamicBorderThickness"] = 1 * scale;
+
+            double cornerRadius = 10 * scale;
+            Resources["DynamicCornerRadius"] = new CornerRadius(cornerRadius);
+
+            EditShiftPopupOverlay.WidthRequest = scale * 500; // Chiều rộng linh hoạt
+            EditShiftPopupOverlay.HeightRequest = scale * 600; // Chiều cao linh hoạt
+
+
+
+            Resources["NaviHeightRequest"] = 60 * scale;
+            Resources["TabMenuHeightRequest"] = 25 * scale;
+            Resources["TabMenuWidthRequest"] = 25 * scale;
+            Resources["NaviTextFontSize"] = 25 * scale;
+            Resources["NaviItemSpacing"] = 2 * horizontalScale;
+            Resources["NaviMargin"] = 2 * horizontalScale; // Điều chỉnh Margin theo chiều ngang
+            Resources["NaviPadding"] = 5 * horizontalScale;
+
+            _lastScale = scale;
+        }
     }
 }
