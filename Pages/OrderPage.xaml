@@ -11,44 +11,46 @@
       AbsoluteLayout.LayoutFlags="All"
       BackgroundColor="Transparent"
       RowDefinitions="Auto,*">
+      <!--  Tiêu đề  -->
       <Label
         Grid.Row="0"
-        Margin="0,30,0,20"
         FontAttributes="Bold"
-        FontSize="28"
+        FontSize="{DynamicResource DynamicFontSizeTitle}"
         HorizontalOptions="Center"
-        Text="Thống kê Order"
+        Text="THỐNG KÊ ORDER"
         TextColor="Black" />
+
+      <!--  Frame chứa nội dung chính  -->
       <Frame
         Grid.Row="1"
-        Margin="100,0,100,10"
-        Padding="10"
+        Margin="{DynamicResource DynamicMargin}"
+        Padding="{DynamicResource DynamicPadding}"
         BackgroundColor="Transparent"
-        BorderColor="Black">
-
-        <Grid RowDefinitions="Auto, *">
+        BorderColor="Black"
+        CornerRadius="{DynamicResource DynamicCornerRadius}">
+        <Grid RowDefinitions="Auto, *" RowSpacing="{DynamicResource DynamicSpacing}">
           <!--  Header: Bộ lọc ngày  -->
           <Frame
-            Padding="15"
+            Padding="{DynamicResource DynamicPadding}"
             BackgroundColor="#F4A460"
-            CornerRadius="10"
+            CornerRadius="{DynamicResource DynamicCornerRadius}"
             HasShadow="True">
             <Grid ColumnDefinitions="*, Auto">
               <Label
-                Margin="5,0"
+                Margin="{DynamicResource DynamicMargin}"
                 BackgroundColor="Transparent"
                 FontAttributes="Bold"
-                FontSize="30"
+                FontSize="{DynamicResource DynamicFontSizeTitle}"
                 HorizontalOptions="Center"
                 Text="20/02/2025"
                 TextColor="Black" />
               <Button
-                Margin="10,0,0,0"
-                Padding="10,5"
+                Margin="{DynamicResource DynamicMargin}"
+                Padding="{DynamicResource DynamicPadding}"
                 BackgroundColor="Transparent"
                 Clicked="OnFilterClicked"
-                CornerRadius="5"
-                FontSize="20"
+                CornerRadius="{DynamicResource DynamicCornerRadius}"
+                FontSize="{DynamicResource DynamicFontSizeMedium}"
                 HorizontalOptions="End"
                 Text="Lọc"
                 TextColor="Black" />
@@ -58,19 +60,17 @@
           <!--  Main Content: Ca làm và Chi tiết  -->
           <Grid
             Grid.Row="1"
-            Margin="0,10,0,0"
             ColumnDefinitions="2*, 4*"
-            RowSpacing="10">
-
+            RowSpacing="{DynamicResource DynamicSpacing}">
             <!--  Phần ca làm  -->
             <ScrollView Grid.Column="0">
-              <VerticalStackLayout Spacing="10" VerticalOptions="Center">
+              <VerticalStackLayout Spacing="{DynamicResource DynamicSpacing}" VerticalOptions="Center">
+                <!--  Ca 1  -->
                 <Frame
                   x:Name="FirstShift"
-                  Margin="0,0,0,10"
-                  Padding="10"
+                  Padding="{DynamicResource DynamicPadding}"
                   BackgroundColor="#FFEFD5"
-                  CornerRadius="8"
+                  CornerRadius="{DynamicResource DynamicCornerRadius}"
                   HasShadow="True">
                   <Frame.GestureRecognizers>
                     <TapGestureRecognizer NumberOfTapsRequired="1" Tapped="OnShiftClicked" />
@@ -79,21 +79,21 @@
                     <Label
                       Grid.Row="0"
                       Grid.Column="0"
-                      FontSize="16"
+                      FontSize="{DynamicResource DynamicFontSizeMedium}"
                       Text="Ca 1: 6h30 - 12h"
                       TextColor="#333333"
                       VerticalOptions="Center" />
                     <Label
                       Grid.Row="1"
                       Grid.Column="0"
-                      FontSize="16"
+                      FontSize="{DynamicResource DynamicFontSizeMedium}"
                       Text="Đã đóng"
                       TextColor="Red"
                       VerticalOptions="Center" />
                     <Label
                       Grid.Row="0"
                       Grid.Column="1"
-                      FontSize="16"
+                      FontSize="{DynamicResource DynamicFontSizeMedium}"
                       HorizontalOptions="End"
                       Text="10.000.000 VNĐ"
                       TextColor="#333333"
@@ -101,20 +101,19 @@
                     <Label
                       Grid.Row="1"
                       Grid.Column="1"
-                      FontSize="16"
+                      FontSize="{DynamicResource DynamicFontSizeMedium}"
                       HorizontalOptions="End"
                       Text="Số đơn: 20"
                       TextColor="#333333"
                       VerticalOptions="Center" />
                   </Grid>
                 </Frame>
-                <!--  ca 2  -->
+                <!--  Ca 2  -->
                 <Frame
                   x:Name="SecondShift"
-                  Margin="0,0,0,10"
-                  Padding="10"
+                  Padding="{DynamicResource DynamicPadding}"
                   BackgroundColor="#FFEFD5"
-                  CornerRadius="8"
+                  CornerRadius="{DynamicResource DynamicCornerRadius}"
                   HasShadow="True">
                   <Frame.GestureRecognizers>
                     <TapGestureRecognizer NumberOfTapsRequired="1" Tapped="OnShiftClicked" />
@@ -123,21 +122,21 @@
                     <Label
                       Grid.Row="0"
                       Grid.Column="0"
-                      FontSize="16"
+                      FontSize="{DynamicResource DynamicFontSizeMedium}"
                       Text="Ca 2: 12h - 17h30"
                       TextColor="#333333"
                       VerticalOptions="Center" />
                     <Label
                       Grid.Row="1"
                       Grid.Column="0"
-                      FontSize="16"
+                      FontSize="{DynamicResource DynamicFontSizeMedium}"
                       Text="Đã đóng"
                       TextColor="Red"
                       VerticalOptions="Center" />
                     <Label
                       Grid.Row="0"
                       Grid.Column="1"
-                      FontSize="16"
+                      FontSize="{DynamicResource DynamicFontSizeMedium}"
                       HorizontalOptions="End"
                       Text="10.000.000 VNĐ"
                       TextColor="#333333"
@@ -145,20 +144,19 @@
                     <Label
                       Grid.Row="1"
                       Grid.Column="1"
-                      FontSize="16"
+                      FontSize="{DynamicResource DynamicFontSizeMedium}"
                       HorizontalOptions="End"
                       Text="Số đơn: 20"
                       TextColor="#333333"
                       VerticalOptions="Center" />
                   </Grid>
                 </Frame>
-                <!--  ca 3  -->
+                <!--  Ca 3  -->
                 <Frame
                   x:Name="ThirdShift"
-                  Margin="0,0,0,10"
-                  Padding="10"
+                  Padding="{DynamicResource DynamicPadding}"
                   BackgroundColor="#FFEFD5"
-                  CornerRadius="8"
+                  CornerRadius="{DynamicResource DynamicCornerRadius}"
                   HasShadow="True">
                   <Frame.GestureRecognizers>
                     <TapGestureRecognizer NumberOfTapsRequired="1" Tapped="OnShiftClicked" />
@@ -167,21 +165,21 @@
                     <Label
                       Grid.Row="0"
                       Grid.Column="0"
-                      FontSize="16"
+                      FontSize="{DynamicResource DynamicFontSizeMedium}"
                       Text="Ca 3: 17h30 - 23h"
                       TextColor="#333333"
                       VerticalOptions="Center" />
                     <Label
                       Grid.Row="1"
                       Grid.Column="0"
-                      FontSize="16"
+                      FontSize="{DynamicResource DynamicFontSizeMedium}"
                       Text="Đã đóng"
                       TextColor="Red"
                       VerticalOptions="Center" />
                     <Label
                       Grid.Row="0"
                       Grid.Column="1"
-                      FontSize="16"
+                      FontSize="{DynamicResource DynamicFontSizeMedium}"
                       HorizontalOptions="End"
                       Text="10.000.000 VNĐ"
                       TextColor="#333333"
@@ -189,7 +187,7 @@
                     <Label
                       Grid.Row="1"
                       Grid.Column="1"
-                      FontSize="16"
+                      FontSize="{DynamicResource DynamicFontSizeMedium}"
                       HorizontalOptions="End"
                       Text="Số đơn: 20"
                       TextColor="#333333"
@@ -203,46 +201,44 @@
             <Frame
               Grid.Column="1"
               BackgroundColor="#FFFFFF"
-              CornerRadius="10"
+              CornerRadius="{DynamicResource DynamicCornerRadius}"
               HasShadow="True">
               <ScrollView>
-                <VerticalStackLayout Spacing="10">
+                <VerticalStackLayout Spacing="{DynamicResource DynamicSpacing}">
                   <Label
                     FontAttributes="Bold"
-                    FontSize="20"
+                    FontSize="{DynamicResource DynamicFontSizeLarge}"
                     Text="Chi tiết ca làm"
                     TextColor="#333333" />
-
                   <!--  Đơn hàng 1  -->
                   <Frame
-                    Margin="0,0,0,5"
-                    Padding="10"
+                    Padding="{DynamicResource DynamicPadding}"
                     BackgroundColor="#F5F5F5"
-                    CornerRadius="5">
+                    CornerRadius="{DynamicResource DynamicCornerRadius}">
                     <Grid ColumnDefinitions="Auto, *,*" RowDefinitions="Auto, Auto">
                       <Label
                         Grid.Row="0"
                         Grid.Column="0"
-                        FontSize="16"
+                        FontSize="{DynamicResource DynamicFontSizeMedium}"
                         Text="Mã đơn: 123456"
                         TextColor="#333333" />
                       <Label
                         Grid.Row="1"
                         Grid.Column="0"
-                        FontSize="16"
+                        FontSize="{DynamicResource DynamicFontSizeMedium}"
                         Text="Số tiền: 50.000 VNĐ"
                         TextColor="#333333" />
                       <Label
                         Grid.Row="0"
                         Grid.Column="1"
-                        FontSize="14"
+                        FontSize="{DynamicResource DynamicFontSizeSmall}"
                         HorizontalOptions="Center"
                         Text="Thời gian: 10:00"
                         TextColor="#666666" />
                       <Label
                         Grid.Row="1"
                         Grid.Column="1"
-                        FontSize="14"
+                        FontSize="{DynamicResource DynamicFontSizeSmall}"
                         HorizontalOptions="Center"
                         Text="Trạng thái: Đã thanh toán"
                         TextColor="#666666" />
@@ -251,42 +247,41 @@
                         Grid.Column="2"
                         BackgroundColor="Transparent"
                         Clicked="OnViewDetailClicked"
+                        FontSize="{DynamicResource DynamicFontSizeSmall}"
                         HorizontalOptions="End"
                         Text="Xem chi tiết&gt;&gt;"
                         TextColor="Black" />
                     </Grid>
                   </Frame>
-
                   <!--  Đơn hàng 2  -->
                   <Frame
-                    Margin="0,0,0,5"
-                    Padding="10"
+                    Padding="{DynamicResource DynamicPadding}"
                     BackgroundColor="#F5F5F5"
-                    CornerRadius="5">
+                    CornerRadius="{DynamicResource DynamicCornerRadius}">
                     <Grid ColumnDefinitions="Auto, *,*" RowDefinitions="Auto, Auto">
                       <Label
                         Grid.Row="0"
                         Grid.Column="0"
-                        FontSize="16"
+                        FontSize="{DynamicResource DynamicFontSizeMedium}"
                         Text="Mã đơn: 123457"
                         TextColor="#333333" />
                       <Label
                         Grid.Row="1"
                         Grid.Column="0"
-                        FontSize="16"
+                        FontSize="{DynamicResource DynamicFontSizeMedium}"
                         Text="Số tiền: 60.000 VNĐ"
                         TextColor="#333333" />
                       <Label
                         Grid.Row="0"
                         Grid.Column="1"
-                        FontSize="14"
+                        FontSize="{DynamicResource DynamicFontSizeSmall}"
                         HorizontalOptions="Center"
                         Text="Thời gian: 10:30"
                         TextColor="#666666" />
                       <Label
                         Grid.Row="1"
                         Grid.Column="1"
-                        FontSize="14"
+                        FontSize="{DynamicResource DynamicFontSizeSmall}"
                         HorizontalOptions="Center"
                         Text="Trạng thái: Đã thanh toán"
                         TextColor="#666666" />
@@ -295,42 +290,41 @@
                         Grid.Column="2"
                         BackgroundColor="Transparent"
                         Clicked="OnViewDetailClicked"
+                        FontSize="{DynamicResource DynamicFontSizeSmall}"
                         HorizontalOptions="End"
                         Text="Xem chi tiết&gt;&gt;"
                         TextColor="Black" />
                     </Grid>
                   </Frame>
-
                   <!--  Đơn hàng 3  -->
                   <Frame
-                    Margin="0,0,0,5"
-                    Padding="10"
+                    Padding="{DynamicResource DynamicPadding}"
                     BackgroundColor="#F5F5F5"
-                    CornerRadius="5">
+                    CornerRadius="{DynamicResource DynamicCornerRadius}">
                     <Grid ColumnDefinitions="Auto, *,*" RowDefinitions="Auto, Auto">
                       <Label
                         Grid.Row="0"
                         Grid.Column="0"
-                        FontSize="16"
+                        FontSize="{DynamicResource DynamicFontSizeMedium}"
                         Text="Mã đơn: 123458"
                         TextColor="#333333" />
                       <Label
                         Grid.Row="1"
                         Grid.Column="0"
-                        FontSize="16"
+                        FontSize="{DynamicResource DynamicFontSizeMedium}"
                         Text="Số tiền: 70.000 VNĐ"
                         TextColor="#333333" />
                       <Label
                         Grid.Row="0"
                         Grid.Column="1"
-                        FontSize="14"
+                        FontSize="{DynamicResource DynamicFontSizeSmall}"
                         HorizontalOptions="Center"
                         Text="Thời gian: 11:00"
                         TextColor="#666666" />
                       <Label
                         Grid.Row="1"
                         Grid.Column="1"
-                        FontSize="14"
+                        FontSize="{DynamicResource DynamicFontSizeSmall}"
                         HorizontalOptions="Center"
                         Text="Trạng thái: Đã thanh toán"
                         TextColor="#666666" />
@@ -339,16 +333,16 @@
                         Grid.Column="2"
                         BackgroundColor="Transparent"
                         Clicked="OnViewDetailClicked"
+                        FontSize="{DynamicResource DynamicFontSizeSmall}"
                         HorizontalOptions="End"
                         Text="Xem chi tiết&gt;&gt;"
                         TextColor="Black" />
                     </Grid>
                   </Frame>
-
                   <!--  Tổng doanh thu ca  -->
                   <Label
                     FontAttributes="Bold"
-                    FontSize="16"
+                    FontSize="{DynamicResource DynamicFontSizeMedium}"
                     HorizontalOptions="End"
                     Text="Tổng doanh thu ca: 180.000 VNĐ"
                     TextColor="#4A90E2" />
@@ -359,6 +353,7 @@
         </Grid>
       </Frame>
     </Grid>
+
     <!--  Popup lọc  -->
     <Grid
       x:Name="FilterPopupOverlay"
@@ -368,41 +363,45 @@
       IsVisible="False">
       <ContentView
         x:Name="FilterPopup"
-        Padding="20"
-        AbsoluteLayout.LayoutBounds="0.5, 0.5, 400, 300"
+        Padding="{DynamicResource DynamicPadding}"
+        AbsoluteLayout.LayoutBounds="0.5, 0.5,  0.95,1"
         AbsoluteLayout.LayoutFlags="PositionProportional"
         BackgroundColor="#F7EFE9">
-        <Frame Margin="200,0,200,300" BackgroundColor="White">
-          <VerticalStackLayout Spacing="10">
+        <Frame Margin="{DynamicResource DynamicMarginPopup}" BackgroundColor="White">
+          <VerticalStackLayout Spacing="{DynamicResource DynamicSpacing}">
             <Label
               FontAttributes="Bold"
-              FontSize="25"
+              FontSize="{DynamicResource DynamicFontSizeTitle}"
               HorizontalOptions="Center"
               Text="LỌC THEO NGÀY"
               TextColor="Black" />
             <Border
-              Padding="10"
+              Padding="{DynamicResource DynamicPadding}"
               BackgroundColor="Transparent"
               Stroke="#F2E2D6"
-              StrokeShape="RoundRectangle 10"
               StrokeThickness="1">
               <DatePicker
                 x:Name="FilterDatePicker"
-                FontSize="16"
+                FontSize="{DynamicResource DynamicFontSizeMedium}"
                 Format="dd/MM/yyyy"
                 MaximumDate="01/01/2030"
-                MinimumDate="01/01/2020" />
+                MinimumDate="01/01/2020"
+                VerticalOptions="Fill" />
             </Border>
             <Grid ColumnDefinitions="*,*">
               <Button
                 Grid.Column="0"
                 Clicked="OnApplyFilterClicked"
+                CornerRadius="{DynamicResource DynamicCornerRadius}"
+                FontSize="{DynamicResource DynamicFontSizeMedium}"
                 HorizontalOptions="Center"
                 Text="Áp dụng" />
               <Button
                 Grid.Column="1"
                 BackgroundColor="Red"
                 Clicked="OnCancelFilterClicked"
+                CornerRadius="{DynamicResource DynamicCornerRadius}"
+                FontSize="{DynamicResource DynamicFontSizeMedium}"
                 HorizontalOptions="Center"
                 Text="Hủy"
                 TextColor="White" />
@@ -421,76 +420,73 @@
       IsVisible="False">
       <ContentView
         x:Name="DetailPopup"
-        Padding="20"
-        AbsoluteLayout.LayoutBounds="0.5, 0.5, 400, 400"
+        Padding="{DynamicResource DynamicPadding}"
+        AbsoluteLayout.LayoutBounds="0.5, 0.5, 0.95,1"
         AbsoluteLayout.LayoutFlags="PositionProportional"
         BackgroundColor="#F7EFE9">
-        <Frame Margin="200,0,200,300" BackgroundColor="White">
+        <Frame Margin="{DynamicResource DynamicMarginPopup}" BackgroundColor="White">
           <ScrollView>
-            <VerticalStackLayout Spacing="10">
+            <VerticalStackLayout Spacing="{DynamicResource DynamicSpacing}">
               <Label
                 FontAttributes="Bold"
-                FontSize="25"
+                FontSize="{DynamicResource DynamicFontSizeTitle}"
                 HorizontalOptions="Center"
                 Text="CHI TIẾT ĐƠN HÀNG"
                 TextColor="Black" />
               <Border
-                Padding="10"
+                Padding="{DynamicResource DynamicPadding}"
                 BackgroundColor="Transparent"
                 Stroke="#F2E2D6"
-                StrokeShape="RoundRectangle 10"
                 StrokeThickness="1">
                 <Label
                   x:Name="DetailOrderIdLabel"
-                  FontSize="16"
+                  FontSize="{DynamicResource DynamicFontSizeMedium}"
                   Text="Mã đơn: 123456" />
               </Border>
               <Border
-                Padding="10"
+                Padding="{DynamicResource DynamicPadding}"
                 BackgroundColor="Transparent"
                 Stroke="#F2E2D6"
-                StrokeShape="RoundRectangle 10"
                 StrokeThickness="1">
                 <Label
                   x:Name="DetailAmountLabel"
-                  FontSize="16"
+                  FontSize="{DynamicResource DynamicFontSizeMedium}"
                   Text="Số tiền: 50.000 VNĐ" />
               </Border>
               <Border
-                Padding="10"
+                Padding="{DynamicResource DynamicPadding}"
                 BackgroundColor="Transparent"
                 Stroke="#F2E2D6"
-                StrokeShape="RoundRectangle 10"
                 StrokeThickness="1">
                 <Label
                   x:Name="DetailTimeLabel"
-                  FontSize="16"
+                  FontSize="{DynamicResource DynamicFontSizeMedium}"
                   Text="Thời gian: 10:00" />
               </Border>
               <Border
-                Padding="10"
+                Padding="{DynamicResource DynamicPadding}"
                 BackgroundColor="Transparent"
                 Stroke="#F2E2D6"
-                StrokeShape="RoundRectangle 10"
                 StrokeThickness="1">
                 <Label
                   x:Name="DetailStatusLabel"
-                  FontSize="16"
+                  FontSize="{DynamicResource DynamicFontSizeMedium}"
                   Text="Trạng thái: Đã thanh toán" />
               </Border>
               <Border
-                Padding="10"
+                Padding="{DynamicResource DynamicPadding}"
                 BackgroundColor="Transparent"
                 Stroke="#F2E2D6"
-                StrokeShape="RoundRectangle 10"
                 StrokeThickness="1">
                 <Label
                   x:Name="DetailItemsLabel"
-                  FontSize="16"
+                  FontSize="{DynamicResource DynamicFontSizeMedium}"
                   Text="Sản phẩm: Cà phê đen, Trà sữa" />
               </Border>
               <Button
                 Clicked="OnCloseDetailClicked"
+                CornerRadius="{DynamicResource DynamicCornerRadius}"
+                FontSize="{DynamicResource DynamicFontSizeMedium}"
                 HorizontalOptions="Center"
                 Text="Đóng" />
             </VerticalStackLayout>

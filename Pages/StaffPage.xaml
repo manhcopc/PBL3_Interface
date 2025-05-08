@@ -6,179 +6,177 @@
   BackgroundColor="#F7EFE9"
   ControlTemplate="{StaticResource SharedManagerPageTemplate}">
   <AbsoluteLayout>
-    <!--  Nội dung chính của trang  -->
+    <!--  Main Content  -->
     <Grid
       AbsoluteLayout.LayoutBounds="0, 0, 1, 1"
       AbsoluteLayout.LayoutFlags="All"
-      RowDefinitions="Auto,*">
-      <Label
+      ColumnDefinitions="1*,3*"
+      RowDefinitions="Auto,*"
+      Style="{DynamicResource DynamicGridMainStyle}">
+      <!--  Header  -->
+      <VerticalStackLayout
         Grid.Row="0"
-        Margin="0,30,0,20"
-        FontAttributes="Bold"
-        FontSize="28"
-        HorizontalOptions="Center"
-        Text="QUẢN LÝ NHÂN VIÊN"
-        TextColor="Black"
-        VerticalOptions="End" />
+        Grid.ColumnSpan="2"
+        Spacing="{DynamicResource DynamicSpacing}">
+        <Label
+          HorizontalOptions="Center"
+          Style="{DynamicResource DynamicLabelTitleStyle}"
+          Text="📋" />
+        <Label
+          FontAttributes="Bold"
+          HorizontalOptions="Center"
+          Style="{DynamicResource DynamicLabelTitleStyle}"
+          Text="QUẢN LÝ NHÂN VIÊN"
+          TextColor="#4B3621" />
+      </VerticalStackLayout>
+
+      <!--  Main Content  -->
       <Frame
         Grid.Row="1"
-        Margin="50,0,50,10"
-        Padding="15"
-        BackgroundColor="White">
+        Grid.ColumnSpan="2"
+        Padding="{DynamicResource DynamicPadding}"
+        BackgroundColor="White"
+        Style="{DynamicResource DynamicFrameStyle}">
         <Grid
-          Padding="10"
-          ColumnSpacing="15"
-          RowSpacing="15">
-          <!--  Định nghĩa cột: Sidebar trái (1*) + nội dung chính (3*)  -->
-          <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="1*" />
-            <ColumnDefinition Width="3*" />
-          </Grid.ColumnDefinitions>
-
-          <!--  Danh mục vai trò bên trái  -->
+          ColumnDefinitions="1*,3*"
+          ColumnSpacing="{DynamicResource DynamicSpacing}"
+          RowSpacing="{DynamicResource DynamicSpacing}">
+          <!--  Left Sidebar (Roles)  -->
           <Frame
             Grid.Column="0"
-            Padding="10"
+            Padding="{DynamicResource DynamicPadding}"
             BackgroundColor="White"
             BorderColor="#FFAE6227"
-            CornerRadius="10"
+            CornerRadius="{DynamicResource DynamicCornerRadius}"
             HorizontalOptions="Center"
             VerticalOptions="Center">
-            <VerticalStackLayout Margin="20" Spacing="30">
+            <VerticalStackLayout Margin="{DynamicResource DynamicMargin}" Spacing="{DynamicResource DynamicSpacing}">
               <Button
                 x:Name="RoleAll"
-                Margin="0,0,0,0"
-                Padding="10,5"
+                Padding="5"
                 BackgroundColor="#FFE4B5"
                 BorderColor="#8B4513"
                 Clicked="OnRoleClicked"
-                CornerRadius="20"
-                FontSize="20"
+                CornerRadius="{DynamicResource DynamicCornerRadius}"
+                Style="{DynamicResource DynamicButtonOutsideStyle}"
                 Text="Tất cả" />
               <Button
                 x:Name="RoleCashier"
-                Margin="0,0,0,0"
-                Padding="10,5"
+                Padding="5"
                 BackgroundColor="#FFE4B5"
                 BorderColor="#8B4513"
                 Clicked="OnRoleClicked"
-                CornerRadius="20"
-                FontSize="20"
+                CornerRadius="{DynamicResource DynamicCornerRadius}"
+                Style="{DynamicResource DynamicButtonOutsideStyle}"
                 Text="Thu ngân" />
               <Button
                 x:Name="RoleBartender"
-                Margin="0,0,0,0"
-                Padding="10,5"
+                Padding="5"
                 BackgroundColor="#FFE4B5"
                 BorderColor="#8B4513"
                 Clicked="OnRoleClicked"
-                CornerRadius="20"
-                FontSize="20"
+                CornerRadius="{DynamicResource DynamicCornerRadius}"
+                Style="{DynamicResource DynamicButtonOutsideStyle}"
                 Text="Pha chế" />
               <Button
                 x:Name="RoleWaiter"
-                Margin="0,0,0,0"
-                Padding="10,5"
+                Padding="5"
                 BackgroundColor="#FFE4B5"
                 BorderColor="#8B4513"
                 Clicked="OnRoleClicked"
-                CornerRadius="20"
-                FontSize="20"
+                CornerRadius="{DynamicResource DynamicCornerRadius}"
+                Style="{DynamicResource DynamicButtonInsideStyle}"
                 Text="Phục vụ" />
             </VerticalStackLayout>
           </Frame>
 
-          <!--  Nội dung bên phải  -->
-          <VerticalStackLayout Grid.Column="1" Spacing="15">
-            <!--  Hàng đầu: thanh tìm kiếm và nút  -->
-            <Grid ColumnDefinitions="auto,*">
+          <!--  Right Content  -->
+          <VerticalStackLayout Grid.Column="1" Spacing="{DynamicResource DynamicSpacing}">
+            <!--  Search and Add Button  -->
+            <Grid Margin="{DynamicResource DynamicMargin}" ColumnDefinitions="Auto,*">
               <Label
                 Grid.Column="0"
-                Margin="0,0,0,0"
-                FontSize="20"
+                Style="{DynamicResource DynamicLabelLargeStyle}"
                 Text="Tổng: 3"
                 TextColor="Black"
                 VerticalOptions="Center" />
               <Grid
                 Grid.Column="1"
-                Margin="10,0,10,0"
-                Padding="5"
+                Margin="{DynamicResource DynamicMargin}"
                 ColumnDefinitions="*,Auto">
                 <Frame
                   Grid.Column="0"
-                  Padding="5"
+                  Padding="{DynamicResource DynamicPadding}"
                   BackgroundColor="White"
-                  CornerRadius="10">
-                  <Grid>
+                  CornerRadius="{DynamicResource DynamicCornerRadius}">
+                  <Grid ColumnDefinitions="*,Auto">
                     <Entry
-                      FontSize="16"
+                      Grid.Column="0"
                       Placeholder="Tìm kiếm..."
+                      Style="{DynamicResource DynamicEntryStyle}"
                       VerticalOptions="Center" />
                     <Button
                       Grid.Column="1"
-                      Margin="5"
+                      Margin="{DynamicResource DynamicMargin}"
                       BackgroundColor="#D9D9D9"
                       Clicked="OnSearchClicked"
-                      CornerRadius="20"
-                      HeightRequest="30"
-                      HorizontalOptions="End"
+                      CornerRadius="{DynamicResource DynamicCornerRadius}"
+                      Style="{DynamicResource DynamicButtonInsideStyle}"
                       Text="Tìm"
                       TextColor="Black"
-                      VerticalOptions="Center"
-                      WidthRequest="60" />
+                      VerticalOptions="Center" />
                   </Grid>
                 </Frame>
                 <Button
                   Grid.Column="1"
-                  Margin="5,0,5,0"
-                  Padding="10,5"
+                  Margin="{DynamicResource DynamicMargin}"
+                  Padding="5"
                   BackgroundColor="#C6E2FF"
                   Clicked="OnAddStaffClicked"
-                  CornerRadius="20"
-                  FontSize="16"
+                  CornerRadius="{DynamicResource DynamicCornerRadius}"
+                  Style="{DynamicResource DynamicButtonOutsideStyle}"
                   Text="Thêm"
                   TextColor="Black" />
               </Grid>
             </Grid>
 
-            <!--  Danh sách nhân viên  -->
+            <!--  Staff List  -->
             <ScrollView BackgroundColor="Transparent">
-              <StackLayout x:Name="StaffList" Spacing="5">
-                <!--  Nhóm Thu ngân  -->
+              <StackLayout x:Name="StaffList" Spacing="{DynamicResource DynamicSpacing}">
+                <!--  Cashier Group  -->
                 <Label
-                  Margin="0,0,0,5"
                   FontAttributes="Bold"
-                  FontSize="18"
+                  Style="{DynamicResource DynamicLabelLargeStyle}"
                   Text="Thu ngân"
                   TextColor="Black" />
                 <Frame
-                  Margin="0,0,0,5"
-                  Padding="10"
+                  Padding="{DynamicResource DynamicPadding}"
                   BackgroundColor="#FFEFD5"
                   BorderColor="Transparent"
-                  CornerRadius="5">
-                  <Grid ColumnDefinitions="2*, *, *, *, Auto, Auto" ColumnSpacing="10">
+                  CornerRadius="{DynamicResource DynamicCornerRadius}"
+                  Style="{DynamicResource DynamicFrameStyle}">
+                  <Grid ColumnDefinitions="2*,*,*,*,Auto,Auto" ColumnSpacing="{DynamicResource DynamicSpacing}">
                     <Label
                       Grid.Column="0"
-                      FontSize="16"
+                      Style="{DynamicResource DynamicLabelMediumStyle}"
                       Text="Nguyễn Văn A"
                       TextColor="Black"
                       VerticalOptions="Center" />
                     <Label
                       Grid.Column="1"
-                      FontSize="16"
+                      Style="{DynamicResource DynamicLabelMediumStyle}"
                       Text="01/01/1990"
                       TextColor="Black"
                       VerticalOptions="Center" />
                     <Label
                       Grid.Column="2"
-                      FontSize="16"
+                      Style="{DynamicResource DynamicLabelMediumStyle}"
                       Text="0901234567"
                       TextColor="Black"
                       VerticalOptions="Center" />
                     <Label
                       Grid.Column="3"
-                      FontSize="16"
+                      Style="{DynamicResource DynamicLabelMediumStyle}"
                       Text="Thu ngân"
                       TextColor="Black"
                       VerticalOptions="Center" />
@@ -187,8 +185,8 @@
                       Padding="5"
                       BackgroundColor="Red"
                       Clicked="RemoveEmployee_Clicked"
-                      CornerRadius="5"
-                      FontSize="14"
+                      CornerRadius="{DynamicResource DynamicCornerRadius}"
+                      Style="{DynamicResource DynamicButtonInsideStyle}"
                       Text="Xóa"
                       TextColor="White" />
                     <Button
@@ -196,48 +194,47 @@
                       Padding="5"
                       BackgroundColor="#79CDCD"
                       Clicked="OnEditStaffClicked"
-                      CornerRadius="5"
-                      FontSize="14"
+                      CornerRadius="{DynamicResource DynamicCornerRadius}"
+                      Style="{DynamicResource DynamicButtonInsideStyle}"
                       Text="Sửa"
                       TextColor="Black" />
                   </Grid>
                 </Frame>
 
-                <!--  Nhóm Pha chế  -->
+                <!--  Bartender Group  -->
                 <Label
-                  Margin="0,0,0,5"
                   FontAttributes="Bold"
-                  FontSize="18"
+                  Style="{DynamicResource DynamicLabelLargeStyle}"
                   Text="Pha chế"
                   TextColor="Black" />
                 <Frame
-                  Margin="0,0,0,5"
-                  Padding="10"
+                  Padding="{DynamicResource DynamicPadding}"
                   BackgroundColor="#FFEFD5"
                   BorderColor="Transparent"
-                  CornerRadius="5">
-                  <Grid ColumnDefinitions="2*, *, *, *, Auto, Auto" ColumnSpacing="10">
+                  CornerRadius="{DynamicResource DynamicCornerRadius}"
+                  Style="{DynamicResource DynamicFrameStyle}">
+                  <Grid ColumnDefinitions="2*,*,*,*,Auto,Auto" ColumnSpacing="{DynamicResource DynamicSpacing}">
                     <Label
                       Grid.Column="0"
-                      FontSize="16"
+                      Style="{DynamicResource DynamicLabelMediumStyle}"
                       Text="Trần Thị B"
                       TextColor="Black"
                       VerticalOptions="Center" />
                     <Label
                       Grid.Column="1"
-                      FontSize="16"
+                      Style="{DynamicResource DynamicLabelMediumStyle}"
                       Text="15/05/1995"
                       TextColor="Black"
                       VerticalOptions="Center" />
                     <Label
                       Grid.Column="2"
-                      FontSize="16"
+                      Style="{DynamicResource DynamicLabelMediumStyle}"
                       Text="0912345678"
                       TextColor="Black"
                       VerticalOptions="Center" />
                     <Label
                       Grid.Column="3"
-                      FontSize="16"
+                      Style="{DynamicResource DynamicLabelMediumStyle}"
                       Text="Pha chế"
                       TextColor="Black"
                       VerticalOptions="Center" />
@@ -246,8 +243,8 @@
                       Padding="5"
                       BackgroundColor="Red"
                       Clicked="RemoveEmployee_Clicked"
-                      CornerRadius="5"
-                      FontSize="14"
+                      CornerRadius="{DynamicResource DynamicCornerRadius}"
+                      Style="{DynamicResource DynamicButtonInsideStyle}"
                       Text="Xóa"
                       TextColor="White" />
                     <Button
@@ -255,48 +252,47 @@
                       Padding="5"
                       BackgroundColor="#79CDCD"
                       Clicked="OnEditStaffClicked"
-                      CornerRadius="5"
-                      FontSize="14"
+                      CornerRadius="{DynamicResource DynamicCornerRadius}"
+                      Style="{DynamicResource DynamicButtonInsideStyle}"
                       Text="Sửa"
                       TextColor="Black" />
                   </Grid>
                 </Frame>
 
-                <!--  Nhóm Phục vụ  -->
+                <!--  Waiter Group  -->
                 <Label
-                  Margin="0,0,0,5"
                   FontAttributes="Bold"
-                  FontSize="18"
+                  Style="{DynamicResource DynamicLabelLargeStyle}"
                   Text="Phục vụ"
                   TextColor="Black" />
                 <Frame
-                  Margin="0,0,0,5"
-                  Padding="10"
+                  Padding="{DynamicResource DynamicPadding}"
                   BackgroundColor="#FFEFD5"
                   BorderColor="Transparent"
-                  CornerRadius="5">
-                  <Grid ColumnDefinitions="2*, *, *, *, Auto, Auto" ColumnSpacing="10">
+                  CornerRadius="{DynamicResource DynamicCornerRadius}"
+                  Style="{DynamicResource DynamicFrameStyle}">
+                  <Grid ColumnDefinitions="2*,*,*,*,Auto,Auto" ColumnSpacing="{DynamicResource DynamicSpacing}">
                     <Label
                       Grid.Column="0"
-                      FontSize="16"
+                      Style="{DynamicResource DynamicLabelMediumStyle}"
                       Text="Lê Văn C"
                       TextColor="Black"
                       VerticalOptions="Center" />
                     <Label
                       Grid.Column="1"
-                      FontSize="16"
+                      Style="{DynamicResource DynamicLabelMediumStyle}"
                       Text="20/10/1998"
                       TextColor="Black"
                       VerticalOptions="Center" />
                     <Label
                       Grid.Column="2"
-                      FontSize="16"
+                      Style="{DynamicResource DynamicLabelMediumStyle}"
                       Text="0923456789"
                       TextColor="Black"
                       VerticalOptions="Center" />
                     <Label
                       Grid.Column="3"
-                      FontSize="16"
+                      Style="{DynamicResource DynamicLabelMediumStyle}"
                       Text="Phục vụ"
                       TextColor="Black"
                       VerticalOptions="Center" />
@@ -305,8 +301,8 @@
                       Padding="5"
                       BackgroundColor="Red"
                       Clicked="RemoveEmployee_Clicked"
-                      CornerRadius="5"
-                      FontSize="14"
+                      CornerRadius="{DynamicResource DynamicCornerRadius}"
+                      Style="{DynamicResource DynamicButtonInsideStyle}"
                       Text="Xóa"
                       TextColor="White" />
                     <Button
@@ -314,8 +310,8 @@
                       Padding="5"
                       BackgroundColor="#79CDCD"
                       Clicked="OnEditStaffClicked"
-                      CornerRadius="5"
-                      FontSize="14"
+                      CornerRadius="{DynamicResource DynamicCornerRadius}"
+                      Style="{DynamicResource DynamicButtonInsideStyle}"
                       Text="Sửa"
                       TextColor="Black" />
                   </Grid>
@@ -327,7 +323,7 @@
       </Frame>
     </Grid>
 
-    <!--  Popup thêm nhân viên  -->
+    <!--  Add Staff Popup  -->
     <Grid
       x:Name="AddPopupOverlay"
       AbsoluteLayout.LayoutBounds="0, 0, 1, 1"
@@ -337,98 +333,89 @@
       <ContentView
         x:Name="AddStaffPopup"
         Padding="20"
-        AbsoluteLayout.LayoutBounds="0.5, 0.5, 400, 300"
+        AbsoluteLayout.LayoutBounds="0.5, 0.5, 300, 200"
         AbsoluteLayout.LayoutFlags="PositionProportional"
         BackgroundColor="#F7EFE9">
-        <Frame Margin="200,0,200,300" BackgroundColor="White">
-          <VerticalStackLayout Spacing="10">
-
+        <Frame BackgroundColor="White" Style="{DynamicResource DynamicFrameStyle}">
+          <VerticalStackLayout Spacing="{DynamicResource DynamicSpacing}">
             <Label
               FontAttributes="Bold"
-              FontSize="25"
               HorizontalOptions="Center"
+              Style="{DynamicResource DynamicLabelTitleStyle}"
               Text="THÊM NHÂN VIÊN"
               TextColor="Black" />
-            <Border
-              Grid.Row="1"
-              Padding="10"
+            <Frame
+              Padding="{DynamicResource DynamicPadding}"
               BackgroundColor="Transparent"
-              Stroke="#F2E2D6"
-              StrokeShape="RoundRectangle 10"
-              StrokeThickness="1">
+              BorderColor="#F2E2D6"
+              CornerRadius="{DynamicResource DynamicCornerRadius}">
               <Entry
                 x:Name="StaffNameEntry"
-                FontSize="16"
-                Placeholder="Họ tên" />
-            </Border>
-            <Border
-              Grid.Row="1"
-              Padding="10"
+                Placeholder="Họ tên"
+                Style="{DynamicResource DynamicEntryStyle}" />
+            </Frame>
+            <Frame
+              Padding="{DynamicResource DynamicPadding}"
               BackgroundColor="Transparent"
-              Stroke="#F2E2D6"
-              StrokeShape="RoundRectangle 10"
-              StrokeThickness="1">
-
+              BorderColor="#F2E2D6"
+              CornerRadius="{DynamicResource DynamicCornerRadius}">
               <Entry
                 x:Name="StaffDOBEntry"
-                FontSize="16"
-                Placeholder="Ngày sinh (dd/MM/yyyy)" />
-            </Border>
-            <Border
-              Grid.Row="1"
-              Padding="10"
+                Placeholder="Ngày sinh (dd/MM/yyyy)"
+                Style="{DynamicResource DynamicEntryStyle}" />
+            </Frame>
+            <Frame
+              Padding="{DynamicResource DynamicPadding}"
               BackgroundColor="Transparent"
-              Stroke="#F2E2D6"
-              StrokeShape="RoundRectangle 10"
-              StrokeThickness="1">
+              BorderColor="#F2E2D6"
+              CornerRadius="{DynamicResource DynamicCornerRadius}">
               <Entry
                 x:Name="StaffPhoneEntry"
-                FontSize="16"
-                Placeholder="Số điện thoại" />
-            </Border>
-            <Border
-              Grid.Row="1"
-              Padding="10"
+                Placeholder="Số điện thoại"
+                Style="{DynamicResource DynamicEntryStyle}" />
+            </Frame>
+            <Frame
+              Padding="{DynamicResource DynamicPadding}"
               BackgroundColor="Transparent"
-              Stroke="#F2E2D6"
-              StrokeShape="RoundRectangle 10"
-              StrokeThickness="1">
+              BorderColor="#F2E2D6"
+              CornerRadius="{DynamicResource DynamicCornerRadius}">
               <Entry
                 x:Name="StaffAddressEntry"
-                FontSize="16"
-                Placeholder="Địa chỉ" />
-            </Border>
-            <Border
-              Grid.Row="1"
-              Padding="10"
+                Placeholder="Địa chỉ"
+                Style="{DynamicResource DynamicEntryStyle}" />
+            </Frame>
+            <Frame
+              Padding="{DynamicResource DynamicPadding}"
               BackgroundColor="Transparent"
-              Stroke="#F2E2D6"
-              StrokeShape="RoundRectangle 10"
-              StrokeThickness="1">
+              BorderColor="#F2E2D6"
+              CornerRadius="{DynamicResource DynamicCornerRadius}">
               <Entry
                 x:Name="StaffRoleEntry"
-                FontSize="16"
-                Placeholder="Vị trí (Thu ngân/Pha chế/Phục vụ)" />
-            </Border>
+                Placeholder="Vị trí (Thu ngân/Pha chế/Phục vụ)"
+                Style="{DynamicResource DynamicEntryStyle}" />
+            </Frame>
             <Grid ColumnDefinitions="*,*">
               <Button
                 Grid.Column="0"
                 Clicked="OnSaveStaffClicked"
                 HorizontalOptions="Center"
+                Style="{DynamicResource DynamicButtonStyle}"
                 Text="Lưu" />
               <Button
                 Grid.Column="1"
                 BackgroundColor="Red"
                 Clicked="OnCancelStaffClicked"
                 HorizontalOptions="Center"
-                Text="Hủy" />
+                Style="{DynamicResource DynamicButtonStyle}"
+                Text="Hủy"
+                TextColor="White" />
             </Grid>
           </VerticalStackLayout>
         </Frame>
       </ContentView>
     </Grid>
 
-    <!--  chinh sua nhan vien  -->
+    <!--  Edit Staff Popup  -->
     <Grid
       x:Name="EditPopupOverlay"
       AbsoluteLayout.LayoutBounds="0, 0, 1, 1"
@@ -436,90 +423,87 @@
       BackgroundColor="#80000000"
       IsVisible="False">
       <ContentView
-        x:Name="EditStaffPopup"
+        x:Name="AddProductPopup"
         Padding="20"
-        AbsoluteLayout.LayoutBounds="0.5, 0.5, 400, 300"
+        AbsoluteLayout.LayoutBounds="0.5, 0.5, 300, 200"
         AbsoluteLayout.LayoutFlags="PositionProportional"
         BackgroundColor="#F7EFE9">
-        <Frame Margin="200,0,200,300" BackgroundColor="White">
-          <VerticalStackLayout Spacing="10">
+        <Frame BackgroundColor="White" Style="{DynamicResource DynamicFramePopupStyle}">
+          <VerticalStackLayout Spacing="{DynamicResource DynamicSpacing}">
             <Label
               FontAttributes="Bold"
-              FontSize="25"
               HorizontalOptions="Center"
+              Style="{DynamicResource DynamicLabelTitleStyle}"
               Text="CHỈNH SỬA NHÂN VIÊN"
               TextColor="Black" />
-            <Border
-              Padding="10"
+            <Frame
+              Padding="{DynamicResource DynamicPadding}"
               BackgroundColor="Transparent"
-              Stroke="#F2E2D6"
-              StrokeShape="RoundRectangle 10"
-              StrokeThickness="1">
+              BorderColor="#F2E2D6"
+              CornerRadius="{DynamicResource DynamicCornerRadius}">
               <Entry
                 x:Name="EditStaffNameEntry"
-                FontSize="16"
                 Placeholder="Họ tên"
+                Style="{DynamicResource DynamicEntryStyle}"
                 TextColor="Black" />
-            </Border>
-            <Border
-              Padding="10"
+            </Frame>
+            <Frame
+              Padding="{DynamicResource DynamicPadding}"
               BackgroundColor="Transparent"
-              Stroke="#F2E2D6"
-              StrokeShape="RoundRectangle 10"
-              StrokeThickness="1">
+              BorderColor="#F2E2D6"
+              CornerRadius="{DynamicResource DynamicCornerRadius}">
               <Entry
                 x:Name="EditStaffDOBEntry"
-                FontSize="16"
                 Placeholder="Ngày sinh (dd/MM/yyyy)"
+                Style="{DynamicResource DynamicEntryStyle}"
                 TextColor="Black" />
-            </Border>
-            <Border
-              Padding="10"
+            </Frame>
+            <Frame
+              Padding="{DynamicResource DynamicPadding}"
               BackgroundColor="Transparent"
-              Stroke="#F2E2D6"
-              StrokeShape="RoundRectangle 10"
-              StrokeThickness="1">
+              BorderColor="#F2E2D6"
+              CornerRadius="{DynamicResource DynamicCornerRadius}">
               <Entry
                 x:Name="EditStaffPhoneEntry"
-                FontSize="16"
                 Placeholder="Số điện thoại"
+                Style="{DynamicResource DynamicEntryStyle}"
                 TextColor="Black" />
-            </Border>
-            <Border
-              Padding="10"
+            </Frame>
+            <Frame
+              Padding="{DynamicResource DynamicPadding}"
               BackgroundColor="Transparent"
-              Stroke="#F2E2D6"
-              StrokeShape="RoundRectangle 10"
-              StrokeThickness="1">
+              BorderColor="#F2E2D6"
+              CornerRadius="{DynamicResource DynamicCornerRadius}">
               <Entry
                 x:Name="EditStaffAddressEntry"
-                FontSize="16"
                 Placeholder="Địa chỉ"
+                Style="{DynamicResource DynamicEntryStyle}"
                 TextColor="Black" />
-            </Border>
-            <Border
-              Padding="10"
+            </Frame>
+            <Frame
+              Padding="{DynamicResource DynamicPadding}"
               BackgroundColor="Transparent"
-              Stroke="#F2E2D6"
-              StrokeShape="RoundRectangle 10"
-              StrokeThickness="1">
+              BorderColor="#F2E2D6"
+              CornerRadius="{DynamicResource DynamicCornerRadius}">
               <Entry
                 x:Name="EditStaffRoleEntry"
-                FontSize="16"
                 Placeholder="Vị trí (Thu ngân/Pha chế/Phục vụ)"
+                Style="{DynamicResource DynamicEntryStyle}"
                 TextColor="Black" />
-            </Border>
+            </Frame>
             <Grid ColumnDefinitions="*,*">
               <Button
                 Grid.Column="0"
                 Clicked="OnSaveEditStaffClicked"
                 HorizontalOptions="Center"
+                Style="{DynamicResource DynamicButtonOutsideStyle}"
                 Text="Lưu" />
               <Button
                 Grid.Column="1"
                 BackgroundColor="Red"
                 Clicked="OnCancelEditStaffClicked"
                 HorizontalOptions="Center"
+                Style="{DynamicResource DynamicButtonOutsideStyle}"
                 Text="Hủy"
                 TextColor="White" />
             </Grid>

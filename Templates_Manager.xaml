@@ -4,6 +4,7 @@
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml">
 
+
     <ControlTemplate x:Key="SharedManagerPageTemplate">
         <Grid>
             <!--  Phân chia lưới 2 dòng: Navbar và Content  -->
@@ -17,11 +18,10 @@
             <!--  Navigation Bar  -->
             <Grid
                 Grid.Row="0"
-                Padding="20,0"
+                Padding="{DynamicResource DynamicPadding}"
                 BackgroundColor="#5D4037"
-                HeightRequest="60"
+                HeightRequest="{DynamicResource NaviHeightRequest}"
                 ZIndex="2">
-
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="Auto" />
                     <ColumnDefinition Width="*" />
@@ -29,31 +29,26 @@
                 </Grid.ColumnDefinitions>
 
                 <!--  Icon tab menu  -->
-                <!-- <Image Source="tabmenu.png"
-                       WidthRequest="30"
-                       HeightRequest="30"
-                       VerticalOptions="Center"
-                       Grid.Column="0" />-->
                 <ImageButton
                     Grid.Column="0"
-                    HeightRequest="30"
+                    HeightRequest="{DynamicResource TabMenuHeightRequest}"
                     Source="tabmenu.png"
                     VerticalOptions="Center"
-                    WidthRequest="30" />
+                    WidthRequest="{DynamicResource TabMenuWidthRequest}" />
 
                 <BoxView
                     Grid.Column="1"
                     BackgroundColor="#5D4037"
                     Color="Transparent" />
 
-                <!--  Menu Items  -->
+                <!--  Menu Items với HorizontalScrollView  -->
+
                 <Grid
                     Grid.Column="2"
-                    Margin="0,0,70,0"
                     ColumnDefinitions="Auto,Auto,Auto,Auto,Auto,Auto,Auto"
+                    ColumnSpacing="{DynamicResource NaviItemSpacing}"
                     HorizontalOptions="End"
                     VerticalOptions="Center">
-
                     <Label
                         Grid.Column="0"
                         Style="{StaticResource MenuItemStyle}"
@@ -62,7 +57,6 @@
                             <TapGestureRecognizer Tapped="OnHomeClicked" />
                         </Label.GestureRecognizers>
                     </Label>
-
                     <Label
                         Grid.Column="1"
                         Style="{StaticResource MenuItemStyle}"
@@ -71,7 +65,6 @@
                             <TapGestureRecognizer Tapped="OnProductClicked" />
                         </Label.GestureRecognizers>
                     </Label>
-
                     <Label
                         Grid.Column="2"
                         Style="{StaticResource MenuItemStyle}"
@@ -112,27 +105,25 @@
                             <TapGestureRecognizer Tapped="OnRevenueClicked" />
                         </Label.GestureRecognizers>
                     </Label>
-
                 </Grid>
-
             </Grid>
 
             <ContentPresenter
                 Grid.Row="1"
                 Margin="0"
                 ZIndex="2" />
-
         </Grid>
     </ControlTemplate>
 
     <!--  Style cho các menu item  -->
     <Style x:Key="MenuItemStyle" TargetType="Label">
-        <Setter Property="FontSize" Value="20" />
+        <Setter Property="FontSize" Value="{DynamicResource NaviTextFontSize}" />
         <Setter Property="FontAttributes" Value="Bold" />
         <Setter Property="TextColor" Value="White" />
-        <Setter Property="Margin" Value="10,0" />
-        <Setter Property="Padding" Value="8,4" />
+        <Setter Property="Margin" Value="{DynamicResource NaviMargin}" />
+        <Setter Property="Padding" Value="{DynamicResource NaviPadding}" />
         <Setter Property="BackgroundColor" Value="Transparent" />
+        <Setter Property="VerticalOptions" Value="Center" />
         <Setter Property="VisualStateManager.VisualStateGroups">
             <VisualStateGroupList>
                 <VisualStateGroup x:Name="CommonStates">
@@ -147,5 +138,4 @@
             </VisualStateGroupList>
         </Setter>
     </Style>
-
 </ResourceDictionary>

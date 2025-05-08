@@ -25,6 +25,7 @@
             VerticalOptions="Center"
             ZIndex="2">
             <Label
+                x:Name="TitleLabel"
                 FontAttributes="Bold"
                 FontSize="36"
                 HorizontalTextAlignment="Center"

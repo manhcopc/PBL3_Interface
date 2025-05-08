@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+  x:Class="PBL3_Interface.Login"
+  xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+  xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml">
+  <AbsoluteLayout>
+    <!--  Background Image  -->
+    <Image
+      AbsoluteLayout.LayoutBounds="0, 0, 1, 1"
+      AbsoluteLayout.LayoutFlags="All"
+      Aspect="AspectFill"
+      Opacity="1"
+      Source="login.jpg" />
+
+    <!--  Login Form  -->
+    <Frame
+      AbsoluteLayout.LayoutBounds="0.67, 0.5, 500, 600"
+      AbsoluteLayout.LayoutFlags="PositionProportional"
+      BackgroundColor="#80FFFFFF"
+      BorderColor="LightGray"
+      CornerRadius="{DynamicResource DynamicCornerRadius}"
+      HasShadow="True"
+      Style="{DynamicResource DynamicFrameLogin}">
+      <Grid Padding="{DynamicResource DynamicPadding}" RowSpacing="{DynamicResource DynamicSpacing}">
+        <Grid.RowDefinitions>
+          <RowDefinition Height="Auto" />
+          <RowDefinition Height="Auto" />
+          <RowDefinition Height="Auto" />
+          <RowDefinition Height="Auto" />
+          <RowDefinition Height="Auto" />
+          <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+
+        <!--  Title LOGIN  -->
+        <Label
+          Grid.Row="0"
+          FontAttributes="Bold"
+          FontSize="{DynamicResource DynamicFontSizeTitle}"
+          HorizontalOptions="Center"
+          Text="LOGIN"
+          TextColor="#000000" />
+
+        <!--  Label Account  -->
+        <Label
+          Grid.Row="1"
+          FontSize="{DynamicResource DynamicFontSizeLarge}"
+          Text="Account"
+          TextColor="#000000" />
+
+        <!--  Entry Account  -->
+        <Border
+          Grid.Row="2"
+          BackgroundColor="White"
+          Stroke="Gray"
+          StrokeShape="RoundRectangle 10"
+          StrokeThickness="1">
+          <Entry
+            Margin="{DynamicResource DynamicMargin}"
+            BackgroundColor="Transparent"
+            FontSize="{DynamicResource DynamicFontSizeMedium}"
+            Placeholder="Enter username..."
+            TextColor="Black" />
+        </Border>
+
+        <!--  Label Password  -->
+        <Label
+          Grid.Row="3"
+          FontSize="{DynamicResource DynamicFontSizeLarge}"
+          Text="Password"
+          TextColor="#000000" />
+
+        <!--  Entry Password  -->
+        <Border
+          Grid.Row="4"
+          BackgroundColor="White"
+          Stroke="Gray"
+          StrokeShape="RoundRectangle 10"
+          StrokeThickness="1">
+          <Entry
+            Margin="{DynamicResource DynamicMargin}"
+            BackgroundColor="Transparent"
+            FontSize="{DynamicResource DynamicFontSizeMedium}"
+            IsPassword="True"
+            Placeholder="Enter password..."
+            TextColor="Black" />
+        </Border>
+
+        <!--  Login Button  -->
+        <Button
+          Grid.Row="5"
+          BackgroundColor="#8EB8BB"
+          CornerRadius="{DynamicResource DynamicCornerRadius}"
+          FontSize="{DynamicResource DynamicFontSizeMedium}"
+          HeightRequest="{DynamicResource DynamicButtonHeight}"
+          HorizontalOptions="Center"
+          Text="Đăng nhập"
+          TextColor="Black" />
+      </Grid>
+    </Frame>
+  </AbsoluteLayout>
+</ContentPage>

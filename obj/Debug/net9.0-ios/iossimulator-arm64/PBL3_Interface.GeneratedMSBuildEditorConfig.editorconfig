@@ -30,6 +30,12 @@ build_metadata.AdditionalFiles.ManifestResourceName = PBL3_Interface.AppShell_Ma
 build_metadata.AdditionalFiles.TargetPath = AppShell_Manager.xaml
 build_metadata.AdditionalFiles.RelativePath = AppShell_Manager.xaml
 
+[/Users/copc/Library/CloudStorage/OneDrive-TheUniversityofTechnology/Apps/PBL3_Interface/Login.xaml]
+build_metadata.AdditionalFiles.GenKind = Xaml
+build_metadata.AdditionalFiles.ManifestResourceName = PBL3_Interface.Login.xaml
+build_metadata.AdditionalFiles.TargetPath = Login.xaml
+build_metadata.AdditionalFiles.RelativePath = Login.xaml
+
 [/Users/copc/Library/CloudStorage/OneDrive-TheUniversityofTechnology/Apps/PBL3_Interface/Manager_MainPage.xaml]
 build_metadata.AdditionalFiles.GenKind = Xaml
 build_metadata.AdditionalFiles.ManifestResourceName = PBL3_Interface.Manager_MainPage.xaml
