@@ -5,10 +5,87 @@ namespace PBL3_Interface.Pages;
 public partial class ShiftPage : ContentPage
 {
     private double _lastScale = -1;
+    /// ///////////////
+    private ImageButton? _flyoutBarButton; // Tham chiếu đến ImageButton
+    private Grid? _flyoutBarPopup; // Tham chiếu đến FlyoutBarPopup
+    private Grid? _popupContentGrid; // Tham chiếu đến nội dung popup
+    private Button? _logoutButton; // Tham chiếu đến nút Đăng xuất
+
     public ShiftPage()
     {
         InitializeComponent();
+
+        // Lấy tham chiếu đến FlyoutBarPopup từ ControlTemplate
+        _flyoutBarPopup = (Grid)GetTemplateChild("FlyoutBarPopup");
+
+        // Lấy tham chiếu đến nội dung popup (để kiểm tra click ra ngoài)
+        _popupContentGrid = (Grid)GetTemplateChild("PopupContentGrid");
+
+        // Lấy tham chiếu đến ImageButton từ ControlTemplate
+        _flyoutBarButton = (ImageButton)GetTemplateChild("FlyoutBarButton");
+
+        // Lấy tham chiếu đến nút Đăng xuất từ ControlTemplate
+        _logoutButton = (Button)GetTemplateChild("LogoutButton");
+
+        // Gắn sự kiện Clicked động
+        if (_flyoutBarButton != null)
+        {
+            _flyoutBarButton.Clicked += OnFlyoutBarClicked;
+        }
+
+        // Gắn sự kiện Clicked cho nút Đăng xuất
+        if (_logoutButton != null)
+        {
+            _logoutButton.Clicked += OnLogoutClicked;
+        }
+
+        // Gắn sự kiện TapGestureRecognizer cho FlyoutBarPopup để xử lý click ra ngoài
+        if (_flyoutBarPopup != null)
+        {
+            var tapGestureRecognizer = new TapGestureRecognizer();
+            tapGestureRecognizer.Tapped += OnOutsideTapped;
+            _flyoutBarPopup.GestureRecognizers.Add(tapGestureRecognizer);
+        }
     }
+
+    private void OnFlyoutBarClicked(object sender, EventArgs e)
+    {
+        if (_flyoutBarPopup != null)
+        {
+            _flyoutBarPopup.IsVisible = !_flyoutBarPopup.IsVisible; // Hiển thị/ẩn FlyoutBarPopup
+        }
+    }
+
+    private void OnOutsideTapped(object sender, EventArgs e)
+    {
+        if (_flyoutBarPopup != null && _popupContentGrid != null)
+        {
+            var grid = sender as Grid;
+            var position = (e as TappedEventArgs)?.GetPosition(grid);
+            if (position.HasValue)
+            {
+                var contentPosition = _popupContentGrid.Bounds.Location;
+                var contentWidth = _popupContentGrid.Width;
+                var contentHeight = _popupContentGrid.Height;
+                if (position.Value.X < contentPosition.X || position.Value.X > contentPosition.X + contentWidth ||
+                    position.Value.Y < contentPosition.Y || position.Value.Y > contentPosition.Y + contentHeight)
+                {
+                    _flyoutBarPopup.IsVisible = false; // Đóng popup khi click ra ngoài nội dung
+                }
+            }
+        }
+    }
+
+    private async void OnLogoutClicked(object sender, EventArgs e)
+    {
+        if (_flyoutBarPopup != null)
+        {
+            _flyoutBarPopup.IsVisible = false; // Ẩn FlyoutBarPopup
+            // Điều hướng về trang đăng nhập
+            await Shell.Current.GoToAsync("//LoginPage");
+        }
+    }
+    /////////////
 
     // Sự kiện khi chạm vào tiêu đề Ca 1
     private void ToggleShift1_Tapped(object sender, EventArgs e)
@@ -31,19 +108,23 @@ public partial class ShiftPage : ContentPage
     // Sự kiện khi nhấn nút "Thêm nhân viên" cho Ca 1
     private void AddEmployeeToShift1_Clicked(object sender, EventArgs e)
     {
-        DisplayAlert("Thông báo", "Nút Thêm nhân viên cho Ca 1 đã được nhấn!", "OK");
+        // DisplayAlert("Thông báo", "Nút Thêm nhân viên cho Ca 1 đã được nhấn!", "OK");
+        AddStaffIntoShiftPopup.IsVisible = true;
     }
 
     // Sự kiện khi nhấn nút "Thêm nhân viên" cho Ca 2
     private void AddEmployeeToShift2_Clicked(object sender, EventArgs e)
     {
-        DisplayAlert("Thông báo", "Nút Thêm nhân viên cho Ca 2 đã được nhấn!", "OK");
+        // DisplayAlert("Thông báo", "Nút Thêm nhân viên cho Ca 2 đã được nhấn!", "OK");
+        AddStaffIntoShiftPopup.IsVisible = true;
+
     }
 
     // Sự kiện khi nhấn nút "Thêm nhân viên" cho Ca 3
     private void AddEmployeeToShift3_Clicked(object sender, EventArgs e)
     {
-        DisplayAlert("Thông báo", "Nút Thêm nhân viên cho Ca 3 đã được nhấn!", "OK");
+        // DisplayAlert("Thông báo", "Nút Thêm nhân viên cho Ca 3 đã được nhấn!", "OK");
+        AddStaffIntoShiftPopup.IsVisible = true;
     }
 
     // Sự kiện khi nhấn nút "Xóa" nhân viên
@@ -82,22 +163,6 @@ public partial class ShiftPage : ContentPage
     {
         DisplayAlert("Thông báo", "Nút Thêm ngày làm đã được nhấn!", "OK");
     }
-    private void OnCancelEditShiftClicked(object sender, EventArgs e)
-    {
-        DisplayAlert("Thông báo", "Bạn đã nhấn nút Huỷ!", "OK");
-    }
-    private void OnSaveEditShiftClicked(object sender, EventArgs e)
-    {
-        DisplayAlert("Thông báo", "Bạn đã nhấn nút lưu!", "OK");
-    }
-    private void OnSaveShiftClicked(object sender, EventArgs e)
-    {
-        DisplayAlert("Thông báo", "Bạn đã nhấn nút lưu!", "OK");
-    }
-    private void OnCancelShiftClicked(object sender, EventArgs e)
-    {
-        DisplayAlert("Thông báo", "Bạn đã nhấn nút Huỷ!", "OK");
-    }
     protected override void OnSizeAllocated(double width, double height)
     {
         base.OnSizeAllocated(width, height);
@@ -131,8 +196,8 @@ public partial class ShiftPage : ContentPage
             double cornerRadius = 10 * scale;
             Resources["DynamicCornerRadius"] = new CornerRadius(cornerRadius);
 
-            EditShiftPopupOverlay.WidthRequest = scale * 500; // Chiều rộng linh hoạt
-            EditShiftPopupOverlay.HeightRequest = scale * 600; // Chiều cao linh hoạt
+            // EditShiftPopupOverlay.WidthRequest = scale * 500; // Chiều rộng linh hoạt
+            // EditShiftPopupOverlay.HeightRequest = scale * 600; // Chiều cao linh hoạt
 
 
 
@@ -147,4 +212,24 @@ public partial class ShiftPage : ContentPage
             _lastScale = scale;
         }
     }
+    // Popup thêm nhân viên vào ca làm và các chức năng có trong đó
+    private void OnRoleClicked(object sender, EventArgs e)
+    {
+        var label = sender as Label;
+        if (label == null) return;
+
+        RoleCashier.BackgroundColor = label.Text == "Thu ngân" ? Color.FromHex("#C6E2FF") : Color.FromHex("#FFE4B5");
+        RoleBarista.BackgroundColor = label.Text == "Pha chế" ? Color.FromHex("#C6E2FF") : Color.FromHex("#FFE4B5");
+        RoleWaiter.BackgroundColor = label.Text == "Phục vụ" ? Color.FromHex("#C6E2FF") : Color.FromHex("#FFE4B5");
+    }
+    private string _selectedShifttName = string.Empty;
+
+    private void OnCancelEditShiftClicked(object sender, EventArgs e)
+    {
+        AddStaffIntoShiftPopup.IsVisible = false;
+    }
+
+
+
+
 }

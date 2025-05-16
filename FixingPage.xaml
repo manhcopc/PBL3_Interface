@@ -1,0 +1,659 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+  x:Class="PBL3_Interface.FixingPage"
+  xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+  xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+  BackgroundColor="#F7EFE9">
+  <Grid
+    Padding="15"
+    ColumnDefinitions="1*,2*,2*"
+    RowDefinitions="Auto,*">
+
+    <!--  Header  -->
+    <VerticalStackLayout Grid.ColumnSpan="3" Spacing="5">
+      <Label
+        FontSize="32"
+        HorizontalOptions="Center"
+        Text="📝" />
+      <Label
+        FontAttributes="Bold"
+        FontSize="28"
+        HorizontalOptions="Center"
+        Text="DANH MỤC - ORDER"
+        TextColor="#4B3621" />
+      <Label
+        Margin="0,0,0,20"
+        FontSize="16"
+        HorizontalOptions="Center"
+        Text="Tạo đơn hàng mới"
+        TextColor="#7B6A54" />
+    </VerticalStackLayout>
+
+    <!--  Left Panel - Categories  -->
+    <Frame
+      Grid.Row="1"
+      Grid.Column="0"
+      Margin="0,0,15,0"
+      Padding="15"
+      BackgroundColor="White"
+      BorderColor="#F2E2D6"
+      CornerRadius="10">
+      <StackLayout Spacing="15">
+        <Label
+          FontAttributes="Bold"
+          FontSize="20"
+          HorizontalOptions="Center"
+          Text="DANH MỤC"
+          TextColor="#4B3621" />
+        <Grid RowSpacing="10">
+          <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+          </Grid.RowDefinitions>
+
+          <Border
+            Grid.Row="0"
+            Padding="0"
+            BackgroundColor="Transparent"
+            Stroke="#F2E2D6"
+            StrokeShape="RoundRectangle 10"
+            StrokeThickness="1">
+            <!--  Thêm Style="{StaticResource HoverButtonStyle}"  -->
+            <Button
+              x:Name="CoffeeButton"
+              Padding="0"
+              BackgroundColor="Transparent"
+              BorderWidth="0"
+              Clicked="OnCoffeeButtonClicked"
+              FontSize="16"
+              HorizontalOptions="Fill"
+              Text="☕ CÀ PHÊ"
+              TextColor="#4B3621"
+              VerticalOptions="Start" />
+
+          </Border>
+
+          <Border
+            Grid.Row="1"
+            Padding="0"
+            BackgroundColor="Transparent"
+            Stroke="#F2E2D6"
+            StrokeShape="RoundRectangle 10"
+            StrokeThickness="1">
+            <!--  Thêm Style="{StaticResource HoverButtonStyle}"  -->
+            <Button
+              x:Name="TeaButton"
+              Padding="0"
+              BackgroundColor="Transparent"
+              BorderWidth="0"
+              Clicked="OnTeaButtonClicked"
+              FontSize="16"
+              HorizontalOptions="Fill"
+              Text="🍵 TRÀ"
+              TextColor="#4B3621"
+              VerticalOptions="Start" />
+          </Border>
+
+          <Border
+            Grid.Row="2"
+            Padding="0"
+            BackgroundColor="Transparent"
+            Stroke="#F2E2D6"
+            StrokeShape="RoundRectangle 10"
+            StrokeThickness="1">
+            <!--  Thêm Style="{StaticResource HoverButtonStyle}"  -->
+            <Button
+              x:Name="CakeButton"
+              Padding="0"
+              BackgroundColor="Transparent"
+              BorderWidth="0"
+              Clicked="OnCakeButtonClicked"
+              FontSize="16"
+              HorizontalOptions="Fill"
+              Text="🍰 BÁNH NGỌT"
+              TextColor="#4B3621"
+              VerticalOptions="Start" />
+          </Border>
+        </Grid>
+
+        <BoxView
+          Margin="0,10"
+          HeightRequest="1"
+          Color="#F2E2D6" />
+      </StackLayout>
+    </Frame>
+
+    <!--  Center - Menu Items  -->
+    <Grid
+      Grid.Row="1"
+      Grid.Column="1"
+      RowDefinitions="4*,1*">
+      <ScrollView Grid.Row="0">
+        <VerticalStackLayout Spacing="10">
+
+          <!--  Món  -->
+          <!-- <CollectionView Margin="20" ItemsSource="{Binding ProductVM.Products}">
+          <CollectionView.ItemTemplate>
+            <DataTemplate>-->
+          <Frame
+            Padding="10"
+            BackgroundColor="White"
+            BorderColor="#F2E2D6"
+            CornerRadius="10">
+            <Grid
+              ColumnDefinitions="Auto,*,Auto,Auto"
+              RowDefinitions="Auto,Auto"
+              RowSpacing="5">
+              <Image
+                Grid.RowSpan="2"
+                Margin="0,0,15,0"
+                HeightRequest="50"
+                Source="coffee.png"
+                WidthRequest="50" />
+              <Label
+                Grid.Column="1"
+                FontSize="16"
+                Text="Cà phê"
+                TextColor="#4B3621" />
+              <Label
+                Grid.Row="1"
+                Grid.Column="1"
+                FontSize="12"
+                Text="Ngon"
+                TextColor="#7B6A54" />
+              <Label
+                Grid.Column="2"
+                Margin="0,0,10,0"
+                FontSize="16"
+                Text="50.000"
+                TextColor="#4B3621"
+                VerticalOptions="Center" />
+              <!--  Thêm Style="{StaticResource HoverButtonStyle}"  -->
+              <Button
+                Grid.Column="3"
+                BackgroundColor="#4B3621"
+                BorderWidth="0"
+                Clicked="ChooseButtonClicked"
+                CornerRadius="15"
+                FontSize="18"
+                HeightRequest="30"
+                HorizontalOptions="Center"
+                Text="+"
+                TextColor="White"
+                VerticalOptions="Center"
+                WidthRequest="30" />
+            </Grid>
+          </Frame>
+          <!-- </DataTemplate>
+          </CollectionView.ItemTemplate>
+        </CollectionView>-->
+        </VerticalStackLayout>
+      </ScrollView>
+      <!--  Hang cho  -->
+      <Frame
+        Grid.Row="1"
+        BackgroundColor="White"
+        BorderColor="Transparent">
+        <ScrollView Grid.Row="1" Orientation="Horizontal">
+          <HorizontalStackLayout x:Name="StackOfBill">
+            <Frame
+              Grid.Column="0"
+              BackgroundColor="White"
+              BorderColor="#C41E3A">
+              <Frame.GestureRecognizers>
+                <TapGestureRecognizer Tapped="OnOpenDetailTapped" />
+              </Frame.GestureRecognizers>
+              <Grid RowDefinitions="*,*,*">
+                <Label
+                  Grid.Row="0"
+                  Text="Mã hoá đơn"
+                  TextColor="Black" />
+                <Label
+                  Grid.Row="1"
+                  Text="Số phút"
+                  TextColor="Black" />
+                <Label
+                  Grid.Row="2"
+                  Text="Số tiền"
+                  TextColor="Black" />
+              </Grid>
+            </Frame>
+          </HorizontalStackLayout>
+        </ScrollView>
+      </Frame>
+    </Grid>
+
+    <!--  Right Panel - Order Details  -->
+    <Frame
+      Grid.Row="1"
+      Grid.Column="2"
+      Margin="15,0,0,0"
+      Padding="15"
+      BackgroundColor="White"
+      BorderColor="#F2E2D6"
+      CornerRadius="10"
+      HasShadow="False">
+      <ScrollView>
+        <VerticalStackLayout Spacing="10">
+          <StackLayout>
+            <Label
+              Margin="0,0,0,15"
+              FontAttributes="Bold"
+              FontSize="20"
+              Text="CHI TIẾT ĐƠN HÀNG"
+              TextColor="#4B3621" />
+
+            <!-- <CollectionView ItemsSource="{Binding OrderDetailVM.OrderDetails}">
+              <CollectionView.ItemTemplate>
+                <DataTemplate>-->
+            <Grid Margin="0,5" ColumnDefinitions="*,Auto,Auto,Auto,Auto,Auto">
+              <Label
+                Text="Cà phê"
+                TextColor="#4B3621"
+                VerticalOptions="Center">
+                <Label.GestureRecognizers>
+                  <TapGestureRecognizer Tapped="OnDetailProductTapped" />
+                </Label.GestureRecognizers>
+              </Label>
+              <!--  Thêm Style="{StaticResource HoverButtonStyle}"  -->
+              <Button
+                Grid.Column="1"
+                BackgroundColor="Transparent"
+                Clicked="DelQuantityClicked"
+                CornerRadius="15"
+                FontSize="18"
+                Text="-"
+                TextColor="#4B3621" />
+              <Label
+                Grid.Column="2"
+                Margin="10,0"
+                HorizontalOptions="Center"
+                Text="3"
+                TextColor="#4B3621"
+                VerticalOptions="Center" />
+              <!--  Thêm Style="{StaticResource HoverButtonStyle}"  -->
+              <Button
+                Grid.Column="3"
+                BackgroundColor="Transparent"
+                Clicked="AddQuantityClicked"
+                CornerRadius="15"
+                FontSize="18"
+                Text="+"
+                TextColor="#4B3621" />
+              <!--  Thêm Style="{StaticResource HoverButtonStyle}"  -->
+              <Label
+                Grid.Column="4"
+                FontSize="18"
+                Text="100.000"
+                TextColor="Black"
+                VerticalOptions="Center" />
+              <Button
+                Grid.Column="5"
+                BackgroundColor="Transparent"
+                Clicked="DeleteDetailClicked"
+                CornerRadius="15"
+                FontSize="18"
+                Text="🗑️"
+                TextColor="#4B3621" />
+              <!--  THEM NUT XOA VAO DAY  -->
+            </Grid>
+            <!-- </DataTemplate>
+              </CollectionView.ItemTemplate>
+            </CollectionView>-->
+
+            <BoxView
+              Margin="0,15"
+              HeightRequest="1"
+              Color="#F2E2D6" />
+
+            <!--  Price Details  -->
+            <!-- <CollectionView ItemsSource="{Binding OrderDetailVM.Orders}">
+              <CollectionView.ItemTemplate>
+                <DataTemplate>-->
+            <Grid RowSpacing="10">
+              <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+              </Grid.RowDefinitions>
+              <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="Auto" />
+              </Grid.ColumnDefinitions>
+
+              <Label
+                Grid.Row="0"
+                Text="Tổng tiền:"
+                TextColor="#4B3621" />
+              <Label
+                Grid.Row="0"
+                Grid.Column="1"
+                FontSize="18"
+                HorizontalOptions="End"
+                Text="100.000"
+                TextColor="#4B3621" />
+
+              <Label
+                Grid.Row="1"
+                Text="Ưu đãi áp dụng:....... - Giảm giá"
+                TextColor="#4B3621" />
+              <Label
+                Grid.Row="1"
+                Grid.Column="1"
+                HorizontalOptions="End"
+                Text="0"
+                TextColor="#4B3621" />
+
+              <Label
+                Grid.Row="2"
+                FontAttributes="Bold"
+                Text="Thành tiền:"
+                TextColor="#4B3621" />
+              <Label
+                Grid.Row="2"
+                Grid.Column="1"
+                FontAttributes="Bold"
+                HorizontalOptions="End"
+                Text="100.000"
+                TextColor="#C41E3A" />
+            </Grid>
+            <!-- </DataTemplate>
+              </CollectionView.ItemTemplate>
+            </CollectionView>-->
+
+            <!--  Order Button  -->
+            <!--  Thêm Style="{StaticResource HoverButtonStyle}"  -->
+            <Grid ColumnDefinitions="*,*,*">
+              <Button
+                Grid.Column="0"
+                Margin="0,15,0,0"
+                BackgroundColor="#C41E3A"
+                Clicked="OnAddPromotionClicked"
+                CornerRadius="5"
+                HeightRequest="45"
+                HorizontalOptions="Center"
+                Text="THÊM ƯU ĐÃI"
+                TextColor="White" />
+              <Button
+                x:Name="AddQueue"
+                Grid.Column="1"
+                Margin="0,15,0,0"
+                BackgroundColor="#C41E3A"
+                Clicked="OnAddQueueClicked"
+                CornerRadius="5"
+                HeightRequest="45"
+                HorizontalOptions="Center"
+                Text="XÁC NHẬN"
+                TextColor="White" />
+              <Button
+                x:Name="SaveQueue"
+                Grid.Column="1"
+                Margin="0,15,0,0"
+                BackgroundColor="#C41E3A"
+                Clicked="OnAddQueueClicked"
+                CornerRadius="5"
+                HeightRequest="45"
+                HorizontalOptions="Center"
+                IsVisible="False"
+                Text="LƯU"
+                TextColor="White" />
+
+              <Button
+                Grid.Column="2"
+                Margin="0,15,0,0"
+                BackgroundColor="#C41E3A"
+                Clicked="OnOrderButtonClicked"
+                CornerRadius="5"
+                HeightRequest="45"
+                HorizontalOptions="Center"
+                Text="THANH TOÁN"
+                TextColor="White" />
+            </Grid>
+
+          </StackLayout>
+        </VerticalStackLayout>
+      </ScrollView>
+    </Frame>
+    <!--  POPUP chi tiet san pham  -->
+    <Grid
+      x:Name="PopupOverlay"
+      Grid.RowSpan="2"
+      Grid.ColumnSpan="3"
+      BackgroundColor="#80000000"
+      IsVisible="False">
+      <Grid.GestureRecognizers>
+        <TapGestureRecognizer Tapped="OnOverlayTapped" />
+      </Grid.GestureRecognizers>
+
+      <Frame
+        x:Name="AddProductPopup"
+        Padding="5"
+        BackgroundColor="White"
+        CornerRadius="10"
+        HeightRequest="600"
+        HorizontalOptions="Center"
+        VerticalOptions="Center"
+        WidthRequest="500">
+        <Grid RowDefinitions="8*,2*" RowSpacing="10">
+          <ScrollView Grid.Row="0">
+            <VerticalStackLayout Spacing="10">
+              <Frame
+                Padding="10"
+                BackgroundColor="White"
+                BorderColor="#F2E2D6"
+                CornerRadius="10">
+                <Grid
+                  ColumnDefinitions="Auto,*"
+                  RowDefinitions="Auto,Auto"
+                  RowSpacing="5">
+                  <Image
+                    Grid.RowSpan="2"
+                    Margin="0,0,15,0"
+                    HeightRequest="50"
+                    Source="coffee.png"
+                    WidthRequest="50" />
+                  <Label
+                    Grid.Column="1"
+                    FontSize="16"
+                    Text="Cà phê"
+                    TextColor="#4B3621" />
+                  <Label
+                    Grid.Row="1"
+                    Grid.Column="1"
+                    FontSize="12"
+                    Text="Ngon"
+                    TextColor="#7B6A54" />
+                </Grid>
+              </Frame>
+              <Grid ColumnDefinitions="*,*">
+                <Label
+                  Grid.Column="0"
+                  FontSize="18"
+                  HorizontalOptions="Start"
+                  Text="Giá bán"
+                  TextColor="Black" />
+                <Label
+                  Grid.Column="1"
+                  FontSize="18"
+                  HorizontalOptions="End"
+                  Text="30.000"
+                  TextColor="Black" />
+              </Grid>
+              <Border>
+                <Grid Padding="10" ColumnDefinitions="Auto,*">
+                  <Label
+                    Grid.Column="0"
+                    Text="✏️"
+                    TextColor="Black"
+                    VerticalOptions="Center" />
+                  <Entry
+                    Grid.Column="1"
+                    Placeholder="Ghi chu"
+                    TextColor="Black" />
+                </Grid>
+              </Border>
+            </VerticalStackLayout>
+          </ScrollView>
+          <Grid
+            Grid.Row="1"
+            ColumnDefinitions="1*,1*,1*,7*"
+            RowDefinitions="Auto,Auto">
+            <Button
+              Grid.Row="0"
+              Grid.Column="0"
+              Clicked="DelQuantityClicked"
+              CornerRadius="15"
+              FontSize="18"
+              Text="-"
+              TextColor="#4B3621"
+              VerticalOptions="Center" />
+            <Label
+              Grid.Row="0"
+              Grid.Column="1"
+              Margin="10,0"
+              HorizontalOptions="Center"
+              Text="3"
+              TextColor="#4B3621"
+              VerticalOptions="Center" />
+            <!--  Thêm Style="{StaticResource HoverButtonStyle}"  -->
+            <Button
+              Grid.Row="0"
+              Grid.Column="2"
+              Clicked="AddQuantityClicked"
+              CornerRadius="15"
+              FontSize="18"
+              Text="+"
+              TextColor="#4B3621"
+              VerticalOptions="Center" />
+            <Label
+              Grid.Row="0"
+              Grid.Column="3"
+              HorizontalOptions="End"
+              Text="100.000"
+              TextColor="Black"
+              VerticalOptions="Center" />
+            <Button
+              Grid.Row="1"
+              Grid.ColumnSpan="4"
+              Margin="5"
+              Text="Lưu" />
+          </Grid>
+        </Grid>
+      </Frame>
+    </Grid>
+    <!--  POPUP them uu dai  -->
+    <Grid
+      x:Name="PopupPromotion"
+      Grid.RowSpan="2"
+      Grid.ColumnSpan="3"
+      BackgroundColor="#80000000"
+      IsVisible="False">
+      <Grid.GestureRecognizers>
+        <TapGestureRecognizer Tapped="OnOutPromotionTapped" />
+      </Grid.GestureRecognizers>
+
+      <Frame
+        x:Name="AddPromotionPopup"
+        Padding="5"
+        BackgroundColor="White"
+        CornerRadius="10"
+        HeightRequest="500"
+        HorizontalOptions="Center"
+        VerticalOptions="Center"
+        WidthRequest="400">
+        <Grid RowSpacing="10">
+          <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <!--  Bộ lọc  -->
+            <RowDefinition Height="Auto" />
+            <!--  Tìm kiếm  -->
+            <RowDefinition Height="*" />
+            <RowDefinition Height="Auto" />
+            <!--  Danh sách  -->
+          </Grid.RowDefinitions>
+
+
+          <Label
+            Grid.Row="0"
+            Padding="5"
+            BackgroundColor="#C41E3A"
+            FontAttributes="Bold"
+            FontSize="18"
+            Text="🔥 Đang diễn ra"
+            TextColor="White" />
+          <!--  Tìm kiếm  -->
+          <Border Grid.Row="1">
+            <Grid ColumnDefinitions="*,Auto">
+              <Entry
+                Grid.Column="0"
+                Placeholder="Tìm kiếm"
+                TextColor="Black" />
+              <Button
+                Grid.Column="1"
+                CornerRadius="20"
+                Text="🔍"
+                VerticalOptions="Center" />
+            </Grid>
+          </Border>
+
+          <!--  Danh sách ưu đãi  -->
+          <ScrollView Grid.Row="2">
+            <VerticalStackLayout>
+              <!-- <CollectionView Margin="20" ItemsSource="{Binding ProductVM.Products}">
+          <CollectionView.ItemTemplate>
+            <DataTemplate>-->
+              <Frame
+                Padding="5"
+                BorderColor="#F2E2D6"
+                CornerRadius="10"
+                HasShadow="False">
+                <Grid ColumnDefinitions="*,Auto" RowDefinitions="Auto,Auto">
+                  <VerticalStackLayout Grid.Row="0" Grid.Column="0">
+                    <Label
+                      FontAttributes="Bold"
+                      FontSize="18"
+                      Text="Giảm giá 20% toàn bộ menu"
+                      TextColor="#4B3621" />
+                    <Label
+                      FontSize="15"
+                      Text="KM20MENU"
+                      TextColor="#7B6A54" />
+                  </VerticalStackLayout>
+                  <Label
+                    Grid.Row="0"
+                    Grid.Column="1"
+                    FontAttributes="Bold"
+                    FontSize="18"
+                    Text="20%"
+                    TextColor="#C41E3A"
+                    VerticalOptions="Center" />
+                  <Label
+                    Grid.Row="1"
+                    Grid.Column="0"
+                    Grid.ColumnSpan="2"
+                    FontSize="15"
+                    Text="Áp dụng toàn menu từ 01/05 đến 31/05."
+                    TextColor="#7B6A54" />
+                </Grid>
+              </Frame>
+              <!-- </DataTemplate>
+          </CollectionView.ItemTemplate>
+        </CollectionView>-->
+            </VerticalStackLayout>
+          </ScrollView>
+          <Grid Grid.Row="3" ColumnDefinitions="*,*">
+            <Button
+              Grid.Column="0"
+              HorizontalOptions="Center"
+              Text="Xoá" />
+            <Button
+              Grid.Column="1"
+              HorizontalOptions="Center"
+              Text="Áp dụng" />
+          </Grid>
+        </Grid>
+      </Frame>
+    </Grid>
+  </Grid>
+</ContentPage>

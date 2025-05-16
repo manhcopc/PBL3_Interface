@@ -5,12 +5,88 @@ namespace PBL3_Interface.Pages;
 public partial class StaffPage : ContentPage
 {
     private double _lastScale = -1;
-    private Frame _currentEditingFrame;
+    private Frame? _currentEditingFrame;
+    /// ///////////////
+    private ImageButton? _flyoutBarButton; // Tham chiếu đến ImageButton
+    private Grid? _flyoutBarPopup; // Tham chiếu đến FlyoutBarPopup
+    private Grid? _popupContentGrid; // Tham chiếu đến nội dung popup
+    private Button? _logoutButton; // Tham chiếu đến nút Đăng xuất
+
     public StaffPage()
     {
         InitializeComponent();
+
+        // Lấy tham chiếu đến FlyoutBarPopup từ ControlTemplate
+        _flyoutBarPopup = (Grid)GetTemplateChild("FlyoutBarPopup");
+
+        // Lấy tham chiếu đến nội dung popup (để kiểm tra click ra ngoài)
+        _popupContentGrid = (Grid)GetTemplateChild("PopupContentGrid");
+
+        // Lấy tham chiếu đến ImageButton từ ControlTemplate
+        _flyoutBarButton = (ImageButton)GetTemplateChild("FlyoutBarButton");
+
+        // Lấy tham chiếu đến nút Đăng xuất từ ControlTemplate
+        _logoutButton = (Button)GetTemplateChild("LogoutButton");
+
+        // Gắn sự kiện Clicked động
+        if (_flyoutBarButton != null)
+        {
+            _flyoutBarButton.Clicked += OnFlyoutBarClicked;
+        }
+
+        // Gắn sự kiện Clicked cho nút Đăng xuất
+        if (_logoutButton != null)
+        {
+            _logoutButton.Clicked += OnLogoutClicked;
+        }
+
+        // Gắn sự kiện TapGestureRecognizer cho FlyoutBarPopup để xử lý click ra ngoài
+        if (_flyoutBarPopup != null)
+        {
+            var tapGestureRecognizer = new TapGestureRecognizer();
+            tapGestureRecognizer.Tapped += OnOutsideTapped;
+            _flyoutBarPopup.GestureRecognizers.Add(tapGestureRecognizer);
+        }
     }
 
+    private void OnFlyoutBarClicked(object sender, EventArgs e)
+    {
+        if (_flyoutBarPopup != null)
+        {
+            _flyoutBarPopup.IsVisible = !_flyoutBarPopup.IsVisible; // Hiển thị/ẩn FlyoutBarPopup
+        }
+    }
+
+    private void OnOutsideTapped(object sender, EventArgs e)
+    {
+        if (_flyoutBarPopup != null && _popupContentGrid != null)
+        {
+            var grid = sender as Grid;
+            var position = (e as TappedEventArgs)?.GetPosition(grid);
+            if (position.HasValue)
+            {
+                var contentPosition = _popupContentGrid.Bounds.Location;
+                var contentWidth = _popupContentGrid.Width;
+                var contentHeight = _popupContentGrid.Height;
+                if (position.Value.X < contentPosition.X || position.Value.X > contentPosition.X + contentWidth ||
+                    position.Value.Y < contentPosition.Y || position.Value.Y > contentPosition.Y + contentHeight)
+                {
+                    _flyoutBarPopup.IsVisible = false; // Đóng popup khi click ra ngoài nội dung
+                }
+            }
+        }
+    }
+
+    private async void OnLogoutClicked(object sender, EventArgs e)
+    {
+        if (_flyoutBarPopup != null)
+        {
+            _flyoutBarPopup.IsVisible = false; // Ẩn FlyoutBarPopup
+            // Điều hướng về trang đăng nhập
+            await Shell.Current.GoToAsync("//LoginPage");
+        }
+    }
+    /////////////
     // Sự kiện khi người dùng chọn một vai trò (giữ lại để tương thích nếu cần sau này)
     private void OnRoleClicked(object sender, EventArgs e)
     {
@@ -58,13 +134,13 @@ public partial class StaffPage : ContentPage
     }
 
     // Sự kiện khi nhấn nút "Lưu" trong popup
-    private void OnSaveStaffClicked(object sender, EventArgs e)
+    private void OnSaveAddStaffClicked(object sender, EventArgs e)
     {
         if (!string.IsNullOrWhiteSpace(StaffNameEntry.Text) &&
             !string.IsNullOrWhiteSpace(StaffDOBEntry.Text) &&
             !string.IsNullOrWhiteSpace(StaffPhoneEntry.Text) &&
             !string.IsNullOrWhiteSpace(StaffAddressEntry.Text) &&
-            !string.IsNullOrWhiteSpace(StaffRoleEntry.Text))
+            !string.IsNullOrWhiteSpace(AddStaffRoleLabel.Text))
         {
             var frame = new Frame
             {
@@ -124,7 +200,7 @@ public partial class StaffPage : ContentPage
             // Thêm Label cho Vị trí
             var roleLabel = new Label
             {
-                Text = StaffRoleEntry.Text,
+                Text = AddStaffRoleLabel.Text,
                 FontSize = 16,
                 TextColor = Colors.Black,
                 VerticalOptions = LayoutOptions.Center
@@ -154,7 +230,7 @@ public partial class StaffPage : ContentPage
             StaffDOBEntry.Text = string.Empty;
             StaffPhoneEntry.Text = string.Empty;
             StaffAddressEntry.Text = string.Empty;
-            StaffRoleEntry.Text = string.Empty;
+            AddStaffRoleLabel.Text = string.Empty;
         }
         else
         {
@@ -163,14 +239,14 @@ public partial class StaffPage : ContentPage
     }
 
     // Sự kiện khi nhấn nút "Hủy" trong popup
-    private void OnCancelStaffClicked(object sender, EventArgs e)
+    private void OnCancelAddStaffClicked(object sender, EventArgs e)
     {
         AddStaffPopup.IsVisible = false;
         StaffNameEntry.Text = string.Empty;
         StaffDOBEntry.Text = string.Empty;
         StaffPhoneEntry.Text = string.Empty;
         StaffAddressEntry.Text = string.Empty;
-        StaffRoleEntry.Text = string.Empty;
+        AddStaffRoleLabel.Text = string.Empty;
     }
 
     // thay doi thong tin nhan vien
@@ -194,7 +270,7 @@ public partial class StaffPage : ContentPage
                     EditStaffNameEntry.Text = nameLabel?.Text;
                     EditStaffDOBEntry.Text = dobLabel?.Text;
                     EditStaffPhoneEntry.Text = phoneLabel?.Text;
-                    EditStaffRoleEntry.Text = roleLabel?.Text;
+                    EditStaffRoleLabel.Text = roleLabel?.Text;
                     EditStaffAddressEntry.Text = "Địa chỉ mặc định"; // Vì không có địa chỉ trong danh sách tĩnh
 
                     EditStaffPopup.IsVisible = true;
@@ -213,7 +289,7 @@ public partial class StaffPage : ContentPage
             !string.IsNullOrWhiteSpace(EditStaffDOBEntry.Text) &&
             !string.IsNullOrWhiteSpace(EditStaffPhoneEntry.Text) &&
             !string.IsNullOrWhiteSpace(EditStaffAddressEntry.Text) &&
-            !string.IsNullOrWhiteSpace(EditStaffRoleEntry.Text))
+            !string.IsNullOrWhiteSpace(EditStaffRoleLabel.Text))
         {
             if (_currentEditingFrame != null && _currentEditingFrame.Content is Grid grid)
             {
@@ -225,14 +301,14 @@ public partial class StaffPage : ContentPage
                 if (nameLabel != null) nameLabel.Text = EditStaffNameEntry.Text;
                 if (dobLabel != null) dobLabel.Text = EditStaffDOBEntry.Text;
                 if (phoneLabel != null) phoneLabel.Text = EditStaffPhoneEntry.Text;
-                if (roleLabel != null) roleLabel.Text = EditStaffRoleEntry.Text;
+                if (roleLabel != null) roleLabel.Text = EditStaffRoleLabel.Text;
 
                 EditStaffPopup.IsVisible = false;
                 EditStaffNameEntry.Text = string.Empty;
                 EditStaffDOBEntry.Text = string.Empty;
                 EditStaffPhoneEntry.Text = string.Empty;
                 EditStaffAddressEntry.Text = string.Empty;
-                EditStaffRoleEntry.Text = string.Empty;
+                EditStaffRoleLabel.Text = string.Empty;
                 _currentEditingFrame = null;
             }
         }
@@ -250,7 +326,7 @@ public partial class StaffPage : ContentPage
         EditStaffDOBEntry.Text = string.Empty;
         EditStaffPhoneEntry.Text = string.Empty;
         EditStaffAddressEntry.Text = string.Empty;
-        EditStaffRoleEntry.Text = string.Empty;
+        EditStaffRoleLabel.Text = string.Empty;
         _currentEditingFrame = null;
     }
     protected override void OnSizeAllocated(double width, double height)
@@ -283,11 +359,11 @@ public partial class StaffPage : ContentPage
             double cornerRadius = 10 * scale;
             Resources["DynamicCornerRadius"] = new CornerRadius(cornerRadius);
 
-            AddStaffPopup.WidthRequest = scale * 500; // Chiều rộng linh hoạt
-            AddStaffPopup.HeightRequest = scale * 600; // Chiều cao linh hoạt
+            AddStaffPopupLayout.WidthRequest = scale * 500; // Chiều rộng linh hoạt
+            AddStaffPopupLayout.HeightRequest = scale * 600; // Chiều cao linh hoạt
 
-            EditStaffPopup.WidthRequest = scale * 500;
-            EditStaffPopup.HeightRequest = scale * 600;
+            EditStaffPopupLayout.WidthRequest = scale * 500;
+            EditStaffPopupLayout.HeightRequest = scale * 600;
 
             Resources["NaviHeightRequest"] = 60 * scale;
             Resources["TabMenuHeightRequest"] = 25 * scale;
@@ -300,4 +376,35 @@ public partial class StaffPage : ContentPage
             _lastScale = scale;
         }
     }
+    private bool _isStaffGroupOptionsVisible = false;
+    //Popup Nhóm nhân viên và các thao tác trong đó
+    private void OnStaffGroupLabelTapped(object sender, EventArgs e)
+    {
+        _isStaffGroupOptionsVisible = true;
+        StaffGroupOptions.IsVisible = _isStaffGroupOptionsVisible;
+    }
+
+    private void OnCashierOptionSelected(object sender, EventArgs e)
+    {
+        EditStaffRoleLabel.Text = "Thu ngân";
+        _isStaffGroupOptionsVisible = false;
+        StaffGroupOptions.IsVisible = _isStaffGroupOptionsVisible;
+    }
+
+    private void OnBaristaOptionSelected(object sender, EventArgs e)
+    {
+        EditStaffRoleLabel.Text = "Pha chế";
+        _isStaffGroupOptionsVisible = false;
+        StaffGroupOptions.IsVisible = _isStaffGroupOptionsVisible;
+    }
+
+    private void OnWaiterOptionSelected(object sender, EventArgs e)
+    {
+        EditStaffRoleLabel.Text = "Phục vụ";
+        _isStaffGroupOptionsVisible = false;
+        StaffGroupOptions.IsVisible = _isStaffGroupOptionsVisible;
+    }
+    private void OnCoffeeOptionClicked(object sender, EventArgs e) { }
+    private void OnTeaOptionClicked(object sender, EventArgs e) { }
+    private void OnPastryOptionClicked(object sender, EventArgs e) { }
 }

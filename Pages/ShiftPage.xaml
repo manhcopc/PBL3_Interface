@@ -956,166 +956,163 @@
       </Grid>
     </Frame>
 
-    <!--  Add Shift Popup  -->
+    <!--  popup them nhan vien vao ca lam  -->
     <Grid
-      x:Name="AddShiftPopupOverlay"
-      Grid.Row="0"
+      x:Name="AddStaffIntoShiftPopup"
       Grid.RowSpan="2"
-      Grid.Column="0"
-      Grid.ColumnSpan="1"
+      Grid.ColumnSpan="2"
       BackgroundColor="#80000000"
-      IsVisible="False">
-      <ContentView
-        x:Name="AddShiftPopup"
-        Padding="{DynamicResource DynamicPadding}"
-        HorizontalOptions="Center"
-        VerticalOptions="Center">
-        <Frame BackgroundColor="White" CornerRadius="{DynamicResource DynamicCornerRadius}">
-          <Grid RowSpacing="{DynamicResource DynamicSpacing}">
-            <Grid.RowDefinitions>
-              <RowDefinition Height="Auto" />
-              <!--  Tiêu đề  -->
-              <RowDefinition Height="Auto" />
-              <!--  Tên ca  -->
-              <RowDefinition Height="Auto" />
-              <!--  Thời gian  -->
-              <RowDefinition Height="Auto" />
-              <!--  Nút  -->
-              <RowDefinition Height="*" />
-              <!--  Khoảng trống  -->
-            </Grid.RowDefinitions>
-            <Label
-              Grid.Row="0"
-              FontAttributes="Bold"
-              FontSize="{DynamicResource DynamicFontSizeTitle}"
-              HorizontalOptions="Center"
-              Text="THÊM CA LÀM"
-              TextColor="Black" />
-            <Frame
-              Grid.Row="1"
-              Padding="{DynamicResource DynamicPadding}"
-              BackgroundColor="Transparent"
-              BorderColor="#F2E2D6"
-              CornerRadius="{DynamicResource DynamicCornerRadius}">
-              <Entry
-                x:Name="ShiftNameEntry"
-                FontSize="{DynamicResource DynamicFontSizeMedium}"
-                Placeholder="Tên ca (Ca 1, Ca 2, ...)" />
-            </Frame>
-            <Frame
-              Grid.Row="2"
-              Padding="{DynamicResource DynamicPadding}"
-              BackgroundColor="Transparent"
-              BorderColor="#F2E2D6"
-              CornerRadius="{DynamicResource DynamicCornerRadius}">
-              <Entry
-                x:Name="ShiftTimeEntry"
-                FontSize="{DynamicResource DynamicFontSizeMedium}"
-                Placeholder="Thời gian (VD: 08:00-16:00)" />
-            </Frame>
-            <Grid Grid.Row="3" ColumnDefinitions="*,*">
-              <Button
-                Grid.Column="0"
-                BackgroundColor="#FAEBD7"
-                Clicked="OnSaveShiftClicked"
-                CornerRadius="{DynamicResource DynamicCornerRadius}"
-                FontSize="{DynamicResource DynamicFontSizeMedium}"
-                HorizontalOptions="Center"
-                Text="Lưu" />
-              <Button
-                Grid.Column="1"
-                BackgroundColor="Red"
-                Clicked="OnCancelShiftClicked"
-                CornerRadius="{DynamicResource DynamicCornerRadius}"
-                FontSize="{DynamicResource DynamicFontSizeMedium}"
-                HorizontalOptions="Center"
-                Text="Hủy"
-                TextColor="White" />
-            </Grid>
-          </Grid>
-        </Frame>
-      </ContentView>
-    </Grid>
+      ColumnDefinitions="1*,2*,1*"
+      IsVisible="False"
+      RowDefinitions="1*,5*,1*">
 
-    <!--  Edit Shift Popup  -->
-    <Grid
-      x:Name="EditShiftPopupOverlay"
-      Grid.Row="0"
-      Grid.RowSpan="2"
-      Grid.Column="0"
-      Grid.ColumnSpan="1"
-      BackgroundColor="#80000000"
-      IsVisible="False">
-      <ContentView
-        x:Name="EditShiftPopup"
+      <Frame
+        x:Name="AddStaffIntoShiftPopupFrame"
+        Grid.Row="1"
+        Grid.Column="1"
         Padding="{DynamicResource DynamicPadding}"
-        HorizontalOptions="Center"
-        VerticalOptions="Center">
-        <Frame BackgroundColor="White" CornerRadius="{DynamicResource DynamicCornerRadius}">
-          <Grid RowSpacing="{DynamicResource DynamicSpacing}">
-            <Grid.RowDefinitions>
-              <RowDefinition Height="Auto" />
-              <!--  Tiêu đề  -->
-              <RowDefinition Height="Auto" />
-              <!--  Tên ca  -->
-              <RowDefinition Height="Auto" />
-              <!--  Thời gian  -->
-              <RowDefinition Height="Auto" />
-              <!--  Nút  -->
-              <RowDefinition Height="*" />
-              <!--  Khoảng trống  -->
-            </Grid.RowDefinitions>
+        BackgroundColor="White"
+        CornerRadius="{DynamicResource DynamicCornerRadius}"
+        HorizontalOptions="Fill"
+        VerticalOptions="Fill">
+        <Grid ColumnDefinitions="1*,2*,2*">
+          <Grid Grid.Column="0" RowDefinitions="Auto,*">
+            <Button
+              Grid.Row="0"
+              Clicked="OnCancelEditShiftClicked"
+              CornerRadius="20"
+              FontSize="18"
+              HorizontalOptions="Center"
+              Text="Đóng"
+              TextColor="Red" />
+            <ScrollView Grid.Row="1">
+              <VerticalStackLayout>
+                <Border
+                  BackgroundColor="Transparent"
+                  Stroke="#F2E2D6"
+                  StrokeThickness="1">
+                  <Label
+                    x:Name="RoleCashier"
+                    Style="{DynamicResource DynamicLabelMediumStyle}"
+                    Text="Thu ngân"
+                    TextColor="#4B3621"
+                    VerticalOptions="Center">
+                    <Label.GestureRecognizers>
+                      <TapGestureRecognizer Tapped="OnRoleClicked" />
+                    </Label.GestureRecognizers>
+                  </Label>
+                </Border>
+                <Border
+                  BackgroundColor="Transparent"
+                  Stroke="#F2E2D6"
+                  StrokeThickness="1">
+                  <Label
+                    x:Name="RoleWaiter"
+                    Style="{DynamicResource DynamicLabelMediumStyle}"
+                    Text="Phục vụ"
+                    TextColor="#4B3621"
+                    VerticalOptions="Center">
+                    <Label.GestureRecognizers>
+                      <TapGestureRecognizer Tapped="OnRoleClicked" />
+                    </Label.GestureRecognizers>
+                  </Label>
+                </Border>
+                <Border
+                  BackgroundColor="Transparent"
+                  Stroke="#F2E2D6"
+                  StrokeThickness="1">
+                  <Label
+                    x:Name="RoleBarista"
+                    Style="{DynamicResource DynamicLabelMediumStyle}"
+                    Text="Pha chế"
+                    TextColor="#4B3621"
+                    VerticalOptions="Center">
+                    <Label.GestureRecognizers>
+                      <TapGestureRecognizer Tapped="OnRoleClicked" />
+                    </Label.GestureRecognizers>
+                  </Label>
+                </Border>
+              </VerticalStackLayout>
+            </ScrollView>
+          </Grid>
+          <Grid Grid.Column="1" RowDefinitions="Auto,*">
             <Label
               Grid.Row="0"
-              FontAttributes="Bold"
-              FontSize="{DynamicResource DynamicFontSizeTitle}"
+              FontSize="18"
               HorizontalOptions="Center"
-              Text="CHỈNH SỬA CA LÀM"
+              Text="Đã trong ca"
               TextColor="Black" />
-            <Frame
-              Grid.Row="1"
-              Padding="{DynamicResource DynamicPadding}"
-              BackgroundColor="Transparent"
-              BorderColor="#F2E2D6"
-              CornerRadius="{DynamicResource DynamicCornerRadius}">
-              <Entry
-                x:Name="EditShiftNameEntry"
-                FontSize="{DynamicResource DynamicFontSizeMedium}"
-                Placeholder="Tên ca (Ca 1, Ca 2, ...)" />
-            </Frame>
-            <Frame
-              Grid.Row="2"
-              Padding="{DynamicResource DynamicPadding}"
-              BackgroundColor="Transparent"
-              BorderColor="#F2E2D6"
-              CornerRadius="{DynamicResource DynamicCornerRadius}">
-              <Entry
-                x:Name="EditShiftTimeEntry"
-                FontSize="{DynamicResource DynamicFontSizeMedium}"
-                Placeholder="Thời gian (VD: 08:00-16:00)" />
-            </Frame>
-            <Grid Grid.Row="3" ColumnDefinitions="*,*">
-              <Button
-                Grid.Column="0"
-                BackgroundColor="#FAEBD7"
-                Clicked="OnSaveEditShiftClicked"
-                CornerRadius="{DynamicResource DynamicCornerRadius}"
-                FontSize="{DynamicResource DynamicFontSizeMedium}"
-                HorizontalOptions="Center"
-                Text="Lưu" />
-              <Button
-                Grid.Column="1"
-                BackgroundColor="Red"
-                Clicked="OnCancelEditShiftClicked"
-                CornerRadius="{DynamicResource DynamicCornerRadius}"
-                FontSize="{DynamicResource DynamicFontSizeMedium}"
-                HorizontalOptions="Center"
-                Text="Hủy"
-                TextColor="White" />
-            </Grid>
+            <!--  Nhân viên đã có trong ca làm  -->
+            <ScrollView Grid.Row="1">
+              <!--  Nhap du lieu trong VerticalStackLayout  -->
+              <VerticalStackLayout>
+                <Frame
+                  Grid.Row="0"
+                  Padding="{DynamicResource DynamicPadding}"
+                  BackgroundColor="#FFEFD5"
+                  BorderColor="Transparent"
+                  CornerRadius="{DynamicResource DynamicCornerRadius}">
+                  <Grid ColumnDefinitions="*, Auto" ColumnSpacing="{DynamicResource DynamicSpacing}">
+                    <Label
+                      Grid.Column="0"
+                      FontSize="{DynamicResource DynamicFontSizeMedium}"
+                      Text="Nguyễn Văn A"
+                      TextColor="Black"
+                      VerticalOptions="Center" />
+                    <Button
+                      Grid.Column="1"
+                      Padding="{DynamicResource DynamicPadding}"
+                      BackgroundColor="Red"
+                      Clicked="RemoveEmployee_Clicked"
+                      CornerRadius="{DynamicResource DynamicCornerRadius}"
+                      FontSize="{DynamicResource DynamicFontSizeMedium}"
+                      Text="Xóa"
+                      TextColor="White" />
+                  </Grid>
+                </Frame>
+              </VerticalStackLayout>
+            </ScrollView>
           </Grid>
-        </Frame>
-      </ContentView>
+          <Grid Grid.Column="2" RowDefinitions="Auto,*">
+            <Label
+              Grid.Row="0"
+              FontSize="18"
+              HorizontalOptions="Center"
+              Text="Chưa trong ca"
+              TextColor="Black" />
+            <!--  Nhân viên Chưa có trong ca làm  -->
+            <ScrollView Grid.Row="1">
+              <!--  Nhap du lieu trong VerticalStackLayout  -->
+              <VerticalStackLayout>
+                <Frame
+                  Grid.Row="0"
+                  Padding="{DynamicResource DynamicPadding}"
+                  BackgroundColor="#FFEFD5"
+                  BorderColor="Transparent"
+                  CornerRadius="{DynamicResource DynamicCornerRadius}">
+                  <Grid ColumnDefinitions="*, Auto" ColumnSpacing="{DynamicResource DynamicSpacing}">
+                    <Label
+                      Grid.Column="0"
+                      FontSize="{DynamicResource DynamicFontSizeMedium}"
+                      Text="Nguyễn Văn A"
+                      TextColor="Black"
+                      VerticalOptions="Center" />
+                    <Button
+                      Grid.Column="1"
+                      Padding="{DynamicResource DynamicPadding}"
+                      BackgroundColor="Red"
+                      Clicked="RemoveEmployee_Clicked"
+                      CornerRadius="{DynamicResource DynamicCornerRadius}"
+                      FontSize="{DynamicResource DynamicFontSizeMedium}"
+                      Text="Thêm"
+                      TextColor="White" />
+                  </Grid>
+                </Frame>
+              </VerticalStackLayout>
+            </ScrollView>
+          </Grid>
+        </Grid>
+      </Frame>
     </Grid>
   </Grid>
 </ContentPage>

@@ -9,12 +9,88 @@ namespace PBL3_Interface.Pages;
 public partial class OrderPage : ContentPage
 {
     private double _lastScale = -1;
-    private Frame _selectedShift; // Lưu ca làm được chọn
-    private string _selectedOrderId; // Lưu mã đơn hàng được chọn
+    private Frame? _selectedShift;
+    /// ///////////////
+    private ImageButton? _flyoutBarButton; // Tham chiếu đến ImageButton
+    private Grid? _flyoutBarPopup; // Tham chiếu đến FlyoutBarPopup
+    private Grid? _popupContentGrid; // Tham chiếu đến nội dung popup
+    private Button? _logoutButton; // Tham chiếu đến nút Đăng xuất
+
     public OrderPage()
     {
         InitializeComponent();
+
+        // Lấy tham chiếu đến FlyoutBarPopup từ ControlTemplate
+        _flyoutBarPopup = (Grid)GetTemplateChild("FlyoutBarPopup");
+
+        // Lấy tham chiếu đến nội dung popup (để kiểm tra click ra ngoài)
+        _popupContentGrid = (Grid)GetTemplateChild("PopupContentGrid");
+
+        // Lấy tham chiếu đến ImageButton từ ControlTemplate
+        _flyoutBarButton = (ImageButton)GetTemplateChild("FlyoutBarButton");
+
+        // Lấy tham chiếu đến nút Đăng xuất từ ControlTemplate
+        _logoutButton = (Button)GetTemplateChild("LogoutButton");
+
+        // Gắn sự kiện Clicked động
+        if (_flyoutBarButton != null)
+        {
+            _flyoutBarButton.Clicked += OnFlyoutBarClicked;
+        }
+
+        // Gắn sự kiện Clicked cho nút Đăng xuất
+        if (_logoutButton != null)
+        {
+            _logoutButton.Clicked += OnLogoutClicked;
+        }
+
+        // Gắn sự kiện TapGestureRecognizer cho FlyoutBarPopup để xử lý click ra ngoài
+        if (_flyoutBarPopup != null)
+        {
+            var tapGestureRecognizer = new TapGestureRecognizer();
+            tapGestureRecognizer.Tapped += OnOutsideTapped;
+            _flyoutBarPopup.GestureRecognizers.Add(tapGestureRecognizer);
+        }
     }
+
+    private void OnFlyoutBarClicked(object sender, EventArgs e)
+    {
+        if (_flyoutBarPopup != null)
+        {
+            _flyoutBarPopup.IsVisible = !_flyoutBarPopup.IsVisible; // Hiển thị/ẩn FlyoutBarPopup
+        }
+    }
+
+    private void OnOutsideTapped(object sender, EventArgs e)
+    {
+        if (_flyoutBarPopup != null && _popupContentGrid != null)
+        {
+            var grid = sender as Grid;
+            var position = (e as TappedEventArgs)?.GetPosition(grid);
+            if (position.HasValue)
+            {
+                var contentPosition = _popupContentGrid.Bounds.Location;
+                var contentWidth = _popupContentGrid.Width;
+                var contentHeight = _popupContentGrid.Height;
+                if (position.Value.X < contentPosition.X || position.Value.X > contentPosition.X + contentWidth ||
+                    position.Value.Y < contentPosition.Y || position.Value.Y > contentPosition.Y + contentHeight)
+                {
+                    _flyoutBarPopup.IsVisible = false; // Đóng popup khi click ra ngoài nội dung
+                }
+            }
+        }
+    }
+
+    private async void OnLogoutClicked(object sender, EventArgs e)
+    {
+        if (_flyoutBarPopup != null)
+        {
+            _flyoutBarPopup.IsVisible = false; // Ẩn FlyoutBarPopup
+            // Điều hướng về trang đăng nhập
+            await Shell.Current.GoToAsync("//LoginPage");
+        }
+    }
+    /////////////
 
     // Sự kiện khi nhấn nút "Lọc"
     private void FilterButton_Clicked(object sender, EventArgs e)
@@ -48,12 +124,7 @@ public partial class OrderPage : ContentPage
         }
     }
 
-    // Sự kiện khi nhấn vào ca làm
-    // private void OnShiftClicked(object sender, EventArgs e)
-    // {
-    //     _selectedShift = sender as Frame;
-    //     // Có thể thêm logic để cập nhật chi tiết ca làm ở đây
-    // }
+
 
     // Sự kiện khi nhấn nút "Lọc"
     private void OnFilterClicked(object sender, EventArgs e)
@@ -90,43 +161,10 @@ public partial class OrderPage : ContentPage
             var grid = button.Parent as Grid;
             if (grid != null)
             {
-                var orderIdLabel = grid.Children[0] as Label; // Lấy Label "Mã đơn"
-                if (orderIdLabel != null)
-                {
-                    _selectedOrderId = orderIdLabel.Text.Replace("Mã đơn: ", "");
-                    UpdateDetailPopup();
-                    DetailPopupOverlay.IsVisible = true;
-                }
-            }
-        }
-    }
 
-    // Cập nhật nội dung popup chi tiết
-    private void UpdateDetailPopup()
-    {
-        if (_selectedOrderId == "123456")
-        {
-            DetailOrderIdLabel.Text = "Mã đơn: 123456";
-            DetailAmountLabel.Text = "Số tiền: 50.000 VNĐ";
-            DetailTimeLabel.Text = "Thời gian: 10:00";
-            DetailStatusLabel.Text = "Trạng thái: Đã thanh toán";
-            DetailItemsLabel.Text = "Sản phẩm: Cà phê đen, Trà sữa";
-        }
-        else if (_selectedOrderId == "123457")
-        {
-            DetailOrderIdLabel.Text = "Mã đơn: 123457";
-            DetailAmountLabel.Text = "Số tiền: 60.000 VNĐ";
-            DetailTimeLabel.Text = "Thời gian: 10:30";
-            DetailStatusLabel.Text = "Trạng thái: Đã thanh toán";
-            DetailItemsLabel.Text = "Sản phẩm: Trà sữa, Bánh mì";
-        }
-        else if (_selectedOrderId == "123458")
-        {
-            DetailOrderIdLabel.Text = "Mã đơn: 123458";
-            DetailAmountLabel.Text = "Số tiền: 70.000 VNĐ";
-            DetailTimeLabel.Text = "Thời gian: 11:00";
-            DetailStatusLabel.Text = "Trạng thái: Đã thanh toán";
-            DetailItemsLabel.Text = "Sản phẩm: Cà phê sữa, Trà đào";
+                DetailPopupOverlay.IsVisible = true;
+
+            }
         }
     }
 
@@ -165,11 +203,11 @@ public partial class OrderPage : ContentPage
             double cornerRadius = 10 * scale;
             Resources["DynamicCornerRadius"] = new CornerRadius(cornerRadius);
 
-            FilterPopupOverlay.WidthRequest = scale * 500; // Chiều rộng linh hoạt
-            FilterPopupOverlay.HeightRequest = scale * 600; // Chiều cao linh hoạt
+            // FilterPopupOverlay.WidthRequest = scale * 500; // Chiều rộng linh hoạt
+            // FilterPopupOverlay.HeightRequest = scale * 600; // Chiều cao linh hoạt
 
-            DetailPopupOverlay.WidthRequest = scale * 500;
-            DetailPopupOverlay.HeightRequest = scale * 600;
+            DetailPopup.WidthRequest = scale * 500;
+            DetailPopup.HeightRequest = scale * 600;
 
             Resources["NaviHeightRequest"] = 60 * scale;
             Resources["TabMenuHeightRequest"] = 25 * scale;

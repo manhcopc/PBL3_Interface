@@ -18,7 +18,7 @@
       <Label
         Grid.Row="0"
         FontAttributes="Bold"
-        FontSize="{DynamicResource DynamicFontSizeTitle}"
+        FontSize="30"
         HorizontalOptions="Center"
         Text="THỐNG KÊ ORDER"
         TextColor="Black" />
@@ -26,34 +26,34 @@
       <!--  Frame chứa nội dung chính  -->
       <Frame
         Grid.Row="1"
-        Margin="{DynamicResource DynamicMargin}"
-        Padding="{DynamicResource DynamicPadding}"
+        Margin="5"
+        Padding="5"
         BackgroundColor="Transparent"
         BorderColor="Black"
-        CornerRadius="{DynamicResource DynamicCornerRadius}">
-        <Grid RowDefinitions="Auto, *" RowSpacing="{DynamicResource DynamicSpacing}">
+        CornerRadius="10">
+        <Grid RowDefinitions="Auto, *" RowSpacing="5">
           <!--  Header: Bộ lọc ngày  -->
           <Frame
-            Padding="{DynamicResource DynamicPadding}"
+            Padding="5"
             BackgroundColor="#F4A460"
-            CornerRadius="{DynamicResource DynamicCornerRadius}"
+            CornerRadius="10"
             HasShadow="True">
             <Grid ColumnDefinitions="*, Auto">
               <Label
-                Margin="{DynamicResource DynamicMargin}"
+                Margin="5"
                 BackgroundColor="Transparent"
                 FontAttributes="Bold"
-                FontSize="{DynamicResource DynamicFontSizeTitle}"
+                FontSize="30"
                 HorizontalOptions="Center"
                 Text="20/02/2025"
                 TextColor="Black" />
               <Button
-                Margin="{DynamicResource DynamicMargin}"
-                Padding="{DynamicResource DynamicPadding}"
+                Margin="5"
+                Padding="5"
                 BackgroundColor="Transparent"
                 Clicked="OnFilterClicked"
-                CornerRadius="{DynamicResource DynamicCornerRadius}"
-                FontSize="{DynamicResource DynamicFontSizeMedium}"
+                CornerRadius="5"
+                FontSize="18"
                 HorizontalOptions="End"
                 Text="Lọc"
                 TextColor="Black" />
@@ -64,11 +64,13 @@
           <Grid
             Grid.Row="1"
             ColumnDefinitions="2*, 4*"
-            RowSpacing="{DynamicResource DynamicSpacing}">
+            RowSpacing="5">
             <!--  Phần ca làm  -->
             <ScrollView Grid.Column="0">
-              <Grid RowSpacing="{DynamicResource DynamicSpacing}">
+              <Grid RowSpacing="5">
                 <Grid.RowDefinitions>
+                  <RowDefinition Height="Auto" />
+                  <!--  Thống kê  -->
                   <RowDefinition Height="Auto" />
                   <!--  Ca 1  -->
                   <RowDefinition Height="Auto" />
@@ -78,44 +80,122 @@
                   <RowDefinition Height="*" />
                   <!--  Khoảng trống  -->
                 </Grid.RowDefinitions>
+                <!--  Thống kê  -->
+                <Frame Grid.Row="0" BackgroundColor="White">
+                  <Grid
+                    BackgroundColor="Transparent"
+                    ColumnDefinitions="2*,1*"
+                    RowDefinitions="1.5*,*,*,*,*">
+                    <Label
+                      Grid.Row="0"
+                      Grid.ColumnSpan="2"
+                      FontAttributes="Bold"
+                      FontSize="20"
+                      HorizontalOptions="Center"
+                      Text="Chi tiết ngày"
+                      TextColor="Black"
+                      TextTransform="Uppercase" />
+                    <Label
+                      Grid.Row="1"
+                      Grid.Column="0"
+                      FontSize="20"
+                      Text="Tổng số đơn:"
+                      TextColor="Black" />
+                    <Label
+                      Grid.Row="1"
+                      Grid.Column="1"
+                      FontSize="20"
+                      HorizontalOptions="End"
+                      Text="..."
+                      TextColor="Black" />
+                    <Label
+                      Grid.Row="2"
+                      Grid.Column="0"
+                      FontSize="20"
+                      Text="Doanh thu gốc:"
+                      TextColor="Black" />
+                    <Label
+                      Grid.Row="2"
+                      Grid.Column="1"
+                      FontSize="20"
+                      HorizontalOptions="End"
+                      Text="..."
+                      TextColor="Black" />
+                    <Label
+                      Grid.Row="3"
+                      Grid.Column="0"
+                      FontSize="20"
+                      Text="Ưu đãi áp dụng:"
+                      TextColor="Black" />
+                    <Label
+                      Grid.Row="3"
+                      Grid.Column="1"
+                      FontSize="20"
+                      HorizontalOptions="End"
+                      Text="..."
+                      TextColor="Black" />
+                    <Label
+                      Grid.Row="4"
+                      Grid.Column="0"
+                      FontSize="20"
+                      Text="Doanh thu thực:"
+                      TextColor="Black" />
+                    <Label
+                      Grid.Row="4"
+                      Grid.Column="1"
+                      FontSize="20"
+                      HorizontalOptions="End"
+                      Text="..."
+                      TextColor="Black" />
+                  </Grid>
+                </Frame>
                 <!--  Ca 1  -->
                 <Frame
                   x:Name="FirstShift"
-                  Grid.Row="0"
-                  Padding="{DynamicResource DynamicPadding}"
+                  Grid.Row="1"
+                  Padding="5"
                   BackgroundColor="#FFEFD5"
-                  CornerRadius="{DynamicResource DynamicCornerRadius}"
+                  CornerRadius="10"
                   HasShadow="True">
                   <Frame.GestureRecognizers>
                     <TapGestureRecognizer NumberOfTapsRequired="1" Tapped="OnShiftClicked" />
                   </Frame.GestureRecognizers>
-                  <Grid ColumnDefinitions="*, *" RowDefinitions="Auto, Auto">
+                  <Grid ColumnDefinitions="2*, *,*" RowDefinitions="Auto, Auto">
                     <Label
                       Grid.Row="0"
                       Grid.Column="0"
-                      FontSize="{DynamicResource DynamicFontSizeMedium}"
+                      FontSize="18"
                       Text="Ca 1: 6h30 - 12h"
                       TextColor="#333333"
                       VerticalOptions="Center" />
                     <Label
                       Grid.Row="1"
                       Grid.Column="0"
-                      FontSize="{DynamicResource DynamicFontSizeMedium}"
+                      FontSize="18"
+                      Text="NV: Duc Minh"
+                      TextColor="#333333"
+                      VerticalOptions="Center" />
+
+                    <Label
+                      Grid.Row="1"
+                      Grid.Column="1"
+                      FontSize="18"
+                      HorizontalOptions="Center"
                       Text="Đã đóng"
                       TextColor="Red"
                       VerticalOptions="Center" />
                     <Label
                       Grid.Row="0"
-                      Grid.Column="1"
-                      FontSize="{DynamicResource DynamicFontSizeMedium}"
+                      Grid.Column="2"
+                      FontSize="18"
                       HorizontalOptions="End"
                       Text="10.000.000 VNĐ"
                       TextColor="#333333"
                       VerticalOptions="Center" />
                     <Label
                       Grid.Row="1"
-                      Grid.Column="1"
-                      FontSize="{DynamicResource DynamicFontSizeMedium}"
+                      Grid.Column="2"
+                      FontSize="18"
                       HorizontalOptions="End"
                       Text="Số đơn: 20"
                       TextColor="#333333"
@@ -125,41 +205,49 @@
                 <!--  Ca 2  -->
                 <Frame
                   x:Name="SecondShift"
-                  Grid.Row="1"
-                  Padding="{DynamicResource DynamicPadding}"
+                  Grid.Row="2"
+                  Padding="5"
                   BackgroundColor="#FFEFD5"
-                  CornerRadius="{DynamicResource DynamicCornerRadius}"
+                  CornerRadius="10"
                   HasShadow="True">
                   <Frame.GestureRecognizers>
                     <TapGestureRecognizer NumberOfTapsRequired="1" Tapped="OnShiftClicked" />
                   </Frame.GestureRecognizers>
-                  <Grid ColumnDefinitions="*, *" RowDefinitions="Auto, Auto">
+                  <Grid ColumnDefinitions="2*, *,*" RowDefinitions="Auto, Auto">
                     <Label
                       Grid.Row="0"
                       Grid.Column="0"
-                      FontSize="{DynamicResource DynamicFontSizeMedium}"
+                      FontSize="18"
                       Text="Ca 2: 12h - 17h30"
                       TextColor="#333333"
                       VerticalOptions="Center" />
                     <Label
                       Grid.Row="1"
                       Grid.Column="0"
-                      FontSize="{DynamicResource DynamicFontSizeMedium}"
-                      Text="Đã đóng"
-                      TextColor="Red"
+                      FontSize="18"
+                      Text="NV: Duc Minh"
+                      TextColor="#333333"
+                      VerticalOptions="Center" />
+                    <Label
+                      Grid.Row="1"
+                      Grid.Column="1"
+                      FontSize="18"
+                      HorizontalOptions="Center"
+                      Text="Đang mở"
+                      TextColor="Green"
                       VerticalOptions="Center" />
                     <Label
                       Grid.Row="0"
-                      Grid.Column="1"
-                      FontSize="{DynamicResource DynamicFontSizeMedium}"
+                      Grid.Column="3"
+                      FontSize="18"
                       HorizontalOptions="End"
                       Text="10.000.000 VNĐ"
                       TextColor="#333333"
                       VerticalOptions="Center" />
                     <Label
                       Grid.Row="1"
-                      Grid.Column="1"
-                      FontSize="{DynamicResource DynamicFontSizeMedium}"
+                      Grid.Column="3"
+                      FontSize="18"
                       HorizontalOptions="End"
                       Text="Số đơn: 20"
                       TextColor="#333333"
@@ -169,41 +257,49 @@
                 <!--  Ca 3  -->
                 <Frame
                   x:Name="ThirdShift"
-                  Grid.Row="2"
-                  Padding="{DynamicResource DynamicPadding}"
+                  Grid.Row="3"
+                  Padding="5"
                   BackgroundColor="#FFEFD5"
-                  CornerRadius="{DynamicResource DynamicCornerRadius}"
+                  CornerRadius="10"
                   HasShadow="True">
                   <Frame.GestureRecognizers>
                     <TapGestureRecognizer NumberOfTapsRequired="1" Tapped="OnShiftClicked" />
                   </Frame.GestureRecognizers>
-                  <Grid ColumnDefinitions="*, *" RowDefinitions="Auto, Auto">
+                  <Grid ColumnDefinitions="2*, *,*" RowDefinitions="Auto, Auto">
                     <Label
                       Grid.Row="0"
                       Grid.Column="0"
-                      FontSize="{DynamicResource DynamicFontSizeMedium}"
+                      FontSize="18"
                       Text="Ca 3: 17h30 - 23h"
                       TextColor="#333333"
                       VerticalOptions="Center" />
                     <Label
                       Grid.Row="1"
                       Grid.Column="0"
-                      FontSize="{DynamicResource DynamicFontSizeMedium}"
-                      Text="Đã đóng"
-                      TextColor="Red"
+                      FontSize="18"
+                      Text="NV: Duc Minh"
+                      TextColor="#333333"
+                      VerticalOptions="Center" />
+                    <Label
+                      Grid.Row="1"
+                      Grid.Column="1"
+                      FontSize="18"
+                      HorizontalOptions="Center"
+                      Text="Sắp tới"
+                      TextColor="Blue"
                       VerticalOptions="Center" />
                     <Label
                       Grid.Row="0"
-                      Grid.Column="1"
-                      FontSize="{DynamicResource DynamicFontSizeMedium}"
+                      Grid.Column="3"
+                      FontSize="18"
                       HorizontalOptions="End"
                       Text="10.000.000 VNĐ"
                       TextColor="#333333"
                       VerticalOptions="Center" />
                     <Label
                       Grid.Row="1"
-                      Grid.Column="1"
-                      FontSize="{DynamicResource DynamicFontSizeMedium}"
+                      Grid.Column="3"
+                      FontSize="18"
                       HorizontalOptions="End"
                       Text="Số đơn: 20"
                       TextColor="#333333"
@@ -217,10 +313,10 @@
             <Frame
               Grid.Column="1"
               BackgroundColor="#FFFFFF"
-              CornerRadius="{DynamicResource DynamicCornerRadius}"
+              CornerRadius="10"
               HasShadow="True">
               <ScrollView>
-                <Grid RowSpacing="{DynamicResource DynamicSpacing}">
+                <Grid RowSpacing="5">
                   <Grid.RowDefinitions>
                     <RowDefinition Height="Auto" />
                     <!--  Tiêu đề  -->
@@ -238,39 +334,39 @@
                   <Label
                     Grid.Row="0"
                     FontAttributes="Bold"
-                    FontSize="{DynamicResource DynamicFontSizeLarge}"
+                    FontSize="20"
                     Text="Chi tiết ca làm"
                     TextColor="#333333" />
                   <!--  Đơn hàng 1  -->
                   <Frame
                     Grid.Row="1"
-                    Padding="{DynamicResource DynamicPadding}"
+                    Padding="5"
                     BackgroundColor="#F5F5F5"
-                    CornerRadius="{DynamicResource DynamicCornerRadius}">
+                    CornerRadius="10">
                     <Grid ColumnDefinitions="Auto, *,*" RowDefinitions="Auto, Auto">
                       <Label
                         Grid.Row="0"
                         Grid.Column="0"
-                        FontSize="{DynamicResource DynamicFontSizeMedium}"
+                        FontSize="18"
                         Text="Mã đơn: 123456"
                         TextColor="#333333" />
                       <Label
                         Grid.Row="1"
                         Grid.Column="0"
-                        FontSize="{DynamicResource DynamicFontSizeMedium}"
+                        FontSize="18"
                         Text="Số tiền: 50.000 VNĐ"
                         TextColor="#333333" />
                       <Label
                         Grid.Row="0"
                         Grid.Column="1"
-                        FontSize="{DynamicResource DynamicFontSizeSmall}"
+                        FontSize="15"
                         HorizontalOptions="Center"
                         Text="Thời gian: 10:00"
                         TextColor="#666666" />
                       <Label
                         Grid.Row="1"
                         Grid.Column="1"
-                        FontSize="{DynamicResource DynamicFontSizeSmall}"
+                        FontSize="15"
                         HorizontalOptions="Center"
                         Text="Trạng thái: Đã thanh toán"
                         TextColor="#666666" />
@@ -279,7 +375,7 @@
                         Grid.Column="2"
                         BackgroundColor="Transparent"
                         Clicked="OnViewDetailClicked"
-                        FontSize="{DynamicResource DynamicFontSizeSmall}"
+                        FontSize="15"
                         HorizontalOptions="End"
                         Text="Xem chi tiết&gt;&gt;"
                         TextColor="Black" />
@@ -288,33 +384,33 @@
                   <!--  Đơn hàng 2  -->
                   <Frame
                     Grid.Row="2"
-                    Padding="{DynamicResource DynamicPadding}"
+                    Padding="5"
                     BackgroundColor="#F5F5F5"
-                    CornerRadius="{DynamicResource DynamicCornerRadius}">
+                    CornerRadius="10">
                     <Grid ColumnDefinitions="Auto, *,*" RowDefinitions="Auto, Auto">
                       <Label
                         Grid.Row="0"
                         Grid.Column="0"
-                        FontSize="{DynamicResource DynamicFontSizeMedium}"
+                        FontSize="18"
                         Text="Mã đơn: 123457"
                         TextColor="#333333" />
                       <Label
                         Grid.Row="1"
                         Grid.Column="0"
-                        FontSize="{DynamicResource DynamicFontSizeMedium}"
+                        FontSize="18"
                         Text="Số tiền: 60.000 VNĐ"
                         TextColor="#333333" />
                       <Label
                         Grid.Row="0"
                         Grid.Column="1"
-                        FontSize="{DynamicResource DynamicFontSizeSmall}"
+                        FontSize="15"
                         HorizontalOptions="Center"
                         Text="Thời gian: 10:30"
                         TextColor="#666666" />
                       <Label
                         Grid.Row="1"
                         Grid.Column="1"
-                        FontSize="{DynamicResource DynamicFontSizeSmall}"
+                        FontSize="15"
                         HorizontalOptions="Center"
                         Text="Trạng thái: Đã thanh toán"
                         TextColor="#666666" />
@@ -323,7 +419,7 @@
                         Grid.Column="2"
                         BackgroundColor="Transparent"
                         Clicked="OnViewDetailClicked"
-                        FontSize="{DynamicResource DynamicFontSizeSmall}"
+                        FontSize="15"
                         HorizontalOptions="End"
                         Text="Xem chi tiết&gt;&gt;"
                         TextColor="Black" />
@@ -332,33 +428,33 @@
                   <!--  Đơn hàng 3  -->
                   <Frame
                     Grid.Row="3"
-                    Padding="{DynamicResource DynamicPadding}"
+                    Padding="5"
                     BackgroundColor="#F5F5F5"
-                    CornerRadius="{DynamicResource DynamicCornerRadius}">
+                    CornerRadius="10">
                     <Grid ColumnDefinitions="Auto, *,*" RowDefinitions="Auto, Auto">
                       <Label
                         Grid.Row="0"
                         Grid.Column="0"
-                        FontSize="{DynamicResource DynamicFontSizeMedium}"
+                        FontSize="18"
                         Text="Mã đơn: 123458"
                         TextColor="#333333" />
                       <Label
                         Grid.Row="1"
                         Grid.Column="0"
-                        FontSize="{DynamicResource DynamicFontSizeMedium}"
+                        FontSize="18"
                         Text="Số tiền: 70.000 VNĐ"
                         TextColor="#333333" />
                       <Label
                         Grid.Row="0"
                         Grid.Column="1"
-                        FontSize="{DynamicResource DynamicFontSizeSmall}"
+                        FontSize="15"
                         HorizontalOptions="Center"
                         Text="Thời gian: 11:00"
                         TextColor="#666666" />
                       <Label
                         Grid.Row="1"
                         Grid.Column="1"
-                        FontSize="{DynamicResource DynamicFontSizeSmall}"
+                        FontSize="15"
                         HorizontalOptions="Center"
                         Text="Trạng thái: Đã thanh toán"
                         TextColor="#666666" />
@@ -367,7 +463,7 @@
                         Grid.Column="2"
                         BackgroundColor="Transparent"
                         Clicked="OnViewDetailClicked"
-                        FontSize="{DynamicResource DynamicFontSizeSmall}"
+                        FontSize="15"
                         HorizontalOptions="End"
                         Text="Xem chi tiết&gt;&gt;"
                         TextColor="Black" />
@@ -377,7 +473,7 @@
                   <Label
                     Grid.Row="4"
                     FontAttributes="Bold"
-                    FontSize="{DynamicResource DynamicFontSizeMedium}"
+                    FontSize="18"
                     HorizontalOptions="End"
                     Text="Tổng doanh thu ca: 180.000 VNĐ"
                     TextColor="#4A90E2" />
@@ -397,12 +493,12 @@
       IsVisible="False">
       <ContentView
         x:Name="FilterPopup"
-        Padding="{DynamicResource DynamicPadding}"
+        Padding="5"
         BackgroundColor="#F7EFE9"
         HorizontalOptions="Center"
         VerticalOptions="Center">
         <Frame Margin="{DynamicResource DynamicMarginPopup}" BackgroundColor="White">
-          <Grid RowSpacing="{DynamicResource DynamicSpacing}">
+          <Grid RowSpacing="5">
             <Grid.RowDefinitions>
               <RowDefinition Height="Auto" />
               <!--  Tiêu đề  -->
@@ -414,19 +510,19 @@
             <Label
               Grid.Row="0"
               FontAttributes="Bold"
-              FontSize="{DynamicResource DynamicFontSizeTitle}"
+              FontSize="30"
               HorizontalOptions="Center"
               Text="LỌC THEO NGÀY"
               TextColor="Black" />
             <Border
               Grid.Row="1"
-              Padding="{DynamicResource DynamicPadding}"
+              Padding="5"
               BackgroundColor="Transparent"
               Stroke="#F2E2D6"
               StrokeThickness="1">
               <DatePicker
                 x:Name="FilterDatePicker"
-                FontSize="{DynamicResource DynamicFontSizeMedium}"
+                FontSize="18"
                 Format="dd/MM/yyyy"
                 MaximumDate="01/01/2030"
                 MinimumDate="01/01/2020"
@@ -436,16 +532,16 @@
               <Button
                 Grid.Column="0"
                 Clicked="OnApplyFilterClicked"
-                CornerRadius="{DynamicResource DynamicCornerRadius}"
-                FontSize="{DynamicResource DynamicFontSizeMedium}"
+                CornerRadius="10"
+                FontSize="18"
                 HorizontalOptions="Center"
                 Text="Áp dụng" />
               <Button
                 Grid.Column="1"
                 BackgroundColor="Red"
                 Clicked="OnCancelFilterClicked"
-                CornerRadius="{DynamicResource DynamicCornerRadius}"
-                FontSize="{DynamicResource DynamicFontSizeMedium}"
+                CornerRadius="10"
+                FontSize="18"
                 HorizontalOptions="Center"
                 Text="Hủy"
                 TextColor="White" />
@@ -460,107 +556,315 @@
       x:Name="DetailPopupOverlay"
       Grid.RowSpan="2"
       BackgroundColor="#80000000"
-      IsVisible="False">
-      <ContentView
+      ColumnDefinitions="1*,1*,2*,1*,1*"
+      IsVisible="False"
+      RowDefinitions="1*,2*,1*">
+      <Grid
         x:Name="DetailPopup"
-        Padding="{DynamicResource DynamicPadding}"
-        BackgroundColor="#F7EFE9"
+        Grid.Row="1"
+        Grid.Column="2"
+        BackgroundColor="White"
         HorizontalOptions="Center"
+        RowDefinitions="Auto,*"
         VerticalOptions="Center">
-        <Frame Margin="{DynamicResource DynamicMarginPopup}" BackgroundColor="White">
-          <ScrollView>
-            <Grid RowSpacing="{DynamicResource DynamicSpacing}">
-              <Grid.RowDefinitions>
-                <RowDefinition Height="Auto" />
-                <!--  Tiêu đề  -->
-                <RowDefinition Height="Auto" />
-                <!--  Mã đơn  -->
-                <RowDefinition Height="Auto" />
-                <!--  Số tiền  -->
-                <RowDefinition Height="Auto" />
+        <VerticalStackLayout Grid.Row="0">
+          <Label
+            Grid.Row="0"
+            FontAttributes="Bold"
+            FontSize="30"
+            HorizontalOptions="Center"
+            Text="CHI TIẾT ĐƠN HÀNG 🧾"
+            TextColor="Black" />
+          <Border
+            Grid.Row="1"
+            Padding="5"
+            BackgroundColor="Transparent"
+            HorizontalOptions="Center"
+            Stroke="#F2E2D6"
+            StrokeShape="Rectangle"
+            StrokeThickness="1">
+            <Label
+              x:Name="DetailOrderIdLabel"
+              FontSize="18"
+              Text="Mã HĐ: 123456"
+              TextColor="Black" />
+          </Border>
+        </VerticalStackLayout>
+        <Grid Grid.Row="1" RowDefinitions="*,Auto">
+          <Frame
+            Grid.Row="0"
+            Padding="5"
+            BackgroundColor="White">
+            <ScrollView>
+              <Grid RowDefinitions="Auto,Auto,Auto,Auto,Auto,Auto,*" RowSpacing="5">
+                <!--  Thu Ngan  -->
+                <Label
+                  x:Name="DetailCashierLabel"
+                  Grid.Row="0"
+                  FontSize="18"
+                  Text="Thu ngân: ......"
+                  TextColor="Black" />
                 <!--  Thời gian  -->
-                <RowDefinition Height="Auto" />
-                <!--  Trạng thái  -->
-                <RowDefinition Height="Auto" />
-                <!--  Sản phẩm  -->
-                <RowDefinition Height="Auto" />
-                <!--  Nút  -->
-                <RowDefinition Height="*" />
-                <!--  Khoảng trống  -->
-              </Grid.RowDefinitions>
-              <Label
-                Grid.Row="0"
-                FontAttributes="Bold"
-                FontSize="{DynamicResource DynamicFontSizeTitle}"
-                HorizontalOptions="Center"
-                Text="CHI TIẾT ĐƠN HÀNG"
-                TextColor="Black" />
-              <Border
-                Grid.Row="1"
-                Padding="{DynamicResource DynamicPadding}"
-                BackgroundColor="Transparent"
-                Stroke="#F2E2D6"
-                StrokeThickness="1">
-                <Label
-                  x:Name="DetailOrderIdLabel"
-                  FontSize="{DynamicResource DynamicFontSizeMedium}"
-                  Text="Mã đơn: 123456" />
-              </Border>
-              <Border
-                Grid.Row="2"
-                Padding="{DynamicResource DynamicPadding}"
-                BackgroundColor="Transparent"
-                Stroke="#F2E2D6"
-                StrokeThickness="1">
-                <Label
-                  x:Name="DetailAmountLabel"
-                  FontSize="{DynamicResource DynamicFontSizeMedium}"
-                  Text="Số tiền: 50.000 VNĐ" />
-              </Border>
-              <Border
-                Grid.Row="3"
-                Padding="{DynamicResource DynamicPadding}"
-                BackgroundColor="Transparent"
-                Stroke="#F2E2D6"
-                StrokeThickness="1">
                 <Label
                   x:Name="DetailTimeLabel"
-                  FontSize="{DynamicResource DynamicFontSizeMedium}"
-                  Text="Thời gian: 10:00" />
-              </Border>
-              <Border
-                Grid.Row="4"
-                Padding="{DynamicResource DynamicPadding}"
-                BackgroundColor="Transparent"
-                Stroke="#F2E2D6"
-                StrokeThickness="1">
+                  Grid.Row="1"
+                  FontSize="18"
+                  Text="Thời gian: hh:mm:ss DD/MM/YYYY"
+                  TextColor="Black" />
+                <!--  Sản phẩm  -->
+                <Grid
+                  Grid.Row="2"
+                  Padding="5"
+                  BackgroundColor="Transparent"
+                  RowDefinitions="Auto,Auto">
+                  <Frame
+                    Grid.Row="0"
+                    Margin="0"
+                    Padding="0"
+                    BackgroundColor="Transparent"
+                    BorderColor="Black"
+                    CornerRadius="0">
+                    <Grid
+                      BackgroundColor="Transparent"
+                      ColumnDefinitions="1*,3*,1*,2*,3*"
+                      ColumnSpacing="0"
+                      RowSpacing="0">
+                      <Border
+                        Grid.Column="0"
+                        Margin="0"
+                        Padding="0"
+                        BackgroundColor="Transparent">
+                        <Label
+                          FontAttributes="Bold"
+                          FontSize="18"
+                          HorizontalOptions="Center"
+                          Text="STT"
+                          TextColor="Black" />
+                      </Border>
+                      <Border
+                        Grid.Column="1"
+                        Margin="0"
+                        Padding="0"
+                        BackgroundColor="Transparent">
+                        <Label
+                          FontAttributes="Bold"
+                          FontSize="18"
+                          Text="Tên món"
+                          TextColor="Black" />
+                      </Border>
+                      <Border
+                        Grid.Column="2"
+                        Margin="0"
+                        Padding="0"
+                        BackgroundColor="Transparent">
+                        <Label
+                          FontAttributes="Bold"
+                          FontSize="18"
+                          HorizontalOptions="Center"
+                          Text="SL"
+                          TextColor="Black" />
+                      </Border>
+                      <Border
+                        Grid.Column="3"
+                        Margin="0"
+                        Padding="0"
+                        BackgroundColor="Transparent">
+                        <Label
+                          FontAttributes="Bold"
+                          FontSize="18"
+                          Text="Đơn giá"
+                          TextColor="Black" />
+                      </Border>
+                      <Border
+                        Grid.Column="4"
+                        Margin="0"
+                        Padding="0"
+                        BackgroundColor="Transparent">
+                        <Label
+                          FontAttributes="Bold"
+                          FontSize="18"
+                          Text="Thành tiền"
+                          TextColor="Black" />
+                      </Border>
+                    </Grid>
+                  </Frame>
+                  <Frame
+                    Grid.Row="3"
+                    Padding="0"
+                    BackgroundColor="Transparent"
+                    BorderColor="Black"
+                    CornerRadius="0">
+                    <!--  Dữ liệu được nhập vào trong VerticalStackLayout  -->
+                    <VerticalStackLayout>
+                      <Grid
+                        Grid.Row="0"
+                        ColumnDefinitions="1*,3*,1*,2*,3*"
+                        ColumnSpacing="0"
+                        RowSpacing="0">
+                        <Border
+                          Grid.Column="0"
+                          Margin="0"
+                          Padding="0"
+                          BackgroundColor="Transparent">
+                          <Label
+                            FontSize="18"
+                            HorizontalOptions="Center"
+                            Text="1"
+                            TextColor="Black" />
+                        </Border>
+                        <Border
+                          Grid.Column="1"
+                          Margin="0"
+                          Padding="0"
+                          BackgroundColor="Transparent">
+                          <VerticalStackLayout>
+                            <Label
+                              FontSize="18"
+                              Text="Ca phe"
+                              TextColor="Black" />
+                            <Label
+                              FontAttributes="Italic"
+                              FontSize="17"
+                              Text="(Ghi chu...)"
+                              TextColor="Black" />
+                          </VerticalStackLayout>
+
+                        </Border>
+                        <Border
+                          Grid.Column="2"
+                          Margin="0"
+                          Padding="0"
+                          BackgroundColor="Transparent">
+                          <Label
+                            FontSize="18"
+                            HorizontalOptions="Center"
+                            Text="2"
+                            TextColor="Black" />
+                        </Border>
+                        <Border
+                          Grid.Column="3"
+                          Margin="0"
+                          Padding="0"
+                          BackgroundColor="Transparent">
+                          <Label
+                            FontSize="18"
+                            Text="30.000"
+                            TextColor="Black" />
+                        </Border>
+                        <Border
+                          Grid.Column="4"
+                          Margin="0"
+                          Padding="0"
+                          BackgroundColor="Transparent">
+                          <Label
+                            FontSize="18"
+                            Text="60.000"
+                            TextColor="Black" />
+                        </Border>
+                      </Grid>
+                    </VerticalStackLayout>
+                  </Frame>
+                </Grid>
+                <!--  Tổng số món  -->
+
+
+
                 <Label
-                  x:Name="DetailStatusLabel"
-                  FontSize="{DynamicResource DynamicFontSizeMedium}"
-                  Text="Trạng thái: Đã thanh toán" />
-              </Border>
-              <Border
-                Grid.Row="5"
-                Padding="{DynamicResource DynamicPadding}"
-                BackgroundColor="Transparent"
-                Stroke="#F2E2D6"
-                StrokeThickness="1">
-                <Label
-                  x:Name="DetailItemsLabel"
-                  FontSize="{DynamicResource DynamicFontSizeMedium}"
-                  Text="Sản phẩm: Cà phê đen, Trà sữa" />
-              </Border>
-              <Button
-                Grid.Row="6"
-                Clicked="OnCloseDetailClicked"
-                CornerRadius="{DynamicResource DynamicCornerRadius}"
-                FontSize="{DynamicResource DynamicFontSizeMedium}"
-                HorizontalOptions="Center"
-                Text="Đóng" />
-            </Grid>
-          </ScrollView>
-        </Frame>
-      </ContentView>
+                  Grid.Row="3"
+                  FontSize="18"
+                  Text="Tổng số món: ..."
+                  TextColor="Black" />
+
+                <!--  Thành tiền và ưu đãi  -->
+                <Grid Grid.Row="4" RowDefinitions="Auto,Auto,Auto">
+                  <BoxView
+                    Grid.Row="0"
+                    BackgroundColor="Black"
+                    HeightRequest="1" />
+                  <Grid ColumnDefinitions="4*,1*" RowDefinitions="Auto,Auto">
+                    <Label
+                      Grid.Row="0"
+                      Grid.Column="0"
+                      FontAttributes="Bold"
+                      FontSize="18"
+                      Text="Thành tiền"
+                      TextColor="Black" />
+                    <Label
+                      Grid.Row="0"
+                      Grid.Column="1"
+                      FontAttributes="Bold"
+                      FontSize="18"
+                      Text="..."
+                      TextColor="Black" />
+                    <Label
+                      Grid.Row="1"
+                      Grid.Column="0"
+                      FontSize="18"
+                      Text="Ưu đãi:... - Giảm giá:..."
+                      TextColor="Black" />
+                    <Label
+                      Grid.Row="1"
+                      Grid.Column="1"
+                      FontSize="18"
+                      Text="..."
+                      TextColor="Black" />
+                  </Grid>
+                  <BoxView
+                    Grid.Row="2"
+                    BackgroundColor="Black"
+                    HeightRequest="1" />
+                </Grid>
+
+                <!--  Tổng tiền và ghi chú  -->
+                <Grid Grid.Row="5" RowDefinitions="Auto,Auto,Auto">
+                  <BoxView
+                    Grid.Row="0"
+                    BackgroundColor="Black"
+                    HeightRequest="1" />
+                  <Grid ColumnDefinitions="4*,1*">
+                    <Label
+                      Grid.Column="0"
+                      FontAttributes="Bold"
+                      FontSize="20"
+                      Text="Tổng tiền"
+                      TextColor="Black" />
+                    <Label
+                      Grid.Column="1"
+                      FontAttributes="Bold"
+                      FontSize="20"
+                      Text="..."
+                      TextColor="Black" />
+
+                  </Grid>
+
+
+                  <BoxView
+                    Grid.Row="2"
+                    BackgroundColor="Black"
+                    HeightRequest="1" />
+                </Grid>
+
+              </Grid>
+            </ScrollView>
+          </Frame>
+
+          <Button
+            Grid.Row="1"
+            Clicked="OnCloseDetailClicked"
+            CornerRadius="10"
+            FontSize="18"
+            HorizontalOptions="Center"
+            Text="Đóng" />
+        </Grid>
+      </Grid>
+
     </Grid>
   </Grid>
 </ContentPage>
+<!--
+    <Grid
+      x:Name="EditProductPopup"
+      Grid.RowSpan="2"
+      Grid.ColumnSpan="2"
+      BackgroundColor="#80000000"
+      IsVisible="False">-->

@@ -233,10 +233,6 @@
                 CornerRadius="{DynamicResource DynamicCornerRadius}"
                 HasShadow="False">
                 <Grid ColumnDefinitions="*,Auto" RowDefinitions="Auto,Auto">
-                  <Grid.RowDefinitions>
-                    <RowDefinition Height="Auto" />
-                    <RowDefinition Height="Auto" />
-                  </Grid.RowDefinitions>
                   <VerticalStackLayout Grid.Row="0" Grid.Column="0">
                     <Label
                       FontAttributes="Bold"
@@ -467,6 +463,7 @@
               HorizontalOptions="Center">
               <Button
                 x:Name="SaveButton"
+                Grid.Column="0"
                 Padding="{DynamicResource DynamicPadding}"
                 BackgroundColor="#D3D3D3"
                 Clicked="SaveButton_Clicked"
@@ -475,6 +472,7 @@
                 TextColor="Black" />
               <Button
                 x:Name="DeleteButton"
+                Grid.Column="1"
                 Padding="{DynamicResource DynamicPadding}"
                 BackgroundColor="#FF6347"
                 Clicked="DeleteButton_Clicked"

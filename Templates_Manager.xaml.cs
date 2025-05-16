@@ -22,4 +22,10 @@ public partial class Templates_Manager : ResourceDictionary
         => await Shell.Current.GoToAsync("OrderPage");
     private async void OnRevenueClicked(object sender, EventArgs e)
         => await Shell.Current.GoToAsync("RevenuePage");
+
+    // private void OnFlyoutBarClicked(object sender, EventArgs e)
+    // {
+    //     FlyoutBarPopup.Isvisible = true;
+    // }
+    // private void OnLogoutClicked(object sender, EventArgs e) { }
 }
