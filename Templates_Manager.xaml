@@ -47,7 +47,7 @@
 
                 <Grid
                     Grid.Column="2"
-                    ColumnDefinitions="Auto,Auto,Auto,Auto,Auto,Auto,Auto"
+                    ColumnDefinitions="Auto,Auto,Auto,Auto,Auto,Auto,Auto,Auto"
                     ColumnSpacing="{DynamicResource NaviItemSpacing}"
                     HorizontalOptions="End"
                     VerticalOptions="Center">
@@ -107,6 +107,14 @@
                             <TapGestureRecognizer Tapped="OnRevenueClicked" />
                         </Label.GestureRecognizers>
                     </Label>
+                    <Label
+                        Grid.Column="7"
+                        Style="{StaticResource MenuItemStyle}"
+                        Text="Tài khoản">
+                        <Label.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="OnAccountClicked" />
+                        </Label.GestureRecognizers>
+                    </Label>
                 </Grid>
             </Grid>
 
@@ -114,67 +122,6 @@
                 Grid.Row="1"
                 Margin="0"
                 ZIndex="1" />
-            <!--  Flyout Bar popup  -->
-            <Grid
-                x:Name="FlyoutBarPopup"
-                Grid.RowSpan="2"
-                BackgroundColor="#80000000"
-                ColumnDefinitions="1*,3*"
-                IsVisible="False"
-                ZIndex="2">
-                <Grid
-                    x:Name="PopupContentGrid"
-                    Grid.Column="0"
-                    Padding="5"
-                    BackgroundColor="White"
-                    HorizontalOptions="Fill"
-                    RowDefinitions="Auto,*,Auto"
-                    VerticalOptions="Fill">
-                    <!--  Vai tro va ten nguoi dung  -->
-                    <VerticalStackLayout Grid.Row="0">
-                        <Label
-                            FontAttributes="Bold"
-                            FontSize="18"
-                            HorizontalOptions="Center"
-                            Text="Ten nhan vien"
-                            TextColor="Black" />
-                        <Label
-                            FontAttributes="Italic"
-                            FontSize="18"
-                            HorizontalOptions="Center"
-                            Text="Vai tro"
-                            TextColor="Black" />
-                    </VerticalStackLayout>
-                    <!--  Chuc nang  -->
-                    <Frame
-                        Grid.Row="1"
-                        BackgroundColor="Transparent"
-                        VerticalOptions="Fill">
-                        <Border
-                            BackgroundColor="Transparent"
-                            Stroke="#F2E2D6"
-                            StrokeThickness="1">
-                            <Label
-                                Style="{DynamicResource DynamicLabelMediumStyle}"
-                                Text="Pha chế"
-                                TextColor="#4B3621"
-                                VerticalOptions="Center">
-                                <Label.GestureRecognizers>
-                                    <TapGestureRecognizer Tapped="OnBaristaOptionSelected" />
-                                </Label.GestureRecognizers>
-                            </Label>
-                        </Border>
-                    </Frame>
-                    <!--  Dang xuat  -->
-                    <Button
-                        x:Name="LogoutButton"
-                        Grid.Row="2"
-                        BackgroundColor="Red"
-                        HorizontalOptions="Center"
-                        Text="Đăng xuất"
-                        TextColor="White" />
-                </Grid>
-            </Grid>
         </Grid>
     </ControlTemplate>
 

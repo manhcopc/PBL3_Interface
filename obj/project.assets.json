@@ -18944,11 +18944,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "/Users/copc/Library/CloudStorage/OneDrive-TheUniversityofTechnology/Apps/PBL3_Interface/PBL3_Interface.csproj",
+      "projectUniqueName": "/Users/copc/Library/CloudStorage/OneDrive-TheUniversityofTechnology/Sync/Apps/PBL3_Interface/PBL3_Interface.csproj",
       "projectName": "PBL3_Interface",
-      "projectPath": "/Users/copc/Library/CloudStorage/OneDrive-TheUniversityofTechnology/Apps/PBL3_Interface/PBL3_Interface.csproj",
+      "projectPath": "/Users/copc/Library/CloudStorage/OneDrive-TheUniversityofTechnology/Sync/Apps/PBL3_Interface/PBL3_Interface.csproj",
       "packagesPath": "/Users/copc/.nuget/packages/",
-      "outputPath": "/Users/copc/Library/CloudStorage/OneDrive-TheUniversityofTechnology/Apps/PBL3_Interface/obj/",
+      "outputPath": "/Users/copc/Library/CloudStorage/OneDrive-TheUniversityofTechnology/Sync/Apps/PBL3_Interface/obj/",
       "projectStyle": "PackageReference",
       "crossTargeting": true,
       "configFilePaths": [

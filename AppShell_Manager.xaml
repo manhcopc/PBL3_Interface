@@ -49,4 +49,10 @@
         ContentTemplate="{DataTemplate pages:RevenuePage}"
         FlyoutItemIsVisible="False"
         Route="RevenuePage" />
+
+    <ShellContent
+        Title="Account"
+        ContentTemplate="{DataTemplate pages:AccountPage}"
+        FlyoutItemIsVisible="False"
+        Route="AccountPage" />
 </Shell>

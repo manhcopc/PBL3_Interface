@@ -16,6 +16,10 @@
 		<data>
 		a4931LwQWyxJVaXHNKKnIVb5aLM=
 		</data>
+		<key>Resources/MauiInfo.plist</key>
+		<data>
+		4jZ/pOJGXwmAFXCgk7LRa9BJH58=
+		</data>
 		<key>Resources/MonoTouchDebugConfiguration.txt</key>
 		<data>
 		oowkf1sL6T19nanXUObgmuayWqM=
@@ -206,14 +210,14 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			xklpWxHYhxIDr3oupdhB3Aen6QbYy0NTd8hlYAOA5nU=
+			QovTqakyr+9qi5M75tY+Kn6Q2jB7eOQC8LKJw3nete4=
 			</data>
 		</dict>
 		<key>MonoBundle/PBL3_Interface.pdb</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			qqDE2dp3NvSshVvCB2ov2mdhKtUH40tUIKBasWluWwI=
+			AeoG29Uj8EjQFqovBCIxPV4YRABOSqBwEUeu2BFq7dU=
 			</data>
 		</dict>
 		<key>MonoBundle/System.AppContext.dll</key>
@@ -1635,6 +1639,13 @@
 			<key>hash2</key>
 			<data>
 			tHXIdQgmdh0ic/kPFTzldeIcUsxkJWK7CK5Af9xgNWM=
+			</data>
+		</dict>
+		<key>Resources/MauiInfo.plist</key>
+		<dict>
+			<key>hash2</key>
+			<data>
+			D7xF2d/FAU0oXTW+VlzYG1hotU4XDYbby3Tmkh09oro=
 			</data>
 		</dict>
 		<key>Resources/MonoTouchDebugConfiguration.txt</key>

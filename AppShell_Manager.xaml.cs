@@ -15,7 +15,7 @@ public partial class AppShell_Manager : Shell
 		Routing.RegisterRoute(nameof(PromotionPage), typeof(Pages.PromotionPage));
 		Routing.RegisterRoute(nameof(OrderPage), typeof(Pages.OrderPage));
 		Routing.RegisterRoute(nameof(RevenuePage), typeof(Pages.RevenuePage));
+		Routing.RegisterRoute(nameof(AccountPage), typeof(Pages.AccountPage));
 	}
-
 }
 

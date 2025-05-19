@@ -336,6 +336,8 @@
               <RowDefinition Height="Auto" />
               <RowDefinition Height="Auto" />
               <RowDefinition Height="Auto" />
+              <RowDefinition Height="Auto" />
+              <RowDefinition Height="Auto" />
             </Grid.RowDefinitions>
             <Label
               Grid.Row="0"
@@ -349,13 +351,33 @@
               Margin="0"
               Padding="0">
               <Entry
+                x:Name="StaffUsernameEntry"
+                Placeholder="Tên đăng nhập"
+                Style="{DynamicResource DynamicEntryStyle}"
+                TextColor="Black" />
+            </Border>
+            <Border
+              Grid.Row="2"
+              Margin="0"
+              Padding="0">
+              <Entry
+                x:Name="StaffPasswordEntry"
+                Placeholder="Mật khẩu"
+                Style="{DynamicResource DynamicEntryStyle}"
+                TextColor="Black" />
+            </Border>
+            <Border
+              Grid.Row="3"
+              Margin="0"
+              Padding="0">
+              <Entry
                 x:Name="StaffNameEntry"
                 Placeholder="Họ tên"
                 Style="{DynamicResource DynamicEntryStyle}"
                 TextColor="Black" />
             </Border>
             <Border
-              Grid.Row="2"
+              Grid.Row="4"
               Margin="0"
               Padding="0">
               <Entry
@@ -365,7 +387,7 @@
                 TextColor="Black" />
             </Border>
             <Border
-              Grid.Row="3"
+              Grid.Row="5"
               Margin="0"
               Padding="0">
               <Entry
@@ -375,7 +397,7 @@
                 TextColor="Black" />
             </Border>
             <Border
-              Grid.Row="4"
+              Grid.Row="6"
               Margin="0"
               Padding="0">
               <Entry
@@ -385,7 +407,7 @@
                 TextColor="Black" />
             </Border>
             <Border
-              Grid.Row="5"
+              Grid.Row="7"
               Margin="0"
               Padding="0">
               <Label
@@ -398,7 +420,7 @@
                 </Label.GestureRecognizers>
               </Label>
             </Border>
-            <Grid Grid.Row="6" ColumnDefinitions="*,*">
+            <Grid Grid.Row="8" ColumnDefinitions="*,*">
               <Button
                 Grid.Column="0"
                 Clicked="OnSaveAddStaffClicked"
@@ -443,6 +465,8 @@
               <RowDefinition Height="Auto" />
               <RowDefinition Height="Auto" />
               <RowDefinition Height="Auto" />
+              <RowDefinition Height="Auto" />
+              <RowDefinition Height="Auto" />
             </Grid.RowDefinitions>
             <Label
               Grid.Row="0"
@@ -456,13 +480,33 @@
               Margin="0"
               Padding="0">
               <Entry
+                x:Name="EditStaffUsernameEntry"
+                Placeholder="Tên đăng nhập"
+                Style="{DynamicResource DynamicEntryStyle}"
+                TextColor="Black" />
+            </Border>
+            <Border
+              Grid.Row="2"
+              Margin="0"
+              Padding="0">
+              <Entry
+                x:Name="EditStaffPasswordEntry"
+                Placeholder="Mật khẩu"
+                Style="{DynamicResource DynamicEntryStyle}"
+                TextColor="Black" />
+            </Border>
+            <Border
+              Grid.Row="3"
+              Margin="0"
+              Padding="0">
+              <Entry
                 x:Name="EditStaffNameEntry"
                 Placeholder="Họ tên"
                 Style="{DynamicResource DynamicEntryStyle}"
                 TextColor="Black" />
             </Border>
             <Border
-              Grid.Row="2"
+              Grid.Row="4"
               Margin="0"
               Padding="0">
               <Entry
@@ -472,7 +516,7 @@
                 TextColor="Black" />
             </Border>
             <Border
-              Grid.Row="3"
+              Grid.Row="5"
               Margin="0"
               Padding="0">
               <Entry
@@ -482,7 +526,7 @@
                 TextColor="Black" />
             </Border>
             <Border
-              Grid.Row="4"
+              Grid.Row="6"
               Margin="0"
               Padding="0">
               <Entry
@@ -492,7 +536,7 @@
                 TextColor="Black" />
             </Border>
             <Border
-              Grid.Row="5"
+              Grid.Row="7"
               Margin="0"
               Padding="0">
               <Label
@@ -505,7 +549,7 @@
                 </Label.GestureRecognizers>
               </Label>
             </Border>
-            <Grid Grid.Row="6" ColumnDefinitions="*,*">
+            <Grid Grid.Row="8" ColumnDefinitions="*,*">
               <Button
                 Grid.Column="0"
                 Clicked="OnSaveEditStaffClicked"

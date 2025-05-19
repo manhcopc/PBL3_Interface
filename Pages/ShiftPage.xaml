@@ -976,141 +976,184 @@
         HorizontalOptions="Fill"
         VerticalOptions="Fill">
         <Grid ColumnDefinitions="1*,2*,2*">
-          <Grid Grid.Column="0" RowDefinitions="Auto,*">
-            <Button
-              Grid.Row="0"
-              Clicked="OnCancelEditShiftClicked"
-              CornerRadius="20"
-              FontSize="18"
-              HorizontalOptions="Center"
-              Text="Đóng"
-              TextColor="Red" />
-            <ScrollView Grid.Row="1">
-              <VerticalStackLayout>
-                <Border
-                  BackgroundColor="Transparent"
-                  Stroke="#F2E2D6"
-                  StrokeThickness="1">
-                  <Label
-                    x:Name="RoleCashier"
-                    Style="{DynamicResource DynamicLabelMediumStyle}"
-                    Text="Thu ngân"
-                    TextColor="#4B3621"
-                    VerticalOptions="Center">
-                    <Label.GestureRecognizers>
-                      <TapGestureRecognizer Tapped="OnRoleClicked" />
-                    </Label.GestureRecognizers>
-                  </Label>
-                </Border>
-                <Border
-                  BackgroundColor="Transparent"
-                  Stroke="#F2E2D6"
-                  StrokeThickness="1">
-                  <Label
-                    x:Name="RoleWaiter"
-                    Style="{DynamicResource DynamicLabelMediumStyle}"
-                    Text="Phục vụ"
-                    TextColor="#4B3621"
-                    VerticalOptions="Center">
-                    <Label.GestureRecognizers>
-                      <TapGestureRecognizer Tapped="OnRoleClicked" />
-                    </Label.GestureRecognizers>
-                  </Label>
-                </Border>
-                <Border
-                  BackgroundColor="Transparent"
-                  Stroke="#F2E2D6"
-                  StrokeThickness="1">
-                  <Label
-                    x:Name="RoleBarista"
-                    Style="{DynamicResource DynamicLabelMediumStyle}"
-                    Text="Pha chế"
-                    TextColor="#4B3621"
-                    VerticalOptions="Center">
-                    <Label.GestureRecognizers>
-                      <TapGestureRecognizer Tapped="OnRoleClicked" />
-                    </Label.GestureRecognizers>
-                  </Label>
-                </Border>
-              </VerticalStackLayout>
-            </ScrollView>
-          </Grid>
-          <Grid Grid.Column="1" RowDefinitions="Auto,*">
-            <Label
-              Grid.Row="0"
-              FontSize="18"
-              HorizontalOptions="Center"
-              Text="Đã trong ca"
-              TextColor="Black" />
-            <!--  Nhân viên đã có trong ca làm  -->
-            <ScrollView Grid.Row="1">
-              <!--  Nhap du lieu trong VerticalStackLayout  -->
-              <VerticalStackLayout>
-                <Frame
+          <Frame
+            Grid.Column="0"
+            Padding="0"
+            BackgroundColor="Transparent"
+            BorderColor="#624E45"
+            CornerRadius="0">
+            <Grid RowDefinitions="Auto,*,Auto">
+              <Grid
+                Grid.Row="0"
+                BackgroundColor="#E0C0A9"
+                RowDefinitions="Auto,Auto,Auto">
+                <Label
                   Grid.Row="0"
-                  Padding="{DynamicResource DynamicPadding}"
-                  BackgroundColor="#FFEFD5"
-                  BorderColor="Transparent"
-                  CornerRadius="{DynamicResource DynamicCornerRadius}">
-                  <Grid ColumnDefinitions="*, Auto" ColumnSpacing="{DynamicResource DynamicSpacing}">
+                  FontSize="18"
+                  Text="Ngày: DD/MM/YYYY"
+                  TextColor="Black" />
+                <Label
+                  Grid.Row="1"
+                  FontSize="18"
+                  Text="Ca: ..."
+                  TextColor="Black" />
+                <Label
+                  Grid.Row="2"
+                  FontSize="18"
+                  Text="Tổng: ..."
+                  TextColor="Black" />
+              </Grid>
+
+              <ScrollView Grid.Row="1" VerticalOptions="Center">
+                <VerticalStackLayout Spacing="20">
+                  <Border
+                    BackgroundColor="#FFE4B5"
+                    Stroke="#F2E2D6"
+                    StrokeThickness="1">
                     <Label
-                      Grid.Column="0"
-                      FontSize="{DynamicResource DynamicFontSizeMedium}"
-                      Text="Nguyễn Văn A"
-                      TextColor="Black"
-                      VerticalOptions="Center" />
-                    <Button
-                      Grid.Column="1"
-                      Padding="{DynamicResource DynamicPadding}"
-                      BackgroundColor="Red"
-                      Clicked="RemoveEmployee_Clicked"
-                      CornerRadius="{DynamicResource DynamicCornerRadius}"
-                      FontSize="{DynamicResource DynamicFontSizeMedium}"
-                      Text="Xóa"
-                      TextColor="White" />
-                  </Grid>
-                </Frame>
-              </VerticalStackLayout>
-            </ScrollView>
-          </Grid>
-          <Grid Grid.Column="2" RowDefinitions="Auto,*">
-            <Label
-              Grid.Row="0"
-              FontSize="18"
-              HorizontalOptions="Center"
-              Text="Chưa trong ca"
-              TextColor="Black" />
-            <!--  Nhân viên Chưa có trong ca làm  -->
-            <ScrollView Grid.Row="1">
-              <!--  Nhap du lieu trong VerticalStackLayout  -->
-              <VerticalStackLayout>
-                <Frame
-                  Grid.Row="0"
-                  Padding="{DynamicResource DynamicPadding}"
-                  BackgroundColor="#FFEFD5"
-                  BorderColor="Transparent"
-                  CornerRadius="{DynamicResource DynamicCornerRadius}">
-                  <Grid ColumnDefinitions="*, Auto" ColumnSpacing="{DynamicResource DynamicSpacing}">
+                      x:Name="RoleCashier"
+                      Style="{DynamicResource DynamicLabelMediumStyle}"
+                      Text="Thu ngân"
+                      TextColor="#4B3621"
+                      VerticalOptions="Center">
+                      <Label.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="OnRoleClicked" />
+                      </Label.GestureRecognizers>
+                    </Label>
+                  </Border>
+                  <Border
+                    BackgroundColor="#FFE4B5"
+                    Stroke="#F2E2D6"
+                    StrokeThickness="1">
                     <Label
-                      Grid.Column="0"
-                      FontSize="{DynamicResource DynamicFontSizeMedium}"
-                      Text="Nguyễn Văn A"
-                      TextColor="Black"
-                      VerticalOptions="Center" />
-                    <Button
-                      Grid.Column="1"
-                      Padding="{DynamicResource DynamicPadding}"
-                      BackgroundColor="Red"
-                      Clicked="RemoveEmployee_Clicked"
-                      CornerRadius="{DynamicResource DynamicCornerRadius}"
-                      FontSize="{DynamicResource DynamicFontSizeMedium}"
-                      Text="Thêm"
-                      TextColor="White" />
-                  </Grid>
-                </Frame>
-              </VerticalStackLayout>
-            </ScrollView>
-          </Grid>
+                      x:Name="RoleWaiter"
+                      Style="{DynamicResource DynamicLabelMediumStyle}"
+                      Text="Phục vụ"
+                      TextColor="#4B3621"
+                      VerticalOptions="Center">
+                      <Label.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="OnRoleClicked" />
+                      </Label.GestureRecognizers>
+                    </Label>
+                  </Border>
+                  <Border
+                    BackgroundColor="#FFE4B5"
+                    Stroke="#F2E2D6"
+                    StrokeThickness="1">
+                    <Label
+                      x:Name="RoleBarista"
+                      Style="{DynamicResource DynamicLabelMediumStyle}"
+                      Text="Pha chế"
+                      TextColor="#4B3621"
+                      VerticalOptions="Center">
+                      <Label.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="OnRoleClicked" />
+                      </Label.GestureRecognizers>
+                    </Label>
+                  </Border>
+                </VerticalStackLayout>
+              </ScrollView>
+              <Button
+                Grid.Row="2"
+                Margin="0,20,0,0"
+                Clicked="OnCancelEditShiftClicked"
+                CornerRadius="20"
+                FontSize="18"
+                HorizontalOptions="Center"
+                Text="Đóng"
+                TextColor="Red" />
+            </Grid>
+          </Frame>
+          <Frame
+            Grid.Column="1"
+            BackgroundColor="Transparent"
+            BorderColor="#624E45"
+            CornerRadius="0">
+            <Grid RowDefinitions="Auto,*">
+              <Label
+                Grid.Row="0"
+                FontSize="18"
+                HorizontalOptions="Center"
+                Text="Đã trong ca"
+                TextColor="Black"
+                TextTransform="Uppercase" />
+              <!--  Nhân viên đã có trong ca làm  -->
+              <ScrollView Grid.Row="1">
+                <!--  Nhap du lieu trong VerticalStackLayout  -->
+                <VerticalStackLayout>
+                  <Frame
+                    Grid.Row="0"
+                    Padding="{DynamicResource DynamicPadding}"
+                    BackgroundColor="#FFEFD5"
+                    BorderColor="Transparent"
+                    CornerRadius="{DynamicResource DynamicCornerRadius}">
+                    <Grid ColumnDefinitions="*, Auto" ColumnSpacing="{DynamicResource DynamicSpacing}">
+                      <Label
+                        Grid.Column="0"
+                        FontSize="{DynamicResource DynamicFontSizeMedium}"
+                        Text="Nguyễn Văn A"
+                        TextColor="Black"
+                        VerticalOptions="Center" />
+                      <Button
+                        Grid.Column="1"
+                        Padding="{DynamicResource DynamicPadding}"
+                        BackgroundColor="Red"
+                        Clicked="RemoveEmployee_Clicked"
+                        CornerRadius="{DynamicResource DynamicCornerRadius}"
+                        FontSize="{DynamicResource DynamicFontSizeMedium}"
+                        Text="Xóa"
+                        TextColor="White" />
+                    </Grid>
+                  </Frame>
+                </VerticalStackLayout>
+              </ScrollView>
+            </Grid>
+          </Frame>
+          <Frame
+            Grid.Column="2"
+            BackgroundColor="Transparent"
+            BorderColor="#624E45"
+            CornerRadius="0">
+            <Grid RowDefinitions="Auto,*">
+              <Label
+                Grid.Row="0"
+                FontSize="18"
+                HorizontalOptions="Center"
+                Text="Chưa trong ca"
+                TextColor="Black"
+                TextTransform="Uppercase" />
+              <!--  Nhân viên Chưa có trong ca làm  -->
+              <ScrollView Grid.Row="1">
+                <!--  Nhap du lieu trong VerticalStackLayout  -->
+                <VerticalStackLayout>
+                  <Frame
+                    Grid.Row="0"
+                    Padding="{DynamicResource DynamicPadding}"
+                    BackgroundColor="#FFEFD5"
+                    BorderColor="Transparent"
+                    CornerRadius="{DynamicResource DynamicCornerRadius}">
+                    <Grid ColumnDefinitions="*, Auto" ColumnSpacing="{DynamicResource DynamicSpacing}">
+                      <Label
+                        Grid.Column="0"
+                        FontSize="{DynamicResource DynamicFontSizeMedium}"
+                        Text="Nguyễn Văn A"
+                        TextColor="Black"
+                        VerticalOptions="Center" />
+                      <Button
+                        Grid.Column="1"
+                        Padding="{DynamicResource DynamicPadding}"
+                        BackgroundColor="Red"
+                        Clicked="RemoveEmployee_Clicked"
+                        CornerRadius="{DynamicResource DynamicCornerRadius}"
+                        FontSize="{DynamicResource DynamicFontSizeMedium}"
+                        Text="Thêm"
+                        TextColor="White" />
+                    </Grid>
+                  </Frame>
+                </VerticalStackLayout>
+              </ScrollView>
+            </Grid>
+          </Frame>
         </Grid>
       </Frame>
     </Grid>

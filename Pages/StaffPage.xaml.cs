@@ -4,89 +4,13 @@ namespace PBL3_Interface.Pages;
 
 public partial class StaffPage : ContentPage
 {
+    private Frame _currentEditingFrame;
     private double _lastScale = -1;
-    private Frame? _currentEditingFrame;
-    /// ///////////////
-    private ImageButton? _flyoutBarButton; // Tham chiếu đến ImageButton
-    private Grid? _flyoutBarPopup; // Tham chiếu đến FlyoutBarPopup
-    private Grid? _popupContentGrid; // Tham chiếu đến nội dung popup
-    private Button? _logoutButton; // Tham chiếu đến nút Đăng xuất
-
     public StaffPage()
     {
         InitializeComponent();
-
-        // Lấy tham chiếu đến FlyoutBarPopup từ ControlTemplate
-        _flyoutBarPopup = (Grid)GetTemplateChild("FlyoutBarPopup");
-
-        // Lấy tham chiếu đến nội dung popup (để kiểm tra click ra ngoài)
-        _popupContentGrid = (Grid)GetTemplateChild("PopupContentGrid");
-
-        // Lấy tham chiếu đến ImageButton từ ControlTemplate
-        _flyoutBarButton = (ImageButton)GetTemplateChild("FlyoutBarButton");
-
-        // Lấy tham chiếu đến nút Đăng xuất từ ControlTemplate
-        _logoutButton = (Button)GetTemplateChild("LogoutButton");
-
-        // Gắn sự kiện Clicked động
-        if (_flyoutBarButton != null)
-        {
-            _flyoutBarButton.Clicked += OnFlyoutBarClicked;
-        }
-
-        // Gắn sự kiện Clicked cho nút Đăng xuất
-        if (_logoutButton != null)
-        {
-            _logoutButton.Clicked += OnLogoutClicked;
-        }
-
-        // Gắn sự kiện TapGestureRecognizer cho FlyoutBarPopup để xử lý click ra ngoài
-        if (_flyoutBarPopup != null)
-        {
-            var tapGestureRecognizer = new TapGestureRecognizer();
-            tapGestureRecognizer.Tapped += OnOutsideTapped;
-            _flyoutBarPopup.GestureRecognizers.Add(tapGestureRecognizer);
-        }
     }
 
-    private void OnFlyoutBarClicked(object sender, EventArgs e)
-    {
-        if (_flyoutBarPopup != null)
-        {
-            _flyoutBarPopup.IsVisible = !_flyoutBarPopup.IsVisible; // Hiển thị/ẩn FlyoutBarPopup
-        }
-    }
-
-    private void OnOutsideTapped(object sender, EventArgs e)
-    {
-        if (_flyoutBarPopup != null && _popupContentGrid != null)
-        {
-            var grid = sender as Grid;
-            var position = (e as TappedEventArgs)?.GetPosition(grid);
-            if (position.HasValue)
-            {
-                var contentPosition = _popupContentGrid.Bounds.Location;
-                var contentWidth = _popupContentGrid.Width;
-                var contentHeight = _popupContentGrid.Height;
-                if (position.Value.X < contentPosition.X || position.Value.X > contentPosition.X + contentWidth ||
-                    position.Value.Y < contentPosition.Y || position.Value.Y > contentPosition.Y + contentHeight)
-                {
-                    _flyoutBarPopup.IsVisible = false; // Đóng popup khi click ra ngoài nội dung
-                }
-            }
-        }
-    }
-
-    private async void OnLogoutClicked(object sender, EventArgs e)
-    {
-        if (_flyoutBarPopup != null)
-        {
-            _flyoutBarPopup.IsVisible = false; // Ẩn FlyoutBarPopup
-            // Điều hướng về trang đăng nhập
-            await Shell.Current.GoToAsync("//LoginPage");
-        }
-    }
-    /////////////
     // Sự kiện khi người dùng chọn một vai trò (giữ lại để tương thích nếu cần sau này)
     private void OnRoleClicked(object sender, EventArgs e)
     {
